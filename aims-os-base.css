@@ -13,7 +13,8 @@
 :root {
 
   /* App background */
-  --color-app-bg:                        #0a0a0f;
+  --color-app-bg:                        #0f172b;
+  --color-surface-modal:                 rgba(12,14,34,0.82);
 
   /* Surface — Neutral */
   --color-surface-neutral-white:         rgba(255,255,255,0.10);
@@ -233,7 +234,8 @@ body {
 .btn-secondary:hover { background: var(--color-surface-neutral-default); }
 
 /* Tertiary */
-.btn-tertiary { background: transparent; color: var(--color-text-label); }
+.btn-tertiary { background: transparent; color: var(--color-text-label);
+                border: 1px solid var(--color-border-neutral-lighter); }
 .btn-tertiary:hover { background: var(--color-surface-neutral-default); }
 
 /* Warning */
@@ -682,7 +684,9 @@ tbody td        { height: 60px; padding: 0 16px; font-size: 14px;
 
 .slide-out          { position: fixed; top: 48px; right: 0; bottom: 0; z-index: 80;
                        width: 400px; display: flex; flex-direction: column;
-                       background: var(--color-surface-neutral-white);
+                       background: var(--color-surface-modal);
+                       backdrop-filter: blur(16px);
+                       -webkit-backdrop-filter: blur(16px);
                        border-left: 1px solid var(--color-border-neutral-lighter);
                        transform: translateX(100%); transition: transform 0.25s ease; }
 .slide-out.open     { transform: translateX(0); }
