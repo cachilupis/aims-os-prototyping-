@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workers — AIMS OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { corePlugins: { preflight: false } }</script>
+
+  <style>
+  /* ================================================================
+     AIMS OS — EMBEDDED DESIGN TOKENS + COMPONENT STYLES
+     Source: Figma DS v6rmYKA2zmyXWOahlxLOeI (extracted 2026-04-16)
+     Dark mode = :root (default) | Light mode = body.light
+     ================================================================ */
+
+  /* ── DARK MODE TOKENS (DEFAULT) ───────────────────────────────── */
+  :root {
+    /* App */
+    --color-app-bg:                      #0f172b;
+    --color-surface-modal:               rgba(12,14,34,0.82);
+    --color-surface-floating:            rgba(20,27,42,0.85);
+    --color-surface-floating-hover:      rgba(32,42,62,0.90);
+
+    /* Surfaces — Neutral */
+    --color-surface-neutral-white:       rgba(255,255,255,0.10);
+    --color-surface-neutral-subtle:      rgba(255,255,255,0.05);
+    --color-surface-neutral-default:     rgba(255,255,255,0.08);
+    --color-surface-neutral-emphasis:    rgba(255,255,255,0.20);
+    --color-surface-neutral-black:       #0f172b;
+
+    /* Surfaces — Primary */
+    --color-surface-primary-default:     #155dfc;
+    --color-surface-primary-subtle:      rgba(21,93,252,0.15);
+    --color-surface-primary-more-subtle: rgba(43,127,255,0.08);
+    --color-surface-primary-emphasis:    #2b7fff;
+    --color-surface-primary-lighter:     #1d2f4f;
+
+    /* Surfaces — Semantic */
+    --color-surface-success-default:     #34d399;
+    --color-surface-success-subtle:      rgba(0,201,80,0.10);
+    --color-surface-success-more-subtle: #0a1f1a;
+    --color-surface-error-default:       #e05252;
+    --color-surface-error-subtle:        rgba(251,44,54,0.10);
+    --color-surface-error-more-subtle:   #2d1515;
+    --color-surface-alert-default:       #fcd34d;
+    --color-surface-alert-subtle:        #2d1a08;
+    --color-surface-alert-more-subtle:   #281e00;
+    --color-surface-yellow-subtle:       #2d1a08;
+    --color-surface-lime-subtle:         rgba(189,238,73,0.10);
+    --color-surface-purple-subtle:       rgba(173,70,255,0.10);
+    --color-surface-light-blue-subtle:   rgba(81,162,255,0.10);
+
+    /* Text */
+    --color-text-title:      rgba(255,255,255,0.80);
+    --color-text-subtitle:   rgba(255,255,255,0.60);
+    --color-text-body:       rgba(255,255,255,0.60);
+    --color-text-label:      rgba(255,255,255,0.60);
+    --color-text-caption:    rgba(255,255,255,0.50);
+    --color-text-negative:   #ffffff;
+    --color-text-disabled:   rgba(255,255,255,0.30);
+    --color-text-success:    #6ee7b7;
+    --color-text-error:      #ff6467;
+    --color-text-alert:      #fcd34d;
+    --color-text-link:       #2b7fff;
+
+    /* Borders */
+    --color-border-neutral-subtle:   rgba(255,255,255,0.05);
+    --color-border-neutral-lighter:  rgba(255,255,255,0.15);
+    --color-border-neutral-default:  rgba(255,255,255,0.10);
+    --color-border-primary-subtle:   #1d2f4f;
+    --color-border-primary-default:  #2b7fff;
+    --color-border-success-subtle:   rgba(0,201,80,0.10);
+    --color-border-success-default:  rgba(0,201,80,0.30);
+    --color-border-error-subtle:     rgba(251,44,54,0.10);
+    --color-border-error-default:    #e05252;
+    --color-border-alert-subtle:     #2d1a08;
+    --color-border-alert-default:    #fbbf24;
+
+    /* Icons */
+    --color-icon-neutral-light:   rgba(255,255,255,0.70);
+    --color-icon-neutral-dark:    rgba(255,255,255,0.50);
+    --color-icon-neutral-black:   rgba(255,255,255,0.70);
+    --color-icon-neutral-disable: rgba(255,255,255,0.25);
+    --color-icon-primary-default: #2b7fff;
+    --color-icon-primary-darker:  #155dfc;
+    --color-icon-success-default: #6ee7b7;
+    --color-icon-alert-default:   #fcd34d;
+    --color-icon-error-default:   #ff6467;
+
+    /* Badges */
+    --color-badge-success:    #6ee7b7;
+    --color-badge-error:      #ff6467;
+    --color-badge-alert:      #fcd34d;
+    --color-badge-neutral:    rgba(255,255,255,0.50);
+    --color-badge-primary:    #2b7fff;
+
+    /* Spacing */
+    --sp-1: 2px; --sp-2: 4px; --sp-3: 8px; --sp-4: 12px;
+    --sp-5: 16px; --sp-6: 20px; --sp-7: 24px; --sp-8: 32px;
+    --sp-9: 40px; --sp-10: 48px;
+
+    /* Radius */
+    --radius-none: 0px; --radius-xs: 2px; --radius-sm: 4px;
+    --radius-md: 8px; --radius-lg: 16px; --radius-xl: 24px;
+    --radius-2xl: 32px; --radius-full: 9999px;
+
+    /* Gradients */
+    --gradient-main-action: radial-gradient(circle at 65% 35%, #2173ff 0%, #09e2ab 100%);
+
+    /* Card gradient backgrounds (dark) */
+    --card-bg-blue:       linear-gradient(to bottom, rgba(128,175,255,0.22) 0%, rgba(128,175,255,0) 100%);
+    --card-bg-green:      linear-gradient(to bottom, rgba(0,160,126,0.22)   0%, rgba(0,160,126,0)   100%);
+    --card-bg-red:        linear-gradient(to bottom, rgba(234,145,145,0.22) 0%, rgba(234,145,145,0) 100%);
+    --card-bg-orange:     linear-gradient(to bottom, rgba(237,198,166,0.22) 0%, rgba(237,198,166,0) 100%);
+    --card-bg-yellow:     linear-gradient(to bottom, rgba(255,214,10,0.22)  0%, rgba(255,214,10,0)  100%);
+    --card-bg-purple:     linear-gradient(to bottom, rgba(207,167,249,0.22) 0%, rgba(207,167,249,0) 100%);
+    --card-bg-light-blue: linear-gradient(to bottom, rgba(153,229,249,0.22) 0%, rgba(153,229,249,0) 100%);
+    --card-bg-lime:       linear-gradient(to bottom, rgba(212,243,129,0.22) 0%, rgba(212,243,129,0) 100%);
+  }
+
+  /* ── LIGHT MODE OVERRIDES ─────────────────────────────────────── */
+  body.light {
+    --color-app-bg:                      #fafafa;
+    --color-surface-modal:               rgba(255,255,255,0.97);
+    --color-surface-floating:            rgba(255,255,255,0.92);
+    --color-surface-floating-hover:      rgba(242,242,242,0.95);
+
+    --color-surface-neutral-white:       #ffffff;
+    --color-surface-neutral-subtle:      #fafafa;
+    --color-surface-neutral-default:     #f2f2f2;
+    --color-surface-neutral-emphasis:    #d9d9d9;
+    --color-surface-neutral-black:       #000000;
+
+    --color-surface-primary-default:     #2173ff;
+    --color-surface-primary-subtle:      #e9f1ff;
+    --color-surface-primary-more-subtle: #f6f9ff;
+    --color-surface-primary-emphasis:    #002f80;
+    --color-surface-primary-lighter:     #80afff;
+
+    --color-surface-success-default:     #00a07e;
+    --color-surface-success-subtle:      #cbfff4;
+    --color-surface-success-more-subtle: #e5fdf8;
+    --color-surface-error-default:       #992222;
+    --color-surface-error-subtle:        #ea9191;
+    --color-surface-error-more-subtle:   #fdeded;
+    --color-surface-alert-default:       #ed6c02;
+    --color-surface-alert-subtle:        #ffeedb;
+    --color-surface-alert-more-subtle:   #fff4e5;
+    --color-surface-yellow-subtle:       #ffebcb;
+    --color-surface-lime-subtle:         #e7f9b5;
+    --color-surface-purple-subtle:       #e4cefc;
+    --color-surface-light-blue-subtle:   #ccf1ff;
+
+    --color-text-title:    #000000;
+    --color-text-subtitle: #2a2a2a;
+    --color-text-body:     #5c5c5c;
+    --color-text-label:    #2a2a2a;
+    --color-text-caption:  #5c5c5c;
+    --color-text-negative: #ffffff;
+    --color-text-disabled: #bababa;
+    --color-text-success:  #003328;
+    --color-text-error:    #5f2120;
+    --color-text-alert:    #663c00;
+    --color-text-link:     #2173ff;
+
+    --color-border-neutral-subtle:  #f2f2f2;
+    --color-border-neutral-lighter: #bababa;
+    --color-border-neutral-default: #d9d9d9;
+    --color-border-primary-subtle:  #e9f1ff;
+    --color-border-primary-default: #2173ff;
+    --color-border-success-subtle:  #cbfff4;
+    --color-border-success-default: #00a07e;
+    --color-border-error-subtle:    #ea9191;
+    --color-border-error-default:   #992222;
+    --color-border-alert-subtle:    #edc6a6;
+    --color-border-alert-default:   #ed6c02;
+
+    --color-icon-neutral-light:   #ffffff;
+    --color-icon-neutral-dark:    #5c5c5c;
+    --color-icon-neutral-black:   #2a2a2a;
+    --color-icon-neutral-disable: #bababa;
+    --color-icon-primary-default: #2173ff;
+    --color-icon-primary-darker:  #001740;
+    --color-icon-success-default: #00a07e;
+    --color-icon-alert-default:   #ed6c02;
+    --color-icon-error-default:   #992222;
+
+    --color-badge-success: #00765f;
+    --color-badge-error:   #d32f2f;
+    --color-badge-alert:   #ed6c02;
+    --color-badge-neutral: #bababa;
+    --color-badge-primary: #2173ff;
+
+    /* Card gradients (light) */
+    --card-bg-blue:       linear-gradient(to bottom, #f6f9ff 0%, #ffffff 100%);
+    --card-bg-green:      linear-gradient(to bottom, #e5fdf8 0%, #ffffff 100%);
+    --card-bg-red:        linear-gradient(to bottom, #fdeded 0%, #ffffff 100%);
+    --card-bg-orange:     linear-gradient(to bottom, #fff4e5 0%, #ffffff 100%);
+    --card-bg-yellow:     linear-gradient(to bottom, #fffaf0 0%, #ffffff 100%);
+    --card-bg-purple:     linear-gradient(to bottom, #f3e9fd 0%, #ffffff 100%);
+    --card-bg-light-blue: linear-gradient(to bottom, #e5f8ff 0%, #ffffff 100%);
+    --card-bg-lime:       linear-gradient(to bottom, #f9fee5 0%, #ffffff 100%);
+  }
+
+  /* ── BASE RESET ───────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--color-app-bg);
+    color: var(--color-text-body);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  /* ── TYPOGRAPHY ───────────────────────────────────────────────── */
+  .text-display-xl  { font-size: 56px; font-weight: 700; line-height: 1.10; color: var(--color-text-title); }
+  .text-title-xl    { font-size: 32px; font-weight: 600; line-height: 1.20; color: var(--color-text-title); }
+  .text-title-lg    { font-size: 28px; font-weight: 600; line-height: 1.25; color: var(--color-text-title); }
+  .text-title-md    { font-size: 24px; font-weight: 600; line-height: 1.30; color: var(--color-text-title); }
+  .text-title-sm    { font-size: 20px; font-weight: 600; line-height: 1.35; color: var(--color-text-title); }
+  .text-subtitle-lg { font-size: 18px; font-weight: 500; line-height: 1.40; color: var(--color-text-subtitle); }
+  .text-subtitle-md { font-size: 16px; font-weight: 500; line-height: 1.40; color: var(--color-text-subtitle); }
+  .text-subtitle-sm { font-size: 14px; font-weight: 500; line-height: 1.45; color: var(--color-text-subtitle); }
+  .text-body-lg     { font-size: 16px; font-weight: 400; line-height: 1.50; color: var(--color-text-body); }
+  .text-body-md     { font-size: 14px; font-weight: 400; line-height: 1.50; color: var(--color-text-body); }
+  .text-body-sm     { font-size: 12px; font-weight: 400; line-height: 1.50; color: var(--color-text-body); }
+  .text-label-lg    { font-size: 14px; font-weight: 500; line-height: 1.40; color: var(--color-text-label); }
+  .text-label-md    { font-size: 12px; font-weight: 500; line-height: 1.40; color: var(--color-text-label); }
+  .text-label-sm    { font-size: 11px; font-weight: 500; line-height: 1.40; color: var(--color-text-label); }
+  .text-caption-lg  { font-size: 12px; font-weight: 400; line-height: 1.40; color: var(--color-text-caption); }
+  .text-caption-md  { font-size: 11px; font-weight: 400; line-height: 1.40; color: var(--color-text-caption); }
+
+  /* ── LAYOUT SHELL ─────────────────────────────────────────────── */
+  .app-shell  { display: flex; flex-direction: column; height: 100vh; overflow: hidden; background: var(--color-app-bg); }
+
+  .topbar     { display: flex; align-items: center; justify-content: space-between;
+                height: 48px; padding: 0 16px; flex-shrink: 0;
+                background: var(--color-surface-neutral-white);
+                border-bottom: 1px solid var(--color-border-neutral-lighter);
+                transition: background 0.2s, border-color 0.2s; }
+
+  .app-body   { display: flex; flex: 1; overflow: hidden; }
+
+  .sidebar    { width: 80px; flex-shrink: 0; display: flex; flex-direction: column;
+                align-items: center; padding: 12px 0; gap: 4px;
+                background: var(--color-surface-neutral-white);
+                border-right: 1px solid var(--color-border-neutral-lighter);
+                transition: background 0.2s, border-color 0.2s; }
+
+  .sidebar-icon { width: 40px; height: 40px; display: flex; align-items: center;
+                  justify-content: center; border-radius: var(--radius-md);
+                  color: var(--color-icon-neutral-dark); cursor: pointer;
+                  transition: background 0.15s, color 0.15s; flex-shrink: 0; }
+  .sidebar-icon:hover  { background: var(--color-surface-neutral-default); }
+  .sidebar-icon.active { background: var(--color-surface-primary-subtle); color: var(--color-icon-primary-default); }
+
+  .main-content { flex: 1; overflow-y: auto; padding: 20px 24px; }
+
+  /* ── BUTTONS ──────────────────────────────────────────────────── */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+         font-family: inherit; font-weight: 500; cursor: pointer; border: none; outline: none;
+         transition: background 0.15s, opacity 0.15s, transform 0.1s; white-space: nowrap;
+         text-decoration: none; letter-spacing: 0; }
+  .btn:active:not(:disabled) { transform: scale(0.97); }
+  .btn:disabled, .btn.disabled { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
+
+  .btn-sm   { height: 28px; padding: 0 12px; font-size: 12px; border-radius: var(--radius-md); }
+  .btn-md   { height: 40px; padding: 0 16px; font-size: 14px; border-radius: var(--radius-md); }
+  .btn-lg   { height: 48px; padding: 0 20px; font-size: 16px; border-radius: var(--radius-md); }
+  .btn-pill { border-radius: var(--radius-full) !important; }
+
+  .btn-main-action { background: var(--gradient-main-action); color: #ffffff; border: none; }
+  .btn-main-action:hover { opacity: 0.88; }
+
+  .btn-primary  { background: var(--color-surface-primary-default); color: var(--color-text-negative); border: none; }
+  .btn-primary:hover  { background: var(--color-surface-primary-emphasis); }
+
+  .btn-secondary { background: var(--color-surface-neutral-white); color: var(--color-text-label);
+                   border: 1px solid var(--color-border-neutral-lighter); }
+  .btn-secondary:hover { background: var(--color-surface-neutral-default); }
+
+  .btn-tertiary  { background: transparent; color: var(--color-text-label);
+                   border: 1px solid var(--color-border-neutral-lighter); }
+  .btn-tertiary:hover  { background: var(--color-surface-neutral-default); }
+
+  .btn-warning   { background: var(--color-surface-alert-subtle); color: var(--color-text-alert);
+                   border: 1px solid var(--color-border-alert-default); }
+  .btn-warning:hover   { opacity: 0.85; }
+
+  .btn-positive  { background: var(--color-surface-success-subtle); color: var(--color-text-success);
+                   border: 1px solid var(--color-border-success-default); }
+  .btn-positive:hover  { opacity: 0.85; }
+
+  .btn-icon    { width: 40px; height: 40px; padding: 0; display: inline-flex;
+                 align-items: center; justify-content: center;
+                 border-radius: var(--radius-md); background: transparent;
+                 color: var(--color-icon-neutral-dark); border: none; cursor: pointer;
+                 transition: background 0.15s; }
+  .btn-icon:hover { background: var(--color-surface-neutral-default); }
+  .btn-icon-sm { width: 28px; height: 28px; padding: 0; display: inline-flex;
+                 align-items: center; justify-content: center;
+                 border-radius: var(--radius-sm); background: transparent;
+                 color: var(--color-icon-neutral-dark); border: none; cursor: pointer; }
+  .btn-icon-sm:hover { background: var(--color-surface-neutral-default); }
+
+  /* ── TEXT FIELDS ──────────────────────────────────────────────── */
+  .input { display: flex; align-items: center; gap: 8px;
+           background: var(--color-surface-neutral-default);
+           border: 1px solid var(--color-border-neutral-default);
+           border-radius: var(--radius-md); padding: 0 12px;
+           color: var(--color-text-body); font-family: inherit;
+           font-size: 14px; outline: none; width: 100%;
+           transition: border-color 0.15s, background 0.15s; }
+  .input::placeholder { color: var(--color-text-caption); }
+  .input:hover   { border-color: var(--color-border-neutral-lighter); }
+  .input:focus   { border-color: var(--color-border-primary-default);
+                   background: var(--color-surface-neutral-white); }
+  .input-md { height: 40px; }
+  .input-sm { height: 32px; font-size: 12px; }
+
+  /* ── BADGE STATUS ─────────────────────────────────────────────── */
+  .badge { display: inline-flex; align-items: center; gap: 6px;
+           padding: 3px 10px; border-radius: var(--radius-full);
+           font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+           white-space: nowrap; }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .badge-active   { background: var(--color-surface-success-subtle);   color: var(--color-badge-success); }
+  .badge-active::before { background: var(--color-badge-success); }
+  .badge-inactive { background: var(--color-surface-neutral-default);  color: var(--color-badge-neutral); }
+  .badge-inactive::before { background: var(--color-badge-neutral); }
+  .badge-error    { background: var(--color-surface-error-subtle);     color: var(--color-badge-error); }
+  .badge-error::before { background: var(--color-badge-error); }
+  .badge-alert    { background: var(--color-surface-alert-subtle);     color: var(--color-badge-alert); }
+  .badge-alert::before { background: var(--color-badge-alert); }
+  .badge-primary  { background: var(--color-surface-primary-subtle);   color: var(--color-badge-primary); }
+  .badge-primary::before { background: var(--color-badge-primary); }
+
+  /* ── TAGS / CHIPS ─────────────────────────────────────────────── */
+  .tag { display: inline-flex; align-items: center; gap: 6px;
+         height: 28px; padding: 0 12px; border-radius: var(--radius-full);
+         font-size: 12px; font-weight: 500; cursor: pointer;
+         border: 1px solid var(--color-border-neutral-lighter);
+         color: var(--color-text-label); background: var(--color-surface-neutral-default);
+         transition: background 0.15s; user-select: none; white-space: nowrap; }
+  .tag:hover  { background: var(--color-surface-neutral-emphasis); }
+  .tag.active { background: var(--color-surface-primary-subtle);
+                border-color: var(--color-border-primary-default);
+                color: var(--color-icon-primary-default); }
+  .tag-dismiss { opacity: 0.5; cursor: pointer; line-height: 1; }
+  .tag-dismiss:hover { opacity: 1; }
+
+  /* ── TABS ─────────────────────────────────────────────────────── */
+  .tabs { display: flex; align-items: center;
+          border-bottom: 1px solid var(--color-border-neutral-lighter); }
+  .tab-item { display: flex; align-items: center; gap: 6px; height: 40px; padding: 0 16px;
+              font-size: 14px; font-weight: 500; color: var(--color-text-subtitle);
+              cursor: pointer; position: relative; transition: color 0.15s; }
+  .tab-item:hover { color: var(--color-text-title); }
+  .tab-item.active { color: var(--color-text-title); }
+  .tab-item.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+                             height: 2px; background: var(--color-surface-primary-default);
+                             border-radius: 2px 2px 0 0; }
+  .tab-count { display: inline-flex; align-items: center; justify-content: center;
+               min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px;
+               font-size: 11px; font-weight: 600;
+               background: var(--color-surface-neutral-default);
+               color: var(--color-text-caption); }
+  .tab-item.active .tab-count { background: var(--color-surface-primary-subtle); color: var(--color-icon-primary-default); }
+
+  /* ── TABLE ────────────────────────────────────────────────────── */
+  .table-container { width: 100%; border-radius: var(--radius-lg); overflow: hidden;
+                     border: 1px solid var(--color-border-neutral-lighter); }
+  table { width: 100%; border-collapse: collapse; }
+
+  thead th { height: 48px; padding: 0 16px; text-align: left;
+             font-size: 12px; font-weight: 600; color: var(--color-text-subtitle);
+             background: var(--color-surface-neutral-default);
+             border-bottom: 1px solid var(--color-border-neutral-lighter);
+             white-space: nowrap; }
+  thead th:first-child { padding-left: 16px; width: 40px; }
+
+  tbody td { height: 60px; padding: 0 16px; font-size: 14px;
+             color: var(--color-text-body);
+             border-bottom: 1px solid var(--color-border-neutral-lighter); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr { transition: background 0.1s; cursor: pointer; }
+  tbody tr:hover { background: var(--color-surface-neutral-subtle); }
+  tbody tr.selected { background: var(--color-surface-primary-more-subtle); }
+  tbody tr.selected td { border-bottom-color: var(--color-border-primary-subtle); }
+
+  /* Checkbox */
+  .cb { width: 16px; height: 16px; border-radius: var(--radius-xs);
+        border: 1.5px solid var(--color-border-neutral-lighter);
+        background: transparent; cursor: pointer; appearance: none;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s, background 0.15s; flex-shrink: 0; }
+  .cb:checked { background: var(--color-surface-primary-default);
+                border-color: var(--color-surface-primary-default);
+                background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+                background-repeat: no-repeat; background-position: center; }
+
+  /* ── PAGINATION ───────────────────────────────────────────────── */
+  .pagination { display: flex; align-items: center; gap: 24px; height: 48px; padding: 0 16px;
+                font-size: 12px; font-weight: 500; color: var(--color-text-label); }
+  .pagination__rpp       { display: flex; align-items: center; gap: 8px; }
+  .pagination__rpp-label { color: var(--color-text-caption); white-space: nowrap; }
+  .pagination__rpp-select { display: flex; align-items: center; gap: 4px; cursor: pointer;
+                             color: var(--color-text-label); padding: 3px 8px;
+                             border: 1px solid var(--color-border-neutral-lighter);
+                             border-radius: var(--radius-sm); font-size: 12px;
+                             background: transparent; font-family: inherit; }
+  .pagination__range     { color: var(--color-text-caption); white-space: nowrap; }
+  .pagination__nav       { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .pagination__btn       { width: 28px; height: 28px; display: flex; align-items: center;
+                            justify-content: center; border-radius: var(--radius-sm);
+                            border: 1px solid var(--color-border-neutral-lighter);
+                            background: transparent; color: var(--color-icon-neutral-dark);
+                            cursor: pointer; transition: background 0.15s; }
+  .pagination__btn:hover:not(:disabled) { background: var(--color-surface-neutral-default); }
+  .pagination__btn:disabled { opacity: 0.30; cursor: not-allowed; }
+
+  /* ── HIGHLIGHT ICON ───────────────────────────────────────────── */
+  .highlight-icon   { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .highlight-icon-l { width: 40px; height: 40px; border-radius: var(--radius-md); }
+  .highlight-icon-m { width: 32px; height: 32px; border-radius: var(--radius-md); }
+  .highlight-icon-s { width: 24px; height: 24px; border-radius: var(--radius-sm); }
+  .highlight-icon-l svg, .highlight-icon-m svg, .highlight-icon-s svg { width: 20px; height: 20px; }
+
+  .hi--blue      { background: var(--color-surface-primary-subtle);   color: var(--color-icon-primary-default); }
+  .hi--green     { background: var(--color-surface-success-subtle);   color: var(--color-icon-success-default); }
+  .hi--alert     { background: var(--color-surface-alert-subtle);     color: var(--color-icon-alert-default); }
+  .hi--error     { background: var(--color-surface-error-subtle);     color: var(--color-icon-error-default); }
+  .hi--neutral   { background: var(--color-surface-neutral-default);  color: var(--color-icon-neutral-dark); }
+
+  /* ── HIGHLIGHT CARD (KPI) ─────────────────────────────────────── */
+  .hcard { display: flex; flex-direction: column; gap: 10px; padding: 16px;
+           border-radius: var(--radius-lg); flex: 1;
+           border: 1px solid var(--color-border-neutral-lighter);
+           background: var(--color-surface-neutral-white);
+           transition: background 0.2s, border-color 0.2s; }
+
+  .hcard--blue   { background: var(--card-bg-blue);       border-color: var(--color-border-primary-subtle); }
+  .hcard--green  { background: var(--card-bg-green);      border-color: var(--color-border-success-subtle); }
+  .hcard--yellow { background: var(--card-bg-yellow);     border-color: var(--color-border-alert-subtle); }
+  .hcard--neutral { background: var(--color-surface-neutral-white); border-color: var(--color-border-neutral-lighter); }
+
+  .hcard__row    { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .hcard__label  { font-size: 13px; font-weight: 500; color: var(--color-text-subtitle); }
+  .hcard__value  { font-size: 28px; font-weight: 700; color: var(--color-text-title); line-height: 1; }
+  .hcard__unit   { font-size: 12px; font-weight: 500; color: var(--color-text-caption); padding-bottom: 4px; align-self: flex-end; }
+  .hcard__delta  { font-size: 12px; font-weight: 500; }
+  .hcard__delta.up   { color: var(--color-text-success); }
+  .hcard__delta.down { color: var(--color-text-error); }
+  .hcard__delta.neutral { color: var(--color-text-caption); }
+
+  /* ── AVATAR ───────────────────────────────────────────────────── */
+  .avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
+  .avatar-sm { width: 24px; height: 24px; font-size: 9px; }
+  .avatar-lg { width: 40px; height: 40px; font-size: 14px; }
+
+  /* Dept colors */
+  .dept-eng  { background: var(--color-surface-primary-subtle);   color: var(--color-icon-primary-default); }
+  .dept-prod { background: var(--color-surface-purple-subtle);    color: #a78bfa; }
+  .dept-des  { background: var(--color-surface-lime-subtle);      color: #bdee49; }
+  .dept-fin  { background: var(--color-surface-yellow-subtle);    color: var(--color-icon-alert-default); }
+  .dept-mkt  { background: var(--color-surface-light-blue-subtle); color: #7dd3fc; }
+  .dept-hr   { background: var(--color-surface-success-subtle);   color: var(--color-icon-success-default); }
+
+  body.light .dept-prod { color: #7b27ed; }
+  body.light .dept-des  { color: #6e9b14; }
+  body.light .dept-mkt  { color: #00b5d9; }
+
+  /* ── SLIDE OUT ────────────────────────────────────────────────── */
+  .slide-out { position: fixed; top: 48px; right: 0; bottom: 0; z-index: 80;
+               width: 420px; display: flex; flex-direction: column;
+               background: var(--color-surface-modal);
+               backdrop-filter: blur(16px);
+               -webkit-backdrop-filter: blur(16px);
+               border-left: 1px solid var(--color-border-neutral-lighter);
+               transform: translateX(100%);
+               transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); }
+  .slide-out.open { transform: translateX(0); }
+  .slide-out__header { display: flex; align-items: center; justify-content: space-between;
+                       padding: 16px 20px; border-bottom: 1px solid var(--color-border-neutral-lighter); }
+  .slide-out__title  { font-size: 16px; font-weight: 600; color: var(--color-text-title); }
+  .slide-out__body   { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+  .slide-out__footer { padding: 16px 20px; border-top: 1px solid var(--color-border-neutral-lighter);
+                       display: flex; gap: 8px; justify-content: flex-end; }
+
+  /* ── DIVIDER ──────────────────────────────────────────────────── */
+  .divider { height: 1px; background: var(--color-border-neutral-lighter); width: 100%; }
+
+  /* ── SECTION LABEL ────────────────────────────────────────────── */
+  .section-label { font-size: 11px; font-weight: 600; color: var(--color-text-caption);
+                   text-transform: uppercase; letter-spacing: 0.07em; }
+
+  /* ── MODE TOGGLE ──────────────────────────────────────────────── */
+  .mode-toggle { display: flex; align-items: center; gap: 6px; padding: 4px 10px;
+                 border-radius: var(--radius-full);
+                 background: var(--color-surface-neutral-default);
+                 border: 1px solid var(--color-border-neutral-lighter);
+                 cursor: pointer; transition: background 0.15s; user-select: none; }
+  .mode-toggle:hover { background: var(--color-surface-neutral-emphasis); }
+  .mode-toggle__icon { color: var(--color-icon-neutral-dark); }
+  .mode-toggle__label { font-size: 12px; font-weight: 500; color: var(--color-text-caption); }
+
+  /* ── TOAST ────────────────────────────────────────────────────── */
+  .toast { position: fixed; bottom: 24px; right: 24px; z-index: 200;
+           display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px;
+           border-radius: var(--radius-md); min-width: 320px; max-width: 400px;
+           box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+           background: var(--color-surface-floating);
+           backdrop-filter: blur(12px);
+           border: 1px solid var(--color-border-neutral-lighter);
+           animation: slideUp 0.2s ease; }
+  .toast__body { flex: 1; font-size: 14px; font-weight: 500; color: var(--color-text-title); }
+  .toast__close { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+                  border: none; background: transparent; cursor: pointer;
+                  color: var(--color-icon-neutral-dark); border-radius: var(--radius-sm); }
+  @keyframes slideUp { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: translateY(0); } }
+
+  /* ── ACTIONS MENU (3 dots) ────────────────────────────────────── */
+  .row-actions { position: relative; }
+  .row-actions__menu { display: none; position: absolute; right: 0; top: 100%; z-index: 50;
+                       min-width: 180px; border-radius: var(--radius-md);
+                       background: var(--color-surface-floating);
+                       backdrop-filter: blur(12px);
+                       border: 1px solid var(--color-border-neutral-lighter);
+                       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+                       overflow: hidden; }
+  .row-actions__menu.open { display: block; }
+  .row-actions__item { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px;
+                       font-size: 13px; font-weight: 500; color: var(--color-text-label);
+                       cursor: pointer; transition: background 0.15s; }
+  .row-actions__item:hover { background: var(--color-surface-floating-hover); }
+  .row-actions__item.danger { color: var(--color-text-error); }
+
+  /* ── DETAIL ROW (slide-out) ───────────────────────────────────── */
+  .detail-row { display: flex; flex-direction: column; gap: 3px; }
+  .detail-row__label { font-size: 11px; font-weight: 500; color: var(--color-text-caption); text-transform: uppercase; letter-spacing: 0.05em; }
+  .detail-row__value { font-size: 14px; font-weight: 500; color: var(--color-text-label); }
+
+  /* ── SCROLLBAR (cosmetic) ─────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--color-border-neutral-default); border-radius: 2px; }
+  </style>
+</head>
+
+<body>
+<div class="app-shell">
+
+  <!-- ═══════════════════════ TOPBAR ═══════════════════════════════ -->
+  <header class="topbar">
+    <!-- Left: logo + breadcrumb -->
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
+        <div style="width:24px;height:24px;border-radius:6px;background:var(--gradient-main-action);flex-shrink:0;"></div>
+        <span style="font-size:13px;font-weight:600;color:var(--color-text-title);letter-spacing:0.01em;">AIMS OS</span>
+      </div>
+      <span style="color:var(--color-text-caption);font-size:13px;">/</span>
+      <span style="font-size:13px;font-weight:500;color:var(--color-text-caption);">Workers</span>
+    </div>
+
+    <!-- Right: search, mode toggle, avatar -->
+    <div class="flex items-center gap-2">
+      <button class="btn-icon-sm" aria-label="Search">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </button>
+
+      <button class="mode-toggle" onclick="toggleMode()" id="modeToggle" title="Toggle light/dark">
+        <span class="mode-toggle__icon" id="modeIcon">
+          <!-- Moon icon (dark mode) -->
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </span>
+        <span class="mode-toggle__label" id="modeLabel">Dark</span>
+      </button>
+
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--color-surface-primary-subtle);
+                  display:flex;align-items:center;justify-content:center;
+                  font-size:10px;font-weight:700;color:var(--color-icon-primary-default);">PM</div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ APP BODY ══════════════════════════════ -->
+  <div class="app-body">
+
+    <!-- ─────────────────── SIDEBAR ─────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-icon" title="Home">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="sidebar-icon" title="Contacts">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="sidebar-icon active" title="Workers">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div class="sidebar-icon" title="Analytics">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <div class="sidebar-icon" title="Settings" style="margin-top:auto;">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </div>
+    </aside>
+
+    <!-- ─────────────────── MAIN CONTENT ─────────────────────────── -->
+    <main class="main-content">
+
+      <!-- PAGE HEADER -->
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h1 class="text-title-sm">Workers</h1>
+          <p class="text-caption-lg mt-1">1,284 workers across all departments</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn btn-tertiary btn-md">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export
+          </button>
+          <button class="btn btn-main-action btn-md" onclick="showToast('Worker invite sent')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add worker
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI ROW -->
+      <div class="flex items-stretch gap-3 mb-5">
+        <div class="hcard hcard--blue">
+          <div class="hcard__row">
+            <div class="flex flex-col gap-2">
+              <span class="hcard__label">Total Workers</span>
+              <div class="flex items-baseline gap-2">
+                <span class="hcard__value">1,284</span>
+                <span class="hcard__unit">workers</span>
+              </div>
+            </div>
+            <div class="highlight-icon highlight-icon-l hi--blue">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+          </div>
+          <span class="hcard__delta up">↑ +42 this month</span>
+        </div>
+
+        <div class="hcard hcard--green">
+          <div class="hcard__row">
+            <div class="flex flex-col gap-2">
+              <span class="hcard__label">Active</span>
+              <div class="flex items-baseline gap-2">
+                <span class="hcard__value">847</span>
+                <span class="hcard__unit">active</span>
+              </div>
+            </div>
+            <div class="highlight-icon highlight-icon-l hi--green">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+          <span class="hcard__delta up">↑ +8.1% this week</span>
+        </div>
+
+        <div class="hcard hcard--yellow">
+          <div class="hcard__row">
+            <div class="flex flex-col gap-2">
+              <span class="hcard__label">On Leave</span>
+              <div class="flex items-baseline gap-2">
+                <span class="hcard__value">47</span>
+                <span class="hcard__unit">on leave</span>
+              </div>
+            </div>
+            <div class="highlight-icon highlight-icon-l hi--alert">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+          </div>
+          <span class="hcard__delta neutral">↑ +5 since last week</span>
+        </div>
+
+        <div class="hcard hcard--neutral">
+          <div class="hcard__row">
+            <div class="flex flex-col gap-2">
+              <span class="hcard__label">Inactive</span>
+              <div class="flex items-baseline gap-2">
+                <span class="hcard__value">390</span>
+                <span class="hcard__unit">inactive</span>
+              </div>
+            </div>
+            <div class="highlight-icon highlight-icon-l hi--neutral">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/>
+              </svg>
+            </div>
+          </div>
+          <span class="hcard__delta down">↓ -12 this month</span>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="tabs mb-4">
+        <div class="tab-item active" onclick="switchTab(this)">
+          All <span class="tab-count">1,284</span>
+        </div>
+        <div class="tab-item" onclick="switchTab(this)">
+          Active <span class="tab-count">847</span>
+        </div>
+        <div class="tab-item" onclick="switchTab(this)">
+          On Leave <span class="tab-count">47</span>
+        </div>
+        <div class="tab-item" onclick="switchTab(this)">
+          Inactive <span class="tab-count">390</span>
+        </div>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="flex items-center gap-2 mb-4">
+        <div style="position:relative;width:240px;flex-shrink:0;">
+          <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--color-icon-neutral-dark);">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+          </span>
+          <input class="input input-md" style="padding-left:32px;" placeholder="Search workers…" type="text">
+        </div>
+        <div class="tag" onclick="this.classList.toggle('active')">
+          Department
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="tag active">
+          Status: Active
+          <span class="tag-dismiss" onclick="this.parentElement.classList.remove('active');this.parentElement.innerHTML='Status <svg width=\'12\' height=\'12\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' viewBox=\'0 0 24 24\'><polyline points=\'6 9 12 15 18 9\'/></svg>'">×</span>
+        </div>
+        <div class="tag" onclick="this.classList.toggle('active')">
+          Role
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="tag" onclick="this.classList.toggle('active')">
+          Location
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ENTITY LIST TABLE -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:40px;"><input type="checkbox" class="cb" id="selectAll" onchange="toggleAll(this)"></th>
+              <th>Worker</th>
+              <th>Department</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Since</th>
+              <th style="width:48px;"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1 -->
+            <tr onclick="openSlideOut('Sarah Chen','Senior Engineer','Engineering','Active','Jan 12, 2021','sarah.chen@aimsco.io')">
+              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="avatar dept-eng">SC</div>
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">Sarah Chen</div>
+                    <div style="font-size:12px;color:var(--color-text-caption);">sarah.chen@aimsco.io</div>
+                  </div>
+                </div>
+              </td>
+              <td><span style="font-size:13px;color:var(--color-text-label);">Engineering</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-body);">Senior Engineer</span></td>
+              <td><span class="badge badge-active">Active</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-caption);">Jan 2021</span></td>
+              <td>
+                <div class="row-actions">
+                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                    </svg>
+                  </button>
+                  <div class="row-actions__menu">
+                    <div class="row-actions__item" onclick="showToast('Opening profile…')">View profile</div>
+                    <div class="row-actions__item" onclick="showToast('Edit mode enabled')">Edit worker</div>
+                    <div class="row-actions__item danger" onclick="showToast('Worker deactivated','alert')">Deactivate</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 2 -->
+            <tr onclick="openSlideOut('Marcus Reid','Product Manager','Product','Active','Mar 5, 2022','m.reid@aimsco.io')">
+              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="avatar dept-prod">MR</div>
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">Marcus Reid</div>
+                    <div style="font-size:12px;color:var(--color-text-caption);">m.reid@aimsco.io</div>
+                  </div>
+                </div>
+              </td>
+              <td><span style="font-size:13px;color:var(--color-text-label);">Product</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-body);">Product Manager</span></td>
+              <td><span class="badge badge-active">Active</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-caption);">Mar 2022</span></td>
+              <td>
+                <div class="row-actions">
+                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                    </svg>
+                  </button>
+                  <div class="row-actions__menu">
+                    <div class="row-actions__item">View profile</div>
+                    <div class="row-actions__item">Edit worker</div>
+                    <div class="row-actions__item danger">Deactivate</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 3 — On Leave -->
+            <tr onclick="openSlideOut('Jennifer Chang','UX Designer','Design','On Leave','Jun 18, 2020','j.chang@aimsco.io')">
+              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="avatar dept-des">JC</div>
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">Jennifer Chang</div>
+                    <div style="font-size:12px;color:var(--color-text-caption);">j.chang@aimsco.io</div>
+                  </div>
+                </div>
+              </td>
+              <td><span style="font-size:13px;color:var(--color-text-label);">Design</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-body);">UX Designer</span></td>
+              <td><span class="badge badge-alert">On Leave</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-caption);">Jun 2020</span></td>
+              <td>
+                <div class="row-actions">
+                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                    </svg>
+                  </button>
+                  <div class="row-actions__menu">
+                    <div class="row-actions__item">View profile</div>
+                    <div class="row-actions__item">Edit worker</div>
+                    <div class="row-actions__item danger">Deactivate</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 4 — Selected -->
+            <tr class="selected" onclick="openSlideOut('David Walsh','Financial Analyst','Finance','Active','Sep 3, 2023','d.walsh@aimsco.io')">
+              <td><input type="checkbox" class="cb" checked onclick="e => e.stopPropagation()"></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="avatar dept-fin">DW</div>
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">David Walsh</div>
+                    <div style="font-size:12px;color:var(--color-text-caption);">d.walsh@aimsco.io</div>
+                  </div>
+                </div>
+              </td>
+              <td><span style="font-size:13px;color:var(--color-text-label);">Finance</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-body);">Financial Analyst</span></td>
+              <td><span class="badge badge-active">Active</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-caption);">Sep 2023</span></td>
+              <td>
+                <div class="row-actions">
+                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                    </svg>
+                  </button>
+                  <div class="row-actions__menu">
+                    <div class="row-actions__item">View profile</div>
+                    <div class="row-actions__item">Edit worker</div>
+                    <div class="row-actions__item danger">Deactivate</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 5 — Inactive -->
+            <tr onclick="openSlideOut('Anna Thompson','Marketing Lead','Marketing','Inactive','Feb 14, 2019','a.thompson@aimsco.io')">
+              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="avatar dept-mkt" style="opacity:0.6;">AT</div>
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-subtitle);">Anna Thompson</div>
+                    <div style="font-size:12px;color:var(--color-text-caption);">a.thompson@aimsco.io</div>
+                  </div>
+                </div>
+              </td>
+              <td><span style="font-size:13px;color:var(--color-text-caption);">Marketing</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-caption);">Marketing Lead</span></td>
+              <td><span class="badge badge-inactive">Inactive</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-caption);">Feb 2019</span></td>
+              <td>
+                <div class="row-actions">
+                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                    </svg>
+                  </button>
+                  <div class="row-actions__menu">
+                    <div class="row-actions__item">View profile</div>
+                    <div class="row-actions__item">Edit worker</div>
+                    <div class="row-actions__item">Reactivate</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 6 -->
+            <tr onclick="openSlideOut('Michael Torres','Backend Engineer','Engineering','Active','Nov 7, 2022','m.torres@aimsco.io')">
+              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="avatar dept-eng">MT</div>
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">Michael Torres</div>
+                    <div style="font-size:12px;color:var(--color-text-caption);">m.torres@aimsco.io</div>
+                  </div>
+                </div>
+              </td>
+              <td><span style="font-size:13px;color:var(--color-text-label);">Engineering</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-body);">Backend Engineer</span></td>
+              <td><span class="badge badge-active">Active</span></td>
+              <td><span style="font-size:13px;color:var(--color-text-caption);">Nov 2022</span></td>
+              <td>
+                <div class="row-actions">
+                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                    </svg>
+                  </button>
+                  <div class="row-actions__menu">
+                    <div class="row-actions__item">View profile</div>
+                    <div class="row-actions__item">Edit worker</div>
+                    <div class="row-actions__item danger">Deactivate</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- PAGINATION -->
+        <div class="pagination" style="border-top:1px solid var(--color-border-neutral-lighter);">
+          <span class="pagination__rpp-label">Rows per page:</span>
+          <select class="pagination__rpp-select">
+            <option>25</option><option>50</option><option>100</option>
+          </select>
+          <span class="pagination__range">1–25 of 847 workers</span>
+          <div class="pagination__nav">
+            <button class="pagination__btn" disabled title="First page">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/>
+              </svg>
+            </button>
+            <button class="pagination__btn" disabled title="Previous">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+            <button class="pagination__btn" title="Next">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+            <button class="pagination__btn" title="Last page">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </main><!-- /main-content -->
+  </div><!-- /app-body -->
+</div><!-- /app-shell -->
+
+
+<!-- ═══════════════════════ SLIDE OUT ═════════════════════════════ -->
+<div class="slide-out" id="slideOut">
+  <div class="slide-out__header">
+    <span class="slide-out__title" id="soName">Worker Profile</span>
+    <button class="btn-icon-sm" onclick="document.getElementById('slideOut').classList.remove('open')">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="slide-out__body">
+    <!-- Avatar + name block -->
+    <div class="flex items-center gap-3">
+      <div class="avatar avatar-lg dept-eng" id="soAvatar">SC</div>
+      <div>
+        <div style="font-size:16px;font-weight:600;color:var(--color-text-title);" id="soFullName">Sarah Chen</div>
+        <div style="font-size:13px;color:var(--color-text-caption);" id="soEmail">sarah.chen@aimsco.io</div>
+      </div>
+      <span class="badge badge-active ml-auto" id="soBadge">Active</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Details grid -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="detail-row">
+        <span class="detail-row__label">Department</span>
+        <span class="detail-row__value" id="soDept">Engineering</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-row__label">Role</span>
+        <span class="detail-row__value" id="soRole">Senior Engineer</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-row__label">Member since</span>
+        <span class="detail-row__value" id="soSince">Jan 12, 2021</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-row__label">Location</span>
+        <span class="detail-row__value">San Francisco, CA</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-row__label">Reports to</span>
+        <span class="detail-row__value">Alex Rivera</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-row__label">Contract</span>
+        <span class="detail-row__value">Full-time</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Activity -->
+    <div>
+      <div class="section-label mb-3">Recent Activity</div>
+      <div class="flex flex-col gap-3">
+        <div class="flex items-start gap-3">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--color-badge-success);margin-top:5px;flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--color-text-label);">Completed onboarding module</div>
+            <div style="font-size:11px;color:var(--color-text-caption);">2 days ago</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--color-badge-primary);margin-top:5px;flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--color-text-label);">Role updated to Senior Engineer</div>
+            <div style="font-size:11px;color:var(--color-text-caption);">Apr 10, 2026</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--color-border-neutral-lighter);margin-top:5px;flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--color-text-label);">Annual review submitted</div>
+            <div style="font-size:11px;color:var(--color-text-caption);">Mar 28, 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-out__footer">
+    <button class="btn btn-tertiary btn-md" onclick="document.getElementById('slideOut').classList.remove('open')">Close</button>
+    <button class="btn btn-primary btn-md" onclick="showToast('Opening edit form…')">Edit worker</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ JAVASCRIPT ════════════════════════════ -->
+<script>
+  // ── MODE TOGGLE ──────────────────────────────────────────────────
+  const isDark = localStorage.getItem('aims-mode') !== 'light';
+  if (!isDark) applyLight();
+
+  function applyLight() {
+    document.body.classList.add('light');
+    document.getElementById('modeLabel').textContent = 'Light';
+    document.getElementById('modeIcon').innerHTML = `
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>`;
+  }
+
+  function applyDark() {
+    document.body.classList.remove('light');
+    document.getElementById('modeLabel').textContent = 'Dark';
+    document.getElementById('modeIcon').innerHTML = `
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>`;
+  }
+
+  function toggleMode() {
+    if (document.body.classList.contains('light')) {
+      applyDark();
+      localStorage.setItem('aims-mode', 'dark');
+    } else {
+      applyLight();
+      localStorage.setItem('aims-mode', 'light');
+    }
+  }
+
+  // ── TAB SWITCHING ────────────────────────────────────────────────
+  function switchTab(el) {
+    el.closest('.tabs').querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // ── SLIDE OUT ─────────────────────────────────────────────────────
+  function openSlideOut(name, role, dept, status, since, email) {
+    const initials = name.split(' ').map(n => n[0]).join('');
+    document.getElementById('soName').textContent = name;
+    document.getElementById('soFullName').textContent = name;
+    document.getElementById('soEmail').textContent = email;
+    document.getElementById('soRole').textContent = role;
+    document.getElementById('soDept').textContent = dept;
+    document.getElementById('soSince').textContent = since;
+    document.getElementById('soAvatar').textContent = initials;
+
+    const badge = document.getElementById('soBadge');
+    badge.className = 'badge ml-auto';
+    if (status === 'Active')   { badge.classList.add('badge-active');   badge.textContent = 'Active'; }
+    if (status === 'On Leave') { badge.classList.add('badge-alert');    badge.textContent = 'On Leave'; }
+    if (status === 'Inactive') { badge.classList.add('badge-inactive'); badge.textContent = 'Inactive'; }
+
+    document.getElementById('slideOut').classList.add('open');
+  }
+
+  // Close slide-out on backdrop click
+  document.addEventListener('click', e => {
+    const so = document.getElementById('slideOut');
+    if (so.classList.contains('open') && !so.contains(e.target) && !e.target.closest('tr')) {
+      so.classList.remove('open');
+    }
+  });
+
+  // ── ROW ACTIONS MENU ─────────────────────────────────────────────
+  function toggleMenu(btn) {
+    const menu = btn.nextElementSibling;
+    document.querySelectorAll('.row-actions__menu.open').forEach(m => { if (m !== menu) m.classList.remove('open'); });
+    menu.classList.toggle('open');
+  }
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.row-actions')) {
+      document.querySelectorAll('.row-actions__menu.open').forEach(m => m.classList.remove('open'));
+    }
+  });
+
+  // ── SELECT ALL ───────────────────────────────────────────────────
+  function toggleAll(master) {
+    document.querySelectorAll('tbody .cb').forEach(cb => cb.checked = master.checked);
+  }
+
+  // ── TOAST ─────────────────────────────────────────────────────────
+  function showToast(message, type = 'default') {
+    document.querySelectorAll('.toast').forEach(t => t.remove());
+    const t = document.createElement('div');
+    t.className = 'toast';
+    const iconColor = type === 'alert' ? 'var(--color-icon-alert-default)' : 'var(--color-icon-success-default)';
+    t.innerHTML = `
+      <svg width="16" height="16" fill="none" stroke="${iconColor}" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px;">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      <span class="toast__body">${message}</span>
+      <button class="toast__close" onclick="this.closest('.toast').remove()">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>`;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 3500);
+  }
+</script>
+
+</body>
+</html>
