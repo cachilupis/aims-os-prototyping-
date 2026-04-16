@@ -20,7 +20,8 @@
   --color-surface-neutral-subtle:        rgba(255,255,255,0.05);
   --color-surface-neutral-default:       rgba(255,255,255,0.08);
   --color-surface-neutral-emphasis:      rgba(255,255,255,0.20);
-  --color-surface-neutral-darker:        #1c1c24;
+  --color-surface-neutral-darker:        rgba(255,255,255,0.20);
+  --color-surface-neutral-black:         #0f172b;
 
   /* Surface — Primary */
   --color-surface-primary-default:       #155DFC;
@@ -34,14 +35,14 @@
   --color-surface-floating-hover:        rgba(32,42,62,0.90);
 
   /* Surface — Semantic */
-  --color-surface-success-default:       #34D399;
-  --color-surface-success-subtle:        rgba(52,211,153,0.12);
+  --color-surface-success-default:       #34d399;
+  --color-surface-success-subtle:        rgba(0,201,80,0.10);
   --color-surface-success-more-subtle:   #0a1f1a;
-  --color-surface-error-default:         #E05252;
-  --color-surface-error-subtle:          rgba(224,82,82,0.12);
+  --color-surface-error-default:         #e05252;
+  --color-surface-error-subtle:          rgba(251,44,54,0.10);
   --color-surface-error-more-subtle:     #2d1515;
-  --color-surface-alert-default:         #FBBF24;
-  --color-surface-alert-subtle:          rgba(251,191,36,0.12);
+  --color-surface-alert-default:         #fcd34d;
+  --color-surface-alert-subtle:          #2d1a08;
   --color-surface-alert-more-subtle:     #281e00;
 
   /* Surface — Accent */
@@ -65,10 +66,14 @@
   /* Border */
   --color-border-neutral-lighter:        rgba(255,255,255,0.15);
   --color-border-neutral-default:        rgba(255,255,255,0.10);
-  --color-border-primary-default:        #2B7FFF;
-  --color-border-success-default:        #34D399;
-  --color-border-error-default:          #E05252;
-  --color-border-alert-default:          #FBBF24;
+  --color-border-primary-subtle:         #1d2f4f;
+  --color-border-primary-default:        #2b7fff;
+  --color-border-success-subtle:         rgba(0,201,80,0.10);
+  --color-border-success-default:        rgba(0,201,80,0.30);
+  --color-border-error-subtle:           rgba(251,44,54,0.10);
+  --color-border-error-default:          #e05252;
+  --color-border-alert-subtle:           #2d1a08;
+  --color-border-alert-default:          #fbbf24;
 
   /* Icon */
   --color-icon-neutral-light:            rgba(255,255,255,0.70);
@@ -118,6 +123,16 @@
 
   /* Gradients */
   --gradient-main-action: radial-gradient(circle at 65% 35%, rgba(33,115,255,1) 0%, rgba(9,226,171,1) 100%);
+
+  /* Highlight Card gradient backgrounds (from Figma Surface/Card/* tokens) */
+  --card-bg-blue:       linear-gradient(to bottom, rgba(128,175,255,0.22) 0%, rgba(128,175,255,0) 100%);
+  --card-bg-green:      linear-gradient(to bottom, rgba(0,160,126,0.22)   0%, rgba(0,160,126,0)   100%);
+  --card-bg-red:        linear-gradient(to bottom, rgba(234,145,145,0.22) 0%, rgba(234,145,145,0) 100%);
+  --card-bg-orange:     linear-gradient(to bottom, rgba(237,198,166,0.22) 0%, rgba(237,198,166,0) 100%);
+  --card-bg-yellow:     linear-gradient(to bottom, rgba(255,214,10,0.22)  0%, rgba(255,214,10,0)  100%);
+  --card-bg-purple:     linear-gradient(to bottom, rgba(207,167,249,0.22) 0%, rgba(207,167,249,0) 100%);
+  --card-bg-light-blue: linear-gradient(to bottom, rgba(153,229,249,0.22) 0%, rgba(153,229,249,0) 100%);
+  --card-bg-lime:       linear-gradient(to bottom, rgba(212,243,129,0.22) 0%, rgba(212,243,129,0) 100%);
 }
 
 
@@ -490,14 +505,14 @@ tbody td        { height: 60px; padding: 0 16px; font-size: 14px;
 .highlight-card__feedback.positive { color: var(--color-text-success); }
 .highlight-card__feedback.negative { color: var(--color-text-error); }
 
-.highlight-card--primary-bg    { background: var(--color-surface-primary-subtle);      border-color: var(--color-border-primary-default); }
-.highlight-card--green-bg      { background: var(--color-surface-success-subtle);      border-color: transparent; }
-.highlight-card--orange-bg     { background: var(--color-surface-alert-subtle);        border-color: transparent; }
-.highlight-card--yellow-bg     { background: var(--color-surface-yellow-subtle);       border-color: transparent; }
-.highlight-card--purple-bg     { background: var(--color-surface-purple-subtle);       border-color: transparent; }
-.highlight-card--light-blue-bg { background: var(--color-surface-light-blue-subtle);   border-color: transparent; }
-.highlight-card--lime-bg       { background: var(--color-surface-lime-subtle);         border-color: transparent; }
-.highlight-card--red-bg        { background: var(--color-surface-error-subtle);        border-color: transparent; }
+.highlight-card--primary-bg    { background: var(--card-bg-blue);       border-color: var(--color-border-primary-subtle); }
+.highlight-card--green-bg      { background: var(--card-bg-green);      border-color: transparent; }
+.highlight-card--orange-bg     { background: var(--card-bg-orange);     border-color: transparent; }
+.highlight-card--yellow-bg     { background: var(--card-bg-yellow);     border-color: transparent; }
+.highlight-card--purple-bg     { background: var(--card-bg-purple);     border-color: transparent; }
+.highlight-card--light-blue-bg { background: var(--card-bg-light-blue); border-color: transparent; }
+.highlight-card--lime-bg       { background: var(--card-bg-lime);       border-color: transparent; }
+.highlight-card--red-bg        { background: var(--card-bg-red);        border-color: transparent; }
 
 
 /* ────────────────────────────────────────────────────────────────
@@ -505,11 +520,12 @@ tbody td        { height: 60px; padding: 0 16px; font-size: 14px;
    ──────────────────────────────────────────────────────────────── */
 
 .alert-banner   { display: flex; align-items: flex-start; gap: 8px; padding: 12px;
-                  border-radius: var(--radius-md); width: 100%; }
+                  border-radius: var(--radius-md); width: 100%;
+                  border: 1px solid transparent; }
 
-.alert-banner--error   { background: var(--color-surface-error-more-subtle); }
-.alert-banner--success { background: var(--color-surface-success-more-subtle); }
-.alert-banner--alert   { background: var(--color-surface-alert-subtle); }
+.alert-banner--error   { background: var(--color-surface-error-more-subtle);   border-color: var(--color-border-error-subtle); }
+.alert-banner--success { background: var(--color-surface-success-more-subtle); border-color: var(--color-border-success-subtle); }
+.alert-banner--alert   { background: var(--color-surface-alert-subtle);        border-color: var(--color-border-alert-subtle); }
 
 .alert-banner__icon    { width: 22px; height: 22px; flex-shrink: 0; margin-top: 1px; }
 .alert-banner--error   .alert-banner__icon { color: var(--color-icon-error-default); }
@@ -544,16 +560,16 @@ tbody td        { height: 60px; padding: 0 16px; font-size: 14px;
 
 .tooltip        { position: absolute; z-index: 50; padding: 8px 12px; border-radius: var(--radius-sm);
                   font-size: 14px; font-weight: 500; white-space: nowrap;
-                  background: var(--color-surface-neutral-darker);
+                  background: var(--color-surface-neutral-black);
                   color: var(--color-text-negative);
                   pointer-events: none; user-select: none; }
 
 .tooltip--top    { bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px; }
 .tooltip--top::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-                        border: 4px solid transparent; border-top-color: var(--color-surface-neutral-darker); }
+                        border: 4px solid transparent; border-top-color: var(--color-surface-neutral-black); }
 .tooltip--bottom { top: 100%; left: 50%; transform: translateX(-50%); margin-top: 8px; }
 .tooltip--bottom::after { content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
-                           border: 4px solid transparent; border-bottom-color: var(--color-surface-neutral-darker); }
+                           border: 4px solid transparent; border-bottom-color: var(--color-surface-neutral-black); }
 .tooltip--left   { right: 100%; top: 50%; transform: translateY(-50%); margin-right: 8px; }
 .tooltip--right  { left: 100%; top: 50%; transform: translateY(-50%); margin-left: 8px; }
 
