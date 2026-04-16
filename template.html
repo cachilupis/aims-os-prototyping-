@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><!-- PAGE TITLE --></title>
+
+  <!-- AIMS OS Design System -->
+  <link rel="stylesheet" href="aims-os-base.css">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN (for layout utilities: flex, grid, gap, p-, m-, w-, h-, etc.) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false }, // reset handled by aims-os-base.css
+    }
+  </script>
+
+  <style>
+    /*
+      ┌──────────────────────────────────────────────────────────┐
+      │  ADD PAGE-SPECIFIC STYLES HERE                           │
+      │  Do NOT redefine DS tokens or component classes —        │
+      │  those are already in aims-os-base.css                   │
+      └──────────────────────────────────────────────────────────┘
+    */
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       APP SHELL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="app-shell">
+
+    <!-- ── TOPBAR ───────────────────────────────────────────── -->
+    <header class="topbar">
+      <div class="flex items-center gap-3">
+        <!-- Logo / wordmark -->
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded bg-[var(--color-surface-primary-default)]"></div>
+          <span class="text-sm font-semibold text-[var(--color-text-title)]">AIMS OS</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <!-- Topbar actions: search, notifications, avatar -->
+        <button class="btn-icon-sm">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+        <div class="w-7 h-7 rounded-full bg-[var(--color-surface-primary-subtle)] flex items-center justify-center text-xs font-semibold text-[var(--color-icon-primary-default)]">
+          PM
+        </div>
+      </div>
+    </header>
+
+    <!-- ── BODY ─────────────────────────────────────────────── -->
+    <div class="app-body">
+
+      <!-- ── SIDEBAR ────────────────────────────────────────── -->
+      <aside class="sidebar" id="sidebar">
+
+        <!-- Nav items — replace icons with actual SVGs -->
+        <div class="sidebar-icon active" title="Home">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+
+        <div class="sidebar-icon" title="Contacts">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+
+        <div class="sidebar-icon" title="Workers">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+
+        <div class="sidebar-icon" title="Analytics">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+        </div>
+
+        <div class="sidebar-icon" title="Settings" style="margin-top: auto;">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+
+      </aside>
+
+      <!-- ── MAIN CONTENT AREA ──────────────────────────────── -->
+      <main class="main-content" id="main-content">
+
+        <!--
+          ╔══════════════════════════════════════════════════════╗
+          ║  REPLACE EVERYTHING BELOW WITH YOUR PAGE CONTENT    ║
+          ║                                                      ║
+          ║  Useful patterns to ask Claude to build:             ║
+          ║  • KPI row with Highlight Cards                      ║
+          ║  • Tabs with count badges                            ║
+          ║  • Filter bar with search + dropdowns               ║
+          ║  • Table with pagination                             ║
+          ║  • Entity list cards with states                     ║
+          ║  • Empty state (when no data)                        ║
+          ║  • Slide out panel (for detail views)                ║
+          ║  • Modal (for confirmations)                         ║
+          ╚══════════════════════════════════════════════════════╝
+        -->
+
+        <!-- Page header -->
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h1 class="text-title-sm">Page Title</h1>
+            <p class="text-caption-lg mt-1">Page description or subtitle</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="btn btn-secondary btn-md">Secondary action</button>
+            <button class="btn btn-primary btn-md">Primary action</button>
+          </div>
+        </div>
+
+        <!-- Example: KPI row -->
+        <div class="flex items-stretch gap-3 mb-6">
+          <div class="highlight-card">
+            <div class="highlight-card__row">
+              <div class="flex flex-col gap-2">
+                <span class="highlight-card__label">Metric 1</span>
+                <div class="flex items-baseline gap-2">
+                  <span class="highlight-card__value">1,284</span>
+                  <span class="highlight-card__unit">items</span>
+                </div>
+              </div>
+              <div class="highlight-icon highlight-icon-l highlight-icon--informative-dark">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                </svg>
+              </div>
+            </div>
+            <span class="highlight-card__feedback positive">↑ +12.4% vs last month</span>
+          </div>
+
+          <div class="highlight-card highlight-card--green-bg">
+            <div class="highlight-card__row">
+              <div class="flex flex-col gap-2">
+                <span class="highlight-card__label">Metric 2</span>
+                <div class="flex items-baseline gap-2">
+                  <span class="highlight-card__value">847</span>
+                  <span class="highlight-card__unit">active</span>
+                </div>
+              </div>
+              <div class="highlight-icon highlight-icon-l highlight-icon--success-dark">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+            </div>
+            <span class="highlight-card__feedback positive">↑ +8.1% this week</span>
+          </div>
+
+          <div class="highlight-card highlight-card--yellow-bg">
+            <div class="highlight-card__row">
+              <div class="flex flex-col gap-2">
+                <span class="highlight-card__label">Metric 3</span>
+                <div class="flex items-baseline gap-2">
+                  <span class="highlight-card__value">312</span>
+                  <span class="highlight-card__unit">pending</span>
+                </div>
+              </div>
+              <div class="highlight-icon highlight-icon-l highlight-icon--alert-dark">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+            </div>
+            <span class="highlight-card__feedback negative">↑ +5 since yesterday</span>
+          </div>
+        </div>
+
+        <!-- Example: Empty state (shown when no data) -->
+        <!--
+        <div class="empty-state">
+          <div class="empty-state__content">
+            <div class="highlight-icon highlight-icon-l highlight-icon--informative-dark mb-2">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </div>
+            <span class="empty-state__title">No results found</span>
+            <span class="empty-state__desc">Try adjusting your filters or add new items.</span>
+          </div>
+          <div class="empty-state__actions">
+            <button class="btn btn-primary btn-md">Add item</button>
+            <button class="btn btn-secondary btn-md">Clear filters</button>
+          </div>
+        </div>
+        -->
+
+      </main>
+
+    </div><!-- /.app-body -->
+
+  </div><!-- /.app-shell -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       JAVASCRIPT — Sidebar toggle + helpers
+       ═══════════════════════════════════════════════════════════ -->
+  <script>
+    // Sidebar expand/collapse
+    const sidebar = document.getElementById('sidebar');
+    sidebar.addEventListener('dblclick', () => sidebar.classList.toggle('expanded'));
+
+    // Tab switching helper
+    function switchTab(activeEl) {
+      const tabBar = activeEl.closest('.tabs');
+      tabBar.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+      activeEl.classList.add('active');
+    }
+
+    // Toast notification helper
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      toast.className = `alert-banner alert-banner--${type}`;
+      toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:200;width:380px;box-shadow:0 4px 24px rgba(0,0,0,0.3);animation:slideUp 0.2s ease';
+      toast.innerHTML = `
+        <div class="alert-banner__body">
+          <span class="alert-banner__title">${message}</span>
+        </div>
+        <div class="alert-banner__actions">
+          <button class="alert-banner__close" onclick="this.closest('.alert-banner').remove()">×</button>
+        </div>`;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    // Auto-expand textarea
+    document.querySelectorAll('.chat-box__input').forEach(ta => {
+      ta.addEventListener('input', () => {
+        ta.style.height = 'auto';
+        ta.style.height = Math.min(ta.scrollHeight, 200) + 'px';
+        const btn = ta.closest('.chat-box')?.querySelector('.chat-box__send');
+        if (btn) {
+          btn.classList.toggle('active', ta.value.trim().length > 0);
+          btn.classList.toggle('idle', ta.value.trim().length === 0);
+        }
+      });
+    });
+  </script>
+
+  <style>
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+</body>
+</html>
