@@ -729,3 +729,139 @@ tbody td        { height: 60px; padding: 0 16px; font-size: 14px;
                    background: var(--color-surface-primary-more-subtle);
                    border: 1px solid rgba(43,127,255,0.2);
                    color: var(--color-text-subtitle); }
+.ai-strip__label { color: var(--color-text-link); font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+
+
+/* ────────────────────────────────────────────────────────────────
+   24. ENTITY LIST
+   Entity list item — rich card-row for list views (replaces table)
+   ──────────────────────────────────────────────────────────────── */
+
+.entity-list { display: flex; flex-direction: column; gap: 6px; }
+
+.entity-item { background: var(--color-surface-neutral-white);
+               border: 1px solid var(--color-border-neutral-lighter);
+               border-radius: var(--radius-md); overflow: hidden;
+               cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+.entity-item:hover    { background: var(--color-surface-neutral-default); }
+.entity-item.is-selected { border-color: var(--color-border-primary-default);
+                            background: var(--color-surface-primary-more-subtle); }
+.entity-item.is-inactive  { opacity: 0.55; }
+
+.entity-item__main  { display: flex; align-items: center; justify-content: space-between;
+                       padding: 12px 14px; gap: 12px; }
+.entity-item__left  { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.entity-item__meta  { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.entity-item__title { display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+                       font-size: 14px; font-weight: 600; color: var(--color-text-title); }
+.entity-item__sub   { font-size: 12px; color: var(--color-text-caption); }
+.entity-item__right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.entity-item__time  { font-size: 11px; color: var(--color-text-caption); white-space: nowrap; }
+
+/* Inline chip — breadcrumb context inside entity title */
+.entity-chip          { display: inline-flex; align-items: center; height: 18px; padding: 0 7px;
+                         border-radius: var(--radius-full); font-size: 11px; font-weight: 500;
+                         background: var(--color-surface-neutral-default);
+                         color: var(--color-text-caption);
+                         border: 1px solid var(--color-border-neutral-lighter); }
+.entity-chip--primary { background: var(--color-surface-primary-subtle);
+                         color: var(--color-text-link);
+                         border-color: var(--color-border-primary-default); }
+.entity-chip--pinned  { background: var(--color-surface-alert-subtle);
+                         color: var(--color-text-alert);
+                         border-color: var(--color-border-alert-default); }
+.entity-chip--success { background: var(--color-surface-success-subtle);
+                         color: var(--color-text-success);
+                         border-color: var(--color-border-success-default); }
+
+/* Description row below the main row */
+.entity-item__desc { padding: 0 14px 12px 58px;
+                      font-size: 13px; line-height: 1.6; color: var(--color-text-body); }
+
+/* AI strip scoped inside entity item */
+.entity-item .ai-strip { margin: 0 14px 12px 58px; border-radius: var(--radius-xs);
+                           border-left: 2px solid var(--color-surface-primary-default);
+                           border-top: none; border-right: none; border-bottom: none; }
+
+/* Footer metadata row */
+.entity-item__footer { display: flex; align-items: center; gap: 10px; padding: 8px 14px;
+                         border-top: 1px solid var(--color-border-neutral-lighter);
+                         background: var(--color-surface-neutral-subtle);
+                         font-size: 11px; color: var(--color-text-caption); }
+.entity-item__footer-dot { width: 3px; height: 3px; border-radius: 50%;
+                             background: var(--color-border-neutral-default); flex-shrink: 0; }
+
+
+/* ────────────────────────────────────────────────────────────────
+   25. MODAL DIALOG
+   Confirmation / informational modal with overlay scrim
+   ──────────────────────────────────────────────────────────────── */
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(5,8,18,0.72);
+                  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+                  display: none; align-items: center; justify-content: center; z-index: 800; }
+.modal-overlay.open { display: flex; }
+
+.modal-dialog { background: var(--color-surface-floating);
+                 backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+                 border: 1px solid var(--color-border-neutral-lighter);
+                 border-radius: var(--radius-lg); width: 460px;
+                 max-width: calc(100vw - 48px); position: relative; overflow: hidden;
+                 animation: modal-scale-in 0.22s cubic-bezier(0.34,1.46,0.64,1); }
+@keyframes modal-scale-in {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+.modal-dialog__close { position: absolute; top: 14px; right: 14px;
+                         width: 28px; height: 28px; display: flex; align-items: center;
+                         justify-content: center; border-radius: var(--radius-md);
+                         background: transparent; color: var(--color-icon-neutral-dark);
+                         border: none; cursor: pointer; transition: background 0.15s; }
+.modal-dialog__close:hover { background: var(--color-surface-neutral-default); }
+
+.modal-dialog__body { padding: 44px 36px 28px; text-align: center;
+                       display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+.modal-dialog__icon { width: 52px; height: 52px; border-radius: var(--radius-lg);
+                       background: var(--color-surface-primary-subtle);
+                       display: flex; align-items: center; justify-content: center;
+                       color: var(--color-icon-primary-default); margin-bottom: 4px; }
+.modal-dialog__icon--warning { background: var(--color-surface-alert-subtle);
+                                 color: var(--color-icon-alert-default); }
+.modal-dialog__icon--error   { background: var(--color-surface-error-subtle);
+                                 color: var(--color-icon-error-default); }
+
+.modal-dialog__title { font-size: 17px; font-weight: 700; color: var(--color-text-title); }
+.modal-dialog__desc  { font-size: 13px; color: var(--color-text-body);
+                         line-height: 1.6; max-width: 340px; }
+
+.modal-dialog__info { width: 100%; background: var(--color-surface-primary-more-subtle);
+                       border: 1px solid var(--color-border-primary-subtle);
+                       border-radius: var(--radius-sm); padding: 10px 12px;
+                       display: flex; align-items: flex-start; gap: 8px;
+                       font-size: 12px; color: var(--color-text-body);
+                       text-align: left; line-height: 1.5; }
+
+.modal-dialog__footer { padding: 14px 20px;
+                          border-top: 1px solid var(--color-border-neutral-lighter);
+                          display: flex; justify-content: flex-end; gap: 8px; }
+
+
+/* ────────────────────────────────────────────────────────────────
+   26. TOPBAR ELEMENTS
+   Icon buttons and avatar in the topbar shell
+   ──────────────────────────────────────────────────────────────── */
+
+.topbar-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+               border-radius: var(--radius-md); background: transparent; border: none; cursor: pointer;
+               color: var(--color-icon-neutral-dark); transition: background 0.15s, color 0.15s; }
+.topbar-btn:hover { background: var(--color-surface-neutral-default); color: var(--color-icon-neutral-light); }
+
+.topbar-avatar { width: 28px; height: 28px; border-radius: 50%;
+                  background: var(--color-surface-primary-subtle);
+                  border: 1.5px solid var(--color-border-primary-default);
+                  display: flex; align-items: center; justify-content: center;
+                  font-size: 10px; font-weight: 700; color: var(--color-icon-primary-default); cursor: pointer; }
+
+.topbar-sep { color: var(--color-border-neutral-lighter); font-size: 13px; }

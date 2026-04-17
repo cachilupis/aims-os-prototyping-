@@ -12,33 +12,29 @@
   <style>
   /* ================================================================
      AIMS OS — EMBEDDED DESIGN TOKENS + COMPONENT STYLES
-     Source: Figma DS v6rmYKA2zmyXWOahlxLOeI (extracted 2026-04-16)
+     Source: Figma DS v6rmYKA2zmyXWOahlxLOeI (extracted 2026-04-17)
      Dark mode = :root (default) | Light mode = body.light
      ================================================================ */
 
-  /* ── DARK MODE TOKENS (DEFAULT) ───────────────────────────────── */
+  /* ── DARK MODE TOKENS ─────────────────────────────────────────── */
   :root {
-    /* App */
     --color-app-bg:                      #0f172b;
-    --color-surface-modal:               rgba(12,14,34,0.82);
-    --color-surface-floating:            rgba(20,27,42,0.85);
-    --color-surface-floating-hover:      rgba(32,42,62,0.90);
+    --color-surface-modal:               rgba(12,14,34,0.92);
+    --color-surface-floating:            rgba(20,27,42,0.90);
+    --color-surface-floating-hover:      rgba(32,42,62,0.95);
 
-    /* Surfaces — Neutral */
     --color-surface-neutral-white:       rgba(255,255,255,0.10);
     --color-surface-neutral-subtle:      rgba(255,255,255,0.05);
     --color-surface-neutral-default:     rgba(255,255,255,0.08);
     --color-surface-neutral-emphasis:    rgba(255,255,255,0.20);
     --color-surface-neutral-black:       #0f172b;
 
-    /* Surfaces — Primary */
     --color-surface-primary-default:     #155dfc;
     --color-surface-primary-subtle:      rgba(21,93,252,0.15);
     --color-surface-primary-more-subtle: rgba(43,127,255,0.08);
     --color-surface-primary-emphasis:    #2b7fff;
     --color-surface-primary-lighter:     #1d2f4f;
 
-    /* Surfaces — Semantic */
     --color-surface-success-default:     #34d399;
     --color-surface-success-subtle:      rgba(0,201,80,0.10);
     --color-surface-success-more-subtle: #0a1f1a;
@@ -48,12 +44,7 @@
     --color-surface-alert-default:       #fcd34d;
     --color-surface-alert-subtle:        #2d1a08;
     --color-surface-alert-more-subtle:   #281e00;
-    --color-surface-yellow-subtle:       #2d1a08;
-    --color-surface-lime-subtle:         rgba(189,238,73,0.10);
-    --color-surface-purple-subtle:       rgba(173,70,255,0.10);
-    --color-surface-light-blue-subtle:   rgba(81,162,255,0.10);
 
-    /* Text */
     --color-text-title:      rgba(255,255,255,0.80);
     --color-text-subtitle:   rgba(255,255,255,0.60);
     --color-text-body:       rgba(255,255,255,0.60);
@@ -66,490 +57,416 @@
     --color-text-alert:      #fcd34d;
     --color-text-link:       #2b7fff;
 
-    /* Borders */
     --color-border-neutral-subtle:   rgba(255,255,255,0.05);
-    --color-border-neutral-lighter:  rgba(255,255,255,0.15);
+    --color-border-neutral-lighter:  rgba(255,255,255,0.12);
     --color-border-neutral-default:  rgba(255,255,255,0.10);
     --color-border-primary-subtle:   #1d2f4f;
     --color-border-primary-default:  #2b7fff;
-    --color-border-success-subtle:   rgba(0,201,80,0.10);
     --color-border-success-default:  rgba(0,201,80,0.30);
-    --color-border-error-subtle:     rgba(251,44,54,0.10);
     --color-border-error-default:    #e05252;
-    --color-border-alert-subtle:     #2d1a08;
     --color-border-alert-default:    #fbbf24;
 
-    /* Icons */
-    --color-icon-neutral-light:   rgba(255,255,255,0.70);
     --color-icon-neutral-dark:    rgba(255,255,255,0.50);
-    --color-icon-neutral-black:   rgba(255,255,255,0.70);
-    --color-icon-neutral-disable: rgba(255,255,255,0.25);
+    --color-icon-neutral-light:   rgba(255,255,255,0.70);
     --color-icon-primary-default: #2b7fff;
-    --color-icon-primary-darker:  #155dfc;
     --color-icon-success-default: #6ee7b7;
     --color-icon-alert-default:   #fcd34d;
     --color-icon-error-default:   #ff6467;
 
-    /* Badges */
-    --color-badge-success:    #6ee7b7;
-    --color-badge-error:      #ff6467;
-    --color-badge-alert:      #fcd34d;
-    --color-badge-neutral:    rgba(255,255,255,0.50);
-    --color-badge-primary:    #2b7fff;
+    --color-badge-success:  #6ee7b7;
+    --color-badge-error:    #ff6467;
+    --color-badge-alert:    #fcd34d;
+    --color-badge-neutral:  rgba(255,255,255,0.50);
+    --color-badge-primary:  #2b7fff;
 
-    /* Spacing */
-    --sp-1: 2px; --sp-2: 4px; --sp-3: 8px; --sp-4: 12px;
-    --sp-5: 16px; --sp-6: 20px; --sp-7: 24px; --sp-8: 32px;
-    --sp-9: 40px; --sp-10: 48px;
-
-    /* Radius */
     --radius-none: 0px; --radius-xs: 2px; --radius-sm: 4px;
-    --radius-md: 8px; --radius-lg: 16px; --radius-xl: 24px;
+    --radius-md: 8px;   --radius-lg: 16px; --radius-xl: 24px;
     --radius-2xl: 32px; --radius-full: 9999px;
 
-    /* Gradients */
     --gradient-main-action: radial-gradient(circle at 65% 35%, #2173ff 0%, #09e2ab 100%);
 
-    /* Card gradient backgrounds (dark) */
     --card-bg-blue:       linear-gradient(to bottom, rgba(128,175,255,0.22) 0%, rgba(128,175,255,0) 100%);
     --card-bg-green:      linear-gradient(to bottom, rgba(0,160,126,0.22)   0%, rgba(0,160,126,0)   100%);
     --card-bg-red:        linear-gradient(to bottom, rgba(234,145,145,0.22) 0%, rgba(234,145,145,0) 100%);
-    --card-bg-orange:     linear-gradient(to bottom, rgba(237,198,166,0.22) 0%, rgba(237,198,166,0) 100%);
     --card-bg-yellow:     linear-gradient(to bottom, rgba(255,214,10,0.22)  0%, rgba(255,214,10,0)  100%);
     --card-bg-purple:     linear-gradient(to bottom, rgba(207,167,249,0.22) 0%, rgba(207,167,249,0) 100%);
-    --card-bg-light-blue: linear-gradient(to bottom, rgba(153,229,249,0.22) 0%, rgba(153,229,249,0) 100%);
-    --card-bg-lime:       linear-gradient(to bottom, rgba(212,243,129,0.22) 0%, rgba(212,243,129,0) 100%);
+    --card-bg-neutral:    linear-gradient(to bottom, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%);
   }
 
   /* ── LIGHT MODE OVERRIDES ─────────────────────────────────────── */
   body.light {
     --color-app-bg:                      #fafafa;
-    --color-surface-modal:               rgba(255,255,255,0.97);
-    --color-surface-floating:            rgba(255,255,255,0.92);
-    --color-surface-floating-hover:      rgba(242,242,242,0.95);
-
+    --color-surface-modal:               rgba(255,255,255,0.98);
+    --color-surface-floating:            rgba(255,255,255,0.95);
+    --color-surface-floating-hover:      rgba(242,242,242,0.98);
     --color-surface-neutral-white:       #ffffff;
-    --color-surface-neutral-subtle:      #fafafa;
-    --color-surface-neutral-default:     #f2f2f2;
+    --color-surface-neutral-subtle:      #f5f5f5;
+    --color-surface-neutral-default:     #ebebeb;
     --color-surface-neutral-emphasis:    #d9d9d9;
-    --color-surface-neutral-black:       #000000;
-
+    --color-surface-neutral-black:       #0f172b;
     --color-surface-primary-default:     #2173ff;
     --color-surface-primary-subtle:      #e9f1ff;
     --color-surface-primary-more-subtle: #f6f9ff;
     --color-surface-primary-emphasis:    #002f80;
-    --color-surface-primary-lighter:     #80afff;
-
-    --color-surface-success-default:     #00a07e;
     --color-surface-success-subtle:      #cbfff4;
-    --color-surface-success-more-subtle: #e5fdf8;
-    --color-surface-error-default:       #992222;
-    --color-surface-error-subtle:        #ea9191;
-    --color-surface-error-more-subtle:   #fdeded;
-    --color-surface-alert-default:       #ed6c02;
-    --color-surface-alert-subtle:        #ffeedb;
-    --color-surface-alert-more-subtle:   #fff4e5;
-    --color-surface-yellow-subtle:       #ffebcb;
-    --color-surface-lime-subtle:         #e7f9b5;
-    --color-surface-purple-subtle:       #e4cefc;
-    --color-surface-light-blue-subtle:   #ccf1ff;
-
-    --color-text-title:    #000000;
-    --color-text-subtitle: #2a2a2a;
-    --color-text-body:     #5c5c5c;
-    --color-text-label:    #2a2a2a;
-    --color-text-caption:  #5c5c5c;
+    --color-surface-error-subtle:        #fdeded;
+    --color-surface-alert-subtle:        #fff4e5;
+    --color-text-title:    #0f172b;
+    --color-text-subtitle: #2a2a40;
+    --color-text-body:     #5c5c7a;
+    --color-text-label:    #2a2a40;
+    --color-text-caption:  #7a7a9a;
     --color-text-negative: #ffffff;
-    --color-text-disabled: #bababa;
-    --color-text-success:  #003328;
-    --color-text-error:    #5f2120;
-    --color-text-alert:    #663c00;
+    --color-text-disabled: #babacf;
+    --color-text-success:  #00523f;
+    --color-text-error:    #8b1a1a;
+    --color-text-alert:    #7a3500;
     --color-text-link:     #2173ff;
-
-    --color-border-neutral-subtle:  #f2f2f2;
-    --color-border-neutral-lighter: #bababa;
-    --color-border-neutral-default: #d9d9d9;
-    --color-border-primary-subtle:  #e9f1ff;
+    --color-border-neutral-subtle:  #ebebeb;
+    --color-border-neutral-lighter: #d0d0e0;
+    --color-border-neutral-default: #c5c5d5;
+    --color-border-primary-subtle:  #dce8ff;
     --color-border-primary-default: #2173ff;
-    --color-border-success-subtle:  #cbfff4;
     --color-border-success-default: #00a07e;
-    --color-border-error-subtle:    #ea9191;
-    --color-border-error-default:   #992222;
-    --color-border-alert-subtle:    #edc6a6;
-    --color-border-alert-default:   #ed6c02;
-
-    --color-icon-neutral-light:   #ffffff;
-    --color-icon-neutral-dark:    #5c5c5c;
-    --color-icon-neutral-black:   #2a2a2a;
-    --color-icon-neutral-disable: #bababa;
+    --color-border-error-default:   #c22;
+    --color-border-alert-default:   #e07000;
+    --color-icon-neutral-dark:    #8080a0;
+    --color-icon-neutral-light:   #5c5c7a;
     --color-icon-primary-default: #2173ff;
-    --color-icon-primary-darker:  #001740;
-    --color-icon-success-default: #00a07e;
-    --color-icon-alert-default:   #ed6c02;
-    --color-icon-error-default:   #992222;
-
-    --color-badge-success: #00765f;
-    --color-badge-error:   #d32f2f;
-    --color-badge-alert:   #ed6c02;
-    --color-badge-neutral: #bababa;
-    --color-badge-primary: #2173ff;
-
-    /* Card gradients (light) */
-    --card-bg-blue:       linear-gradient(to bottom, #f6f9ff 0%, #ffffff 100%);
-    --card-bg-green:      linear-gradient(to bottom, #e5fdf8 0%, #ffffff 100%);
+    --color-icon-success-default: #00523f;
+    --color-icon-alert-default:   #7a3500;
+    --color-icon-error-default:   #8b1a1a;
+    --color-badge-success:  #00523f;
+    --color-badge-error:    #8b1a1a;
+    --color-badge-alert:    #7a3500;
+    --color-badge-neutral:  #7a7a9a;
+    --color-badge-primary:  #2173ff;
+    --card-bg-blue:       linear-gradient(to bottom, #dce8ff 0%, #ffffff 100%);
+    --card-bg-green:      linear-gradient(to bottom, #cbfff4 0%, #ffffff 100%);
     --card-bg-red:        linear-gradient(to bottom, #fdeded 0%, #ffffff 100%);
-    --card-bg-orange:     linear-gradient(to bottom, #fff4e5 0%, #ffffff 100%);
-    --card-bg-yellow:     linear-gradient(to bottom, #fffaf0 0%, #ffffff 100%);
-    --card-bg-purple:     linear-gradient(to bottom, #f3e9fd 0%, #ffffff 100%);
-    --card-bg-light-blue: linear-gradient(to bottom, #e5f8ff 0%, #ffffff 100%);
-    --card-bg-lime:       linear-gradient(to bottom, #f9fee5 0%, #ffffff 100%);
+    --card-bg-yellow:     linear-gradient(to bottom, #fff4e5 0%, #ffffff 100%);
+    --card-bg-purple:     linear-gradient(to bottom, #ede0ff 0%, #ffffff 100%);
+    --card-bg-neutral:    linear-gradient(to bottom, #ebebeb 0%, #ffffff 100%);
   }
 
-  /* ── BASE RESET ───────────────────────────────────────────────── */
+  /* ── BASE ─────────────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'Inter', -apple-system, sans-serif;
     background: var(--color-app-bg);
     color: var(--color-text-body);
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 14px; line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    transition: background 0.2s ease, color 0.2s ease;
   }
 
   /* ── TYPOGRAPHY ───────────────────────────────────────────────── */
-  .text-display-xl  { font-size: 56px; font-weight: 700; line-height: 1.10; color: var(--color-text-title); }
-  .text-title-xl    { font-size: 32px; font-weight: 600; line-height: 1.20; color: var(--color-text-title); }
-  .text-title-lg    { font-size: 28px; font-weight: 600; line-height: 1.25; color: var(--color-text-title); }
-  .text-title-md    { font-size: 24px; font-weight: 600; line-height: 1.30; color: var(--color-text-title); }
-  .text-title-sm    { font-size: 20px; font-weight: 600; line-height: 1.35; color: var(--color-text-title); }
-  .text-subtitle-lg { font-size: 18px; font-weight: 500; line-height: 1.40; color: var(--color-text-subtitle); }
-  .text-subtitle-md { font-size: 16px; font-weight: 500; line-height: 1.40; color: var(--color-text-subtitle); }
-  .text-subtitle-sm { font-size: 14px; font-weight: 500; line-height: 1.45; color: var(--color-text-subtitle); }
-  .text-body-lg     { font-size: 16px; font-weight: 400; line-height: 1.50; color: var(--color-text-body); }
-  .text-body-md     { font-size: 14px; font-weight: 400; line-height: 1.50; color: var(--color-text-body); }
-  .text-body-sm     { font-size: 12px; font-weight: 400; line-height: 1.50; color: var(--color-text-body); }
-  .text-label-lg    { font-size: 14px; font-weight: 500; line-height: 1.40; color: var(--color-text-label); }
-  .text-label-md    { font-size: 12px; font-weight: 500; line-height: 1.40; color: var(--color-text-label); }
-  .text-label-sm    { font-size: 11px; font-weight: 500; line-height: 1.40; color: var(--color-text-label); }
-  .text-caption-lg  { font-size: 12px; font-weight: 400; line-height: 1.40; color: var(--color-text-caption); }
-  .text-caption-md  { font-size: 11px; font-weight: 400; line-height: 1.40; color: var(--color-text-caption); }
+  .text-title-xl  { font-size: 32px; font-weight: 700; color: var(--color-text-title); }
+  .text-title-lg  { font-size: 24px; font-weight: 700; color: var(--color-text-title); }
+  .text-title-sm  { font-size: 20px; font-weight: 600; color: var(--color-text-title); }
+  .text-body-lg   { font-size: 16px; font-weight: 400; color: var(--color-text-body); }
+  .text-caption-lg { font-size: 13px; font-weight: 400; color: var(--color-text-caption); }
+  .section-label  { font-size: 11px; font-weight: 600; color: var(--color-text-caption); text-transform: uppercase; letter-spacing: 0.06em; }
+  .divider        { height: 1px; background: var(--color-border-neutral-lighter); margin: 12px 0; }
 
   /* ── LAYOUT SHELL ─────────────────────────────────────────────── */
   .app-shell  { display: flex; flex-direction: column; height: 100vh; overflow: hidden; background: var(--color-app-bg); }
-
   .topbar     { display: flex; align-items: center; justify-content: space-between;
                 height: 48px; padding: 0 16px; flex-shrink: 0;
-                background: var(--color-surface-neutral-white);
-                border-bottom: 1px solid var(--color-border-neutral-lighter);
-                transition: background 0.2s, border-color 0.2s; }
-
+                background: var(--color-surface-neutral-black);
+                border-bottom: 1px solid var(--color-border-neutral-lighter); }
   .app-body   { display: flex; flex: 1; overflow: hidden; }
-
-  .sidebar    { width: 80px; flex-shrink: 0; display: flex; flex-direction: column;
-                align-items: center; padding: 12px 0; gap: 4px;
-                background: var(--color-surface-neutral-white);
-                border-right: 1px solid var(--color-border-neutral-lighter);
-                transition: background 0.2s, border-color 0.2s; }
-
-  .sidebar-icon { width: 40px; height: 40px; display: flex; align-items: center;
-                  justify-content: center; border-radius: var(--radius-md);
-                  color: var(--color-icon-neutral-dark); cursor: pointer;
-                  transition: background 0.15s, color 0.15s; flex-shrink: 0; }
+  .sidebar    { width: 56px; flex-shrink: 0; display: flex; flex-direction: column;
+                align-items: center; padding: 10px 0; gap: 2px;
+                background: var(--color-surface-neutral-black);
+                border-right: 1px solid var(--color-border-neutral-lighter); }
+  .sidebar-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+                  border-radius: var(--radius-md); color: var(--color-icon-neutral-dark);
+                  cursor: pointer; transition: background 0.15s, color 0.15s; flex-shrink: 0; }
   .sidebar-icon:hover  { background: var(--color-surface-neutral-default); }
   .sidebar-icon.active { background: var(--color-surface-primary-subtle); color: var(--color-icon-primary-default); }
-
   .main-content { flex: 1; overflow-y: auto; padding: 20px 24px; }
 
+  /* ── TOPBAR ELEMENTS ──────────────────────────────────────────── */
+  .topbar-logo  { width: 22px; height: 22px; border-radius: 5px; background: var(--gradient-main-action); flex-shrink: 0; }
+  .topbar-brand { font-size: 13px; font-weight: 600; color: var(--color-text-title); letter-spacing: 0.01em; }
+  .topbar-sep   { font-size: 13px; color: var(--color-border-neutral-lighter); }
+  .topbar-page  { font-size: 13px; font-weight: 500; color: var(--color-text-caption); }
+  .topbar-btn   { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+                  border-radius: var(--radius-md); background: transparent; border: none; cursor: pointer;
+                  color: var(--color-icon-neutral-dark); transition: background 0.15s, color 0.15s; }
+  .topbar-btn:hover { background: var(--color-surface-neutral-default); color: var(--color-icon-neutral-light); }
+  .topbar-avatar { width: 28px; height: 28px; border-radius: 50%;
+                   background: var(--color-surface-primary-subtle); border: 1.5px solid var(--color-border-primary-default);
+                   display: flex; align-items: center; justify-content: center;
+                   font-size: 10px; font-weight: 700; color: var(--color-icon-primary-default); cursor: pointer; }
+
   /* ── BUTTONS ──────────────────────────────────────────────────── */
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px;
          font-family: inherit; font-weight: 500; cursor: pointer; border: none; outline: none;
-         transition: background 0.15s, opacity 0.15s, transform 0.1s; white-space: nowrap;
-         text-decoration: none; letter-spacing: 0; }
-  .btn:active:not(:disabled) { transform: scale(0.97); }
+         transition: background 0.15s, opacity 0.15s; white-space: nowrap; text-decoration: none; }
+  .btn:active { transform: scale(0.97); }
   .btn:disabled, .btn.disabled { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
 
-  .btn-sm   { height: 28px; padding: 0 12px; font-size: 12px; border-radius: var(--radius-md); }
-  .btn-md   { height: 40px; padding: 0 16px; font-size: 14px; border-radius: var(--radius-md); }
-  .btn-lg   { height: 48px; padding: 0 20px; font-size: 16px; border-radius: var(--radius-md); }
-  .btn-pill { border-radius: var(--radius-full) !important; }
+  .btn-sm  { height: 28px; padding: 0 12px; font-size: 12px; border-radius: var(--radius-full); }
+  .btn-md  { height: 36px; padding: 0 16px; font-size: 14px; border-radius: var(--radius-md); }
+  .btn-lg  { height: 44px; padding: 0 20px; font-size: 15px; border-radius: var(--radius-md); }
 
-  .btn-main-action { background: var(--gradient-main-action); color: #ffffff; border: none; }
+  .btn-main-action { background: var(--gradient-main-action); color: var(--color-text-negative); border-radius: var(--radius-full); }
   .btn-main-action:hover { opacity: 0.88; }
-
-  .btn-primary  { background: var(--color-surface-primary-default); color: var(--color-text-negative); border: none; }
-  .btn-primary:hover  { background: var(--color-surface-primary-emphasis); }
-
-  .btn-secondary { background: var(--color-surface-neutral-white); color: var(--color-text-label);
-                   border: 1px solid var(--color-border-neutral-lighter); }
+  .btn-primary    { background: var(--color-surface-primary-default); color: var(--color-text-negative); border-radius: var(--radius-md); }
+  .btn-primary:hover { background: var(--color-surface-primary-emphasis); }
+  .btn-secondary  { background: var(--color-surface-neutral-white); color: var(--color-text-label);
+                    border: 1px solid var(--color-border-neutral-lighter); border-radius: var(--radius-md); }
   .btn-secondary:hover { background: var(--color-surface-neutral-default); }
-
-  .btn-tertiary  { background: transparent; color: var(--color-text-label);
-                   border: 1px solid var(--color-border-neutral-lighter); }
-  .btn-tertiary:hover  { background: var(--color-surface-neutral-default); }
-
-  .btn-warning   { background: var(--color-surface-alert-subtle); color: var(--color-text-alert);
-                   border: 1px solid var(--color-border-alert-default); }
-  .btn-warning:hover   { opacity: 0.85; }
-
-  .btn-positive  { background: var(--color-surface-success-subtle); color: var(--color-text-success);
-                   border: 1px solid var(--color-border-success-default); }
-  .btn-positive:hover  { opacity: 0.85; }
-
-  .btn-icon    { width: 40px; height: 40px; padding: 0; display: inline-flex;
-                 align-items: center; justify-content: center;
-                 border-radius: var(--radius-md); background: transparent;
-                 color: var(--color-icon-neutral-dark); border: none; cursor: pointer;
-                 transition: background 0.15s; }
-  .btn-icon:hover { background: var(--color-surface-neutral-default); }
-  .btn-icon-sm { width: 28px; height: 28px; padding: 0; display: inline-flex;
-                 align-items: center; justify-content: center;
-                 border-radius: var(--radius-sm); background: transparent;
-                 color: var(--color-icon-neutral-dark); border: none; cursor: pointer; }
+  .btn-tertiary   { background: transparent; color: var(--color-text-label);
+                    border: none; border-radius: var(--radius-full); }
+  .btn-tertiary:hover { background: var(--color-surface-neutral-subtle); }
+  .btn-warning    { background: var(--color-surface-alert-subtle); color: var(--color-text-alert);
+                    border: 1px solid var(--color-border-alert-default); border-radius: var(--radius-md); }
+  .btn-icon-sm    { width: 28px; height: 28px; padding: 0; display: flex; align-items: center; justify-content: center;
+                    border-radius: var(--radius-md); background: transparent;
+                    color: var(--color-icon-neutral-dark); border: none; cursor: pointer; transition: background 0.15s; }
   .btn-icon-sm:hover { background: var(--color-surface-neutral-default); }
 
-  /* ── TEXT FIELDS ──────────────────────────────────────────────── */
-  .input { display: flex; align-items: center; gap: 8px;
-           background: var(--color-surface-neutral-default);
-           border: 1px solid var(--color-border-neutral-default);
-           border-radius: var(--radius-md); padding: 0 12px;
-           color: var(--color-text-body); font-family: inherit;
-           font-size: 14px; outline: none; width: 100%;
-           transition: border-color 0.15s, background 0.15s; }
-  .input::placeholder { color: var(--color-text-caption); }
-  .input:hover   { border-color: var(--color-border-neutral-lighter); }
-  .input:focus   { border-color: var(--color-border-primary-default);
-                   background: var(--color-surface-neutral-white); }
-  .input-md { height: 40px; }
-  .input-sm { height: 32px; font-size: 12px; }
-
-  /* ── BADGE STATUS ─────────────────────────────────────────────── */
-  .badge { display: inline-flex; align-items: center; gap: 6px;
-           padding: 3px 10px; border-radius: var(--radius-full);
-           font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
-           white-space: nowrap; }
-  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-
-  .badge-active   { background: var(--color-surface-success-subtle);   color: var(--color-badge-success); }
-  .badge-active::before { background: var(--color-badge-success); }
-  .badge-inactive { background: var(--color-surface-neutral-default);  color: var(--color-badge-neutral); }
-  .badge-inactive::before { background: var(--color-badge-neutral); }
-  .badge-error    { background: var(--color-surface-error-subtle);     color: var(--color-badge-error); }
-  .badge-error::before { background: var(--color-badge-error); }
-  .badge-alert    { background: var(--color-surface-alert-subtle);     color: var(--color-badge-alert); }
-  .badge-alert::before { background: var(--color-badge-alert); }
-  .badge-primary  { background: var(--color-surface-primary-subtle);   color: var(--color-badge-primary); }
-  .badge-primary::before { background: var(--color-badge-primary); }
-
-  /* ── TAGS / CHIPS ─────────────────────────────────────────────── */
-  .tag { display: inline-flex; align-items: center; gap: 6px;
-         height: 28px; padding: 0 12px; border-radius: var(--radius-full);
-         font-size: 12px; font-weight: 500; cursor: pointer;
-         border: 1px solid var(--color-border-neutral-lighter);
-         color: var(--color-text-label); background: var(--color-surface-neutral-default);
-         transition: background 0.15s; user-select: none; white-space: nowrap; }
-  .tag:hover  { background: var(--color-surface-neutral-emphasis); }
-  .tag.active { background: var(--color-surface-primary-subtle);
-                border-color: var(--color-border-primary-default);
-                color: var(--color-icon-primary-default); }
-  .tag-dismiss { opacity: 0.5; cursor: pointer; line-height: 1; }
-  .tag-dismiss:hover { opacity: 1; }
-
-  /* ── TABS ─────────────────────────────────────────────────────── */
-  .tabs { display: flex; align-items: center;
-          border-bottom: 1px solid var(--color-border-neutral-lighter); }
-  .tab-item { display: flex; align-items: center; gap: 6px; height: 40px; padding: 0 16px;
-              font-size: 14px; font-weight: 500; color: var(--color-text-subtitle);
-              cursor: pointer; position: relative; transition: color 0.15s; }
-  .tab-item:hover { color: var(--color-text-title); }
-  .tab-item.active { color: var(--color-text-title); }
-  .tab-item.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
-                             height: 2px; background: var(--color-surface-primary-default);
-                             border-radius: 2px 2px 0 0; }
-  .tab-count { display: inline-flex; align-items: center; justify-content: center;
-               min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px;
-               font-size: 11px; font-weight: 600;
-               background: var(--color-surface-neutral-default);
-               color: var(--color-text-caption); }
-  .tab-item.active .tab-count { background: var(--color-surface-primary-subtle); color: var(--color-icon-primary-default); }
-
-  /* ── TABLE ────────────────────────────────────────────────────── */
-  .table-container { width: 100%; border-radius: var(--radius-lg); overflow: hidden;
-                     border: 1px solid var(--color-border-neutral-lighter); }
-  table { width: 100%; border-collapse: collapse; }
-
-  thead th { height: 48px; padding: 0 16px; text-align: left;
-             font-size: 12px; font-weight: 600; color: var(--color-text-subtitle);
-             background: var(--color-surface-neutral-default);
-             border-bottom: 1px solid var(--color-border-neutral-lighter);
-             white-space: nowrap; }
-  thead th:first-child { padding-left: 16px; width: 40px; }
-
-  tbody td { height: 60px; padding: 0 16px; font-size: 14px;
-             color: var(--color-text-body);
-             border-bottom: 1px solid var(--color-border-neutral-lighter); }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr { transition: background 0.1s; cursor: pointer; }
-  tbody tr:hover { background: var(--color-surface-neutral-subtle); }
-  tbody tr.selected { background: var(--color-surface-primary-more-subtle); }
-  tbody tr.selected td { border-bottom-color: var(--color-border-primary-subtle); }
-
-  /* Checkbox */
-  .cb { width: 16px; height: 16px; border-radius: var(--radius-xs);
-        border: 1.5px solid var(--color-border-neutral-lighter);
-        background: transparent; cursor: pointer; appearance: none;
-        display: flex; align-items: center; justify-content: center;
-        transition: border-color 0.15s, background 0.15s; flex-shrink: 0; }
-  .cb:checked { background: var(--color-surface-primary-default);
-                border-color: var(--color-surface-primary-default);
-                background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-                background-repeat: no-repeat; background-position: center; }
-
-  /* ── PAGINATION ───────────────────────────────────────────────── */
-  .pagination { display: flex; align-items: center; gap: 24px; height: 48px; padding: 0 16px;
-                font-size: 12px; font-weight: 500; color: var(--color-text-label); }
-  .pagination__rpp       { display: flex; align-items: center; gap: 8px; }
-  .pagination__rpp-label { color: var(--color-text-caption); white-space: nowrap; }
-  .pagination__rpp-select { display: flex; align-items: center; gap: 4px; cursor: pointer;
-                             color: var(--color-text-label); padding: 3px 8px;
-                             border: 1px solid var(--color-border-neutral-lighter);
-                             border-radius: var(--radius-sm); font-size: 12px;
-                             background: transparent; font-family: inherit; }
-  .pagination__range     { color: var(--color-text-caption); white-space: nowrap; }
-  .pagination__nav       { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-  .pagination__btn       { width: 28px; height: 28px; display: flex; align-items: center;
-                            justify-content: center; border-radius: var(--radius-sm);
-                            border: 1px solid var(--color-border-neutral-lighter);
-                            background: transparent; color: var(--color-icon-neutral-dark);
-                            cursor: pointer; transition: background 0.15s; }
-  .pagination__btn:hover:not(:disabled) { background: var(--color-surface-neutral-default); }
-  .pagination__btn:disabled { opacity: 0.30; cursor: not-allowed; }
-
-  /* ── HIGHLIGHT ICON ───────────────────────────────────────────── */
-  .highlight-icon   { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .highlight-icon-l { width: 40px; height: 40px; border-radius: var(--radius-md); }
-  .highlight-icon-m { width: 32px; height: 32px; border-radius: var(--radius-md); }
-  .highlight-icon-s { width: 24px; height: 24px; border-radius: var(--radius-sm); }
-  .highlight-icon-l svg, .highlight-icon-m svg, .highlight-icon-s svg { width: 20px; height: 20px; }
-
-  .hi--blue      { background: var(--color-surface-primary-subtle);   color: var(--color-icon-primary-default); }
-  .hi--green     { background: var(--color-surface-success-subtle);   color: var(--color-icon-success-default); }
-  .hi--alert     { background: var(--color-surface-alert-subtle);     color: var(--color-icon-alert-default); }
-  .hi--error     { background: var(--color-surface-error-subtle);     color: var(--color-icon-error-default); }
-  .hi--neutral   { background: var(--color-surface-neutral-default);  color: var(--color-icon-neutral-dark); }
-
-  /* ── HIGHLIGHT CARD (KPI) ─────────────────────────────────────── */
-  .hcard { display: flex; flex-direction: column; gap: 10px; padding: 16px;
-           border-radius: var(--radius-lg); flex: 1;
-           border: 1px solid var(--color-border-neutral-lighter);
-           background: var(--color-surface-neutral-white);
-           transition: background 0.2s, border-color 0.2s; }
-
-  .hcard--blue   { background: var(--card-bg-blue);       border-color: var(--color-border-primary-subtle); }
-  .hcard--green  { background: var(--card-bg-green);      border-color: var(--color-border-success-subtle); }
-  .hcard--yellow { background: var(--card-bg-yellow);     border-color: var(--color-border-alert-subtle); }
-  .hcard--neutral { background: var(--color-surface-neutral-white); border-color: var(--color-border-neutral-lighter); }
-
-  .hcard__row    { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-  .hcard__label  { font-size: 13px; font-weight: 500; color: var(--color-text-subtitle); }
-  .hcard__value  { font-size: 28px; font-weight: 700; color: var(--color-text-title); line-height: 1; }
-  .hcard__unit   { font-size: 12px; font-weight: 500; color: var(--color-text-caption); padding-bottom: 4px; align-self: flex-end; }
-  .hcard__delta  { font-size: 12px; font-weight: 500; }
-  .hcard__delta.up   { color: var(--color-text-success); }
-  .hcard__delta.down { color: var(--color-text-error); }
+  /* ── HIGHLIGHT CARDS (KPI) ────────────────────────────────────── */
+  .hcard { flex: 1; min-width: 0; border-radius: var(--radius-lg); padding: 16px 18px;
+           border: 1px solid var(--color-border-neutral-lighter); display: flex; flex-direction: column; gap: 8px; }
+  .hcard--blue    { background: var(--card-bg-blue); }
+  .hcard--green   { background: var(--card-bg-green); }
+  .hcard--yellow  { background: var(--card-bg-yellow); }
+  .hcard--neutral { background: var(--card-bg-neutral); }
+  .hcard--red     { background: var(--card-bg-red); }
+  .hcard--purple  { background: var(--card-bg-purple); }
+  .hcard__row     { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .hcard__label   { font-size: 12px; font-weight: 500; color: var(--color-text-caption); text-transform: uppercase; letter-spacing: 0.05em; }
+  .hcard__value   { font-size: 28px; font-weight: 700; color: var(--color-text-title); line-height: 1; }
+  .hcard__unit    { font-size: 13px; color: var(--color-text-caption); }
+  .hcard__delta   { font-size: 12px; font-weight: 500; }
+  .hcard__delta.up     { color: var(--color-text-success); }
+  .hcard__delta.down   { color: var(--color-text-error); }
   .hcard__delta.neutral { color: var(--color-text-caption); }
 
+  /* ── HIGHLIGHT ICONS ──────────────────────────────────────────── */
+  .highlight-icon   { display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); flex-shrink: 0; }
+  .highlight-icon-l { width: 40px; height: 40px; }
+  .highlight-icon-m { width: 32px; height: 32px; }
+  .highlight-icon-s { width: 24px; height: 24px; }
+  .hi--blue        { background: var(--color-surface-primary-subtle);     color: var(--color-icon-primary-default); }
+  .hi--green       { background: var(--color-surface-success-subtle);     color: var(--color-icon-success-default); }
+  .hi--alert       { background: var(--color-surface-alert-subtle);       color: var(--color-icon-alert-default); }
+  .hi--error       { background: var(--color-surface-error-subtle);       color: var(--color-icon-error-default); }
+  .hi--neutral     { background: var(--color-surface-neutral-default);    color: var(--color-icon-neutral-light); }
+  .hi--informative { background: var(--color-surface-primary-more-subtle);color: var(--color-icon-primary-default); }
+
+  /* ── BADGES ───────────────────────────────────────────────────── */
+  .badge          { display: inline-flex; align-items: center; height: 20px; padding: 0 8px;
+                    border-radius: var(--radius-full); font-size: 11px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+  .badge-active   { background: var(--color-surface-success-subtle);  color: var(--color-badge-success);  border: 1px solid var(--color-border-success-default); }
+  .badge-inactive { background: var(--color-surface-neutral-default); color: var(--color-badge-neutral);  border: 1px solid var(--color-border-neutral-lighter); }
+  .badge-error    { background: var(--color-surface-error-subtle);    color: var(--color-badge-error);    border: 1px solid var(--color-border-error-default); }
+  .badge-alert    { background: var(--color-surface-alert-subtle);    color: var(--color-badge-alert);    border: 1px solid var(--color-border-alert-default); }
+  .badge-primary  { background: var(--color-surface-primary-subtle);  color: var(--color-badge-primary);  border: 1px solid var(--color-border-primary-default); }
+  .badge-draft    { background: var(--color-surface-neutral-subtle);  color: var(--color-text-caption);   border: 1px solid var(--color-border-neutral-lighter); }
+
+  /* ── TAGS / FILTER CHIPS ──────────────────────────────────────── */
+  .tag { display: inline-flex; align-items: center; gap: 4px; height: 30px; padding: 0 12px;
+         border-radius: var(--radius-full); font-size: 13px; font-weight: 500;
+         background: var(--color-surface-neutral-white); color: var(--color-text-label);
+         border: 1px solid var(--color-border-neutral-lighter); cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+  .tag:hover { background: var(--color-surface-neutral-default); }
+  .tag.active { background: var(--color-surface-primary-subtle); color: var(--color-text-link); border-color: var(--color-border-primary-default); }
+  .tag-dismiss { font-size: 14px; line-height: 1; margin-left: 2px; color: var(--color-icon-primary-default); cursor: pointer; }
+
+  /* ── TABS ─────────────────────────────────────────────────────── */
+  .tabs     { display: flex; align-items: center; gap: 2px; border-bottom: 1px solid var(--color-border-neutral-lighter); }
+  .tab-item { display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px;
+              font-size: 13px; font-weight: 500; color: var(--color-text-caption);
+              cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; }
+  .tab-item:hover  { color: var(--color-text-label); }
+  .tab-item.active { color: var(--color-text-link); border-bottom-color: var(--color-border-primary-default); }
+  .tab-count { font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: var(--radius-full);
+               background: var(--color-surface-neutral-default); color: var(--color-text-caption); }
+  .tab-item.active .tab-count { background: var(--color-surface-primary-subtle); color: var(--color-text-link); }
+
+  /* ── INPUT ────────────────────────────────────────────────────── */
+  .input     { width: 100%; height: 36px; padding: 0 12px; background: var(--color-surface-neutral-white);
+               border: 1px solid var(--color-border-neutral-lighter); border-radius: var(--radius-md);
+               font-family: inherit; font-size: 14px; color: var(--color-text-label); outline: none; transition: border-color 0.15s; }
+  .input:focus { border-color: var(--color-border-primary-default); }
+  .input::placeholder { color: var(--color-text-caption); }
+
   /* ── AVATAR ───────────────────────────────────────────────────── */
-  .avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
-  .avatar-sm { width: 24px; height: 24px; font-size: 9px; }
-  .avatar-lg { width: 40px; height: 40px; font-size: 14px; }
-
-  /* Dept colors */
-  .dept-eng  { background: var(--color-surface-primary-subtle);   color: var(--color-icon-primary-default); }
-  .dept-prod { background: var(--color-surface-purple-subtle);    color: #a78bfa; }
-  .dept-des  { background: var(--color-surface-lime-subtle);      color: #bdee49; }
-  .dept-fin  { background: var(--color-surface-yellow-subtle);    color: var(--color-icon-alert-default); }
-  .dept-mkt  { background: var(--color-surface-light-blue-subtle); color: #7dd3fc; }
-  .dept-hr   { background: var(--color-surface-success-subtle);   color: var(--color-icon-success-default); }
-
-  body.light .dept-prod { color: #7b27ed; }
-  body.light .dept-des  { color: #6e9b14; }
-  body.light .dept-mkt  { color: #00b5d9; }
+  .avatar    { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .avatar-lg { width: 40px; height: 40px; font-size: 13px; }
+  .dept-eng  { background: rgba(43,127,255,0.20);  color: #2b7fff; }
+  .dept-prod { background: rgba(0,201,80,0.20);    color: #6ee7b7; }
+  .dept-des  { background: rgba(173,70,255,0.20);  color: #c084fc; }
+  .dept-fin  { background: rgba(255,214,10,0.20);  color: #fcd34d; }
+  .dept-mkt  { background: rgba(249,115,22,0.20);  color: #fb923c; }
+  .dept-ops  { background: rgba(20,184,166,0.20);  color: #2dd4bf; }
 
   /* ── SLIDE OUT ────────────────────────────────────────────────── */
-  .slide-out { position: fixed; top: 48px; right: 0; bottom: 0; z-index: 80;
-               width: 420px; display: flex; flex-direction: column;
-               background: var(--color-surface-modal);
-               backdrop-filter: blur(16px);
-               -webkit-backdrop-filter: blur(16px);
+  .slide-out { position: fixed; top: 0; right: -420px; width: 400px; height: 100vh; z-index: 500;
+               background: var(--color-surface-modal); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
                border-left: 1px solid var(--color-border-neutral-lighter);
-               transform: translateX(100%);
-               transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); }
-  .slide-out.open { transform: translateX(0); }
+               display: flex; flex-direction: column; transition: right 0.28s cubic-bezier(0.4,0,0.2,1); }
+  .slide-out.open { right: 0; }
   .slide-out__header { display: flex; align-items: center; justify-content: space-between;
-                       padding: 16px 20px; border-bottom: 1px solid var(--color-border-neutral-lighter); }
-  .slide-out__title  { font-size: 16px; font-weight: 600; color: var(--color-text-title); }
-  .slide-out__body   { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
-  .slide-out__footer { padding: 16px 20px; border-top: 1px solid var(--color-border-neutral-lighter);
-                       display: flex; gap: 8px; justify-content: flex-end; }
+                       height: 52px; padding: 0 16px; flex-shrink: 0;
+                       border-bottom: 1px solid var(--color-border-neutral-lighter); }
+  .slide-out__title  { font-size: 15px; font-weight: 600; color: var(--color-text-title); }
+  .slide-out__body   { flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 16px; }
+  .slide-out__footer { padding: 12px 16px; border-top: 1px solid var(--color-border-neutral-lighter);
+                       display: flex; justify-content: flex-end; gap: 8px; flex-shrink: 0; }
 
-  /* ── DIVIDER ──────────────────────────────────────────────────── */
-  .divider { height: 1px; background: var(--color-border-neutral-lighter); width: 100%; }
+  /* Slide-out backdrop */
+  .slide-out-backdrop { position: fixed; inset: 0; z-index: 499; display: none; }
+  .slide-out-backdrop.open { display: block; }
 
-  /* ── SECTION LABEL ────────────────────────────────────────────── */
-  .section-label { font-size: 11px; font-weight: 600; color: var(--color-text-caption);
-                   text-transform: uppercase; letter-spacing: 0.07em; }
-
-  /* ── MODE TOGGLE ──────────────────────────────────────────────── */
-  .mode-toggle { display: flex; align-items: center; gap: 6px; padding: 4px 10px;
-                 border-radius: var(--radius-full);
-                 background: var(--color-surface-neutral-default);
-                 border: 1px solid var(--color-border-neutral-lighter);
-                 cursor: pointer; transition: background 0.15s; user-select: none; }
-  .mode-toggle:hover { background: var(--color-surface-neutral-emphasis); }
-  .mode-toggle__icon { color: var(--color-icon-neutral-dark); }
-  .mode-toggle__label { font-size: 12px; font-weight: 500; color: var(--color-text-caption); }
-
-  /* ── TOAST ────────────────────────────────────────────────────── */
-  .toast { position: fixed; bottom: 24px; right: 24px; z-index: 200;
-           display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px;
-           border-radius: var(--radius-md); min-width: 320px; max-width: 400px;
-           box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-           background: var(--color-surface-floating);
-           backdrop-filter: blur(12px);
-           border: 1px solid var(--color-border-neutral-lighter);
-           animation: slideUp 0.2s ease; }
-  .toast__body { flex: 1; font-size: 14px; font-weight: 500; color: var(--color-text-title); }
-  .toast__close { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
-                  border: none; background: transparent; cursor: pointer;
-                  color: var(--color-icon-neutral-dark); border-radius: var(--radius-sm); }
-  @keyframes slideUp { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: translateY(0); } }
-
-  /* ── ACTIONS MENU (3 dots) ────────────────────────────────────── */
-  .row-actions { position: relative; }
-  .row-actions__menu { display: none; position: absolute; right: 0; top: 100%; z-index: 50;
-                       min-width: 180px; border-radius: var(--radius-md);
-                       background: var(--color-surface-floating);
-                       backdrop-filter: blur(12px);
-                       border: 1px solid var(--color-border-neutral-lighter);
-                       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-                       overflow: hidden; }
-  .row-actions__menu.open { display: block; }
-  .row-actions__item { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px;
-                       font-size: 13px; font-weight: 500; color: var(--color-text-label);
-                       cursor: pointer; transition: background 0.15s; }
-  .row-actions__item:hover { background: var(--color-surface-floating-hover); }
-  .row-actions__item.danger { color: var(--color-text-error); }
-
-  /* ── DETAIL ROW (slide-out) ───────────────────────────────────── */
+  /* ── DETAIL ROW (slide-out sections) ─────────────────────────── */
   .detail-row { display: flex; flex-direction: column; gap: 3px; }
-  .detail-row__label { font-size: 11px; font-weight: 500; color: var(--color-text-caption); text-transform: uppercase; letter-spacing: 0.05em; }
+  .detail-row__label { font-size: 11px; font-weight: 600; color: var(--color-text-caption); text-transform: uppercase; letter-spacing: 0.05em; }
   .detail-row__value { font-size: 14px; font-weight: 500; color: var(--color-text-label); }
 
-  /* ── SCROLLBAR (cosmetic) ─────────────────────────────────────── */
+  /* ── ENTITY LIST ──────────────────────────────────────────────── */
+  .entity-list { display: flex; flex-direction: column; gap: 6px; }
+
+  .entity-item { background: var(--color-surface-neutral-white);
+                 border: 1px solid var(--color-border-neutral-lighter);
+                 border-radius: var(--radius-md); overflow: hidden;
+                 cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+  .entity-item:hover { background: var(--color-surface-neutral-default); }
+  .entity-item.is-selected { border-color: var(--color-border-primary-default);
+                              background: var(--color-surface-primary-more-subtle); }
+  .entity-item.is-inactive { opacity: 0.55; }
+
+  .entity-item__main  { display: flex; align-items: center; justify-content: space-between;
+                         padding: 12px 14px; gap: 12px; }
+  .entity-item__left  { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+  .entity-item__meta  { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .entity-item__title { display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+                         font-size: 14px; font-weight: 600; color: var(--color-text-title); }
+  .entity-item__sub   { font-size: 12px; color: var(--color-text-caption); }
+  .entity-item__right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  .entity-item__time  { font-size: 11px; color: var(--color-text-caption); white-space: nowrap; }
+
+  .entity-chip { display: inline-flex; align-items: center; height: 18px; padding: 0 7px;
+                 border-radius: var(--radius-full); font-size: 11px; font-weight: 500;
+                 background: var(--color-surface-neutral-default); color: var(--color-text-caption);
+                 border: 1px solid var(--color-border-neutral-lighter); }
+  .entity-chip--pinned { background: var(--color-surface-alert-subtle); color: var(--color-text-alert);
+                          border-color: var(--color-border-alert-default); }
+  .entity-chip--primary { background: var(--color-surface-primary-subtle); color: var(--color-text-link);
+                           border-color: var(--color-border-primary-default); }
+
+  .entity-item__desc { padding: 0 14px 12px 58px; font-size: 13px; line-height: 1.6;
+                        color: var(--color-text-body); }
+
+  .entity-item__footer { display: flex; align-items: center; gap: 10px; padding: 8px 14px;
+                          border-top: 1px solid var(--color-border-neutral-lighter);
+                          background: var(--color-surface-neutral-subtle);
+                          font-size: 11px; color: var(--color-text-caption); }
+  .entity-item__footer-dot { width: 3px; height: 3px; border-radius: 50%;
+                               background: var(--color-border-neutral-default); flex-shrink: 0; }
+
+  /* ── AI STRIP ─────────────────────────────────────────────────── */
+  .ai-strip { display: flex; align-items: flex-start; gap: 8px; padding: 8px 12px;
+              background: var(--color-surface-primary-more-subtle);
+              border-left: 2px solid var(--color-surface-primary-default);
+              font-size: 12px; color: var(--color-text-body); line-height: 1.5; }
+  .ai-strip--in-item { margin: 0 14px 12px 58px; border-radius: var(--radius-xs); }
+  .ai-strip__label   { color: var(--color-text-link); font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+
+  /* ── ROW ACTIONS MENU ─────────────────────────────────────────── */
+  .row-actions { position: relative; }
+  .row-actions__menu { position: absolute; top: calc(100% + 4px); right: 0; min-width: 172px;
+                       background: var(--color-surface-floating); backdrop-filter: blur(16px);
+                       border: 1px solid var(--color-border-neutral-lighter);
+                       border-radius: var(--radius-md); z-index: 100; display: none; overflow: hidden; }
+  .row-actions__menu.open { display: block; }
+  .row-actions__item { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px;
+                       font-size: 13px; font-weight: 500; color: var(--color-text-label);
+                       cursor: pointer; transition: background 0.12s; white-space: nowrap; }
+  .row-actions__item:hover { background: var(--color-surface-floating-hover); }
+  .row-actions__item.danger { color: var(--color-text-error); }
+  .row-actions__divider { height: 1px; background: var(--color-border-neutral-lighter); margin: 3px 0; }
+
+  /* ── PAGINATION ───────────────────────────────────────────────── */
+  .pagination { display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+                font-size: 12px; color: var(--color-text-caption); }
+  .pagination__range { flex: 1; }
+  .pagination__nav   { display: flex; gap: 2px; }
+  .pagination__btn   { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+                        border-radius: var(--radius-md); background: transparent; border: none;
+                        color: var(--color-icon-neutral-dark); cursor: pointer; transition: background 0.15s; }
+  .pagination__btn:hover:not(:disabled) { background: var(--color-surface-neutral-default); }
+  .pagination__btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .pagination__rpp-label { color: var(--color-text-caption); }
+  .pagination__rpp-select { background: var(--color-surface-neutral-white); border: 1px solid var(--color-border-neutral-lighter);
+                             border-radius: var(--radius-sm); padding: 2px 6px; font-size: 12px;
+                             color: var(--color-text-label); font-family: inherit; outline: none; }
+
+  /* ── MODAL OVERLAY ────────────────────────────────────────────── */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(5,8,18,0.72);
+                   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+                   display: none; align-items: center; justify-content: center; z-index: 800; }
+  .modal-overlay.open { display: flex; }
+
+  .modal-dialog { background: var(--color-surface-floating); backdrop-filter: blur(24px);
+                  -webkit-backdrop-filter: blur(24px);
+                  border: 1px solid var(--color-border-neutral-lighter);
+                  border-radius: var(--radius-lg); width: 460px; max-width: calc(100vw - 48px);
+                  position: relative; overflow: hidden;
+                  animation: modal-in 0.22s cubic-bezier(0.34,1.46,0.64,1); }
+  @keyframes modal-in { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  .modal-dialog__close { position: absolute; top: 14px; right: 14px;
+                          width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+                          border-radius: var(--radius-md); background: transparent;
+                          color: var(--color-icon-neutral-dark); border: none; cursor: pointer;
+                          transition: background 0.15s; }
+  .modal-dialog__close:hover { background: var(--color-surface-neutral-default); }
+
+  .modal-dialog__body { padding: 44px 36px 28px; text-align: center;
+                         display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+  .modal-dialog__icon { width: 52px; height: 52px; border-radius: var(--radius-lg);
+                         background: var(--color-surface-primary-subtle);
+                         display: flex; align-items: center; justify-content: center;
+                         color: var(--color-icon-primary-default); margin-bottom: 4px; }
+
+  .modal-dialog__title { font-size: 17px; font-weight: 700; color: var(--color-text-title); }
+  .modal-dialog__desc  { font-size: 13px; color: var(--color-text-body); line-height: 1.6; max-width: 340px; }
+
+  .modal-dialog__info { width: 100%; background: var(--color-surface-primary-more-subtle);
+                         border: 1px solid var(--color-border-primary-subtle);
+                         border-radius: var(--radius-sm); padding: 10px 12px;
+                         display: flex; align-items: flex-start; gap: 8px;
+                         font-size: 12px; color: var(--color-text-body); text-align: left; line-height: 1.5; }
+
+  .modal-dialog__footer { padding: 14px 20px; border-top: 1px solid var(--color-border-neutral-lighter);
+                           display: flex; justify-content: flex-end; gap: 8px; }
+
+  /* ── TOAST ────────────────────────────────────────────────────── */
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+           background: var(--color-surface-floating); backdrop-filter: blur(16px);
+           border: 1px solid var(--color-border-neutral-lighter);
+           border-radius: var(--radius-full); padding: 10px 16px;
+           display: flex; align-items: center; gap: 10px;
+           font-size: 13px; font-weight: 500; color: var(--color-text-label);
+           z-index: 900; animation: toast-in 0.2s ease; white-space: nowrap; }
+  @keyframes toast-in { from { opacity:0; transform: translateX(-50%) translateY(8px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }
+  .toast__close { background: none; border: none; color: var(--color-icon-neutral-dark); cursor: pointer; padding: 0; }
+
+  /* ── MODE TOGGLE ──────────────────────────────────────────────── */
+  .mode-toggle { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px;
+                 border-radius: var(--radius-full); background: var(--color-surface-neutral-default);
+                 border: 1px solid var(--color-border-neutral-lighter); cursor: pointer;
+                 font-size: 11px; font-weight: 500; color: var(--color-text-caption);
+                 transition: background 0.15s; }
+  .mode-toggle:hover { background: var(--color-surface-neutral-emphasis); }
+
+  /* ── SCROLLBAR ────────────────────────────────────────────────── */
   ::-webkit-scrollbar { width: 4px; height: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--color-border-neutral-default); border-radius: 2px; }
@@ -561,37 +478,52 @@
 
   <!-- ═══════════════════════ TOPBAR ═══════════════════════════════ -->
   <header class="topbar">
-    <!-- Left: logo + breadcrumb -->
-    <div class="flex items-center gap-3">
-      <div class="flex items-center gap-2">
-        <div style="width:24px;height:24px;border-radius:6px;background:var(--gradient-main-action);flex-shrink:0;"></div>
-        <span style="font-size:13px;font-weight:600;color:var(--color-text-title);letter-spacing:0.01em;">AIMS OS</span>
-      </div>
-      <span style="color:var(--color-text-caption);font-size:13px;">/</span>
-      <span style="font-size:13px;font-weight:500;color:var(--color-text-caption);">Workers</span>
+    <!-- Left: logo + workspace + breadcrumb -->
+    <div class="flex items-center gap-2">
+      <div class="topbar-logo"></div>
+      <span class="topbar-brand">AIMS OS</span>
+      <span class="topbar-sep">/</span>
+      <span class="topbar-page">Workers</span>
     </div>
 
-    <!-- Right: search, mode toggle, avatar -->
-    <div class="flex items-center gap-2">
-      <button class="btn-icon-sm" aria-label="Search">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    <!-- Right: actions + avatar -->
+    <div class="flex items-center gap-1">
+      <!-- Sparkle / AI actions -->
+      <button class="topbar-btn" title="AI Actions">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.2L12 16.4l-6.2 4.5 2.4-7.2L2 9.2h7.6L12 2z" fill="currentColor" opacity="0.8"/>
+        </svg>
+      </button>
+      <!-- Notifications -->
+      <button class="topbar-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+      </button>
+      <!-- Help -->
+      <button class="topbar-btn" title="Help">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17" stroke-linecap="round" stroke-width="2.4"/>
         </svg>
       </button>
 
-      <button class="mode-toggle" onclick="toggleMode()" id="modeToggle" title="Toggle light/dark">
-        <span class="mode-toggle__icon" id="modeIcon">
-          <!-- Moon icon (dark mode) -->
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <div style="width:1px;height:20px;background:var(--color-border-neutral-lighter);margin:0 4px;"></div>
+
+      <!-- Mode toggle -->
+      <button class="mode-toggle" onclick="toggleMode()" id="modeToggle" title="Toggle dark/light">
+        <span id="modeIcon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </span>
-        <span class="mode-toggle__label" id="modeLabel">Dark</span>
+        <span id="modeLabel">Dark</span>
       </button>
 
-      <div style="width:28px;height:28px;border-radius:50%;background:var(--color-surface-primary-subtle);
-                  display:flex;align-items:center;justify-content:center;
-                  font-size:10px;font-weight:700;color:var(--color-icon-primary-default);">PM</div>
+      <!-- Avatar -->
+      <div class="topbar-avatar" style="margin-left:4px;">PM</div>
     </div>
   </header>
 
@@ -600,29 +532,40 @@
 
     <!-- ─────────────────── SIDEBAR ─────────────────────────────── -->
     <aside class="sidebar">
+      <!-- Home -->
       <div class="sidebar-icon" title="Home">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
       </div>
-      <div class="sidebar-icon" title="Contacts">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-      </div>
+      <!-- Workers (active) -->
       <div class="sidebar-icon active" title="Workers">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
       </div>
+      <!-- Analytics -->
       <div class="sidebar-icon" title="Analytics">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
         </svg>
       </div>
+      <!-- Inbox -->
+      <div class="sidebar-icon" title="Inbox">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/>
+          <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+        </svg>
+      </div>
+      <!-- Settings (push to bottom) -->
       <div class="sidebar-icon" title="Settings" style="margin-top:auto;">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="3"/>
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
         </svg>
@@ -640,13 +583,15 @@
         </div>
         <div class="flex items-center gap-2">
           <button class="btn btn-tertiary btn-md">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
             Export
           </button>
-          <button class="btn btn-main-action btn-md" onclick="showToast('Worker invite sent')">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <button class="btn btn-main-action btn-md" onclick="showToast('Invite sent successfully')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
             Add worker
@@ -655,10 +600,10 @@
       </div>
 
       <!-- KPI ROW -->
-      <div class="flex items-stretch gap-3 mb-5">
+      <div class="flex items-stretch gap-3 mb-6">
         <div class="hcard hcard--blue">
           <div class="hcard__row">
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-1">
               <span class="hcard__label">Total Workers</span>
               <div class="flex items-baseline gap-2">
                 <span class="hcard__value">1,284</span>
@@ -666,7 +611,7 @@
               </div>
             </div>
             <div class="highlight-icon highlight-icon-l hi--blue">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
               </svg>
@@ -677,15 +622,15 @@
 
         <div class="hcard hcard--green">
           <div class="hcard__row">
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-1">
               <span class="hcard__label">Active</span>
               <div class="flex items-baseline gap-2">
                 <span class="hcard__value">847</span>
-                <span class="hcard__unit">active</span>
+                <span class="hcard__unit">workers</span>
               </div>
             </div>
             <div class="highlight-icon highlight-icon-l hi--green">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <polyline points="20 6 9 17 4 12"/>
               </svg>
             </div>
@@ -695,16 +640,17 @@
 
         <div class="hcard hcard--yellow">
           <div class="hcard__row">
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-1">
               <span class="hcard__label">On Leave</span>
               <div class="flex items-baseline gap-2">
                 <span class="hcard__value">47</span>
-                <span class="hcard__unit">on leave</span>
+                <span class="hcard__unit">workers</span>
               </div>
             </div>
             <div class="highlight-icon highlight-icon-l hi--alert">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
               </svg>
             </div>
           </div>
@@ -713,15 +659,15 @@
 
         <div class="hcard hcard--neutral">
           <div class="hcard__row">
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-1">
               <span class="hcard__label">Inactive</span>
               <div class="flex items-baseline gap-2">
                 <span class="hcard__value">390</span>
-                <span class="hcard__unit">inactive</span>
+                <span class="hcard__unit">workers</span>
               </div>
             </div>
             <div class="highlight-icon highlight-icon-l hi--neutral">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/>
               </svg>
             </div>
@@ -732,321 +678,412 @@
 
       <!-- TABS -->
       <div class="tabs mb-4">
-        <div class="tab-item active" onclick="switchTab(this)">
-          All <span class="tab-count">1,284</span>
-        </div>
-        <div class="tab-item" onclick="switchTab(this)">
-          Active <span class="tab-count">847</span>
-        </div>
-        <div class="tab-item" onclick="switchTab(this)">
-          On Leave <span class="tab-count">47</span>
-        </div>
-        <div class="tab-item" onclick="switchTab(this)">
-          Inactive <span class="tab-count">390</span>
-        </div>
+        <div class="tab-item active" onclick="switchTab(this)">All <span class="tab-count">1,284</span></div>
+        <div class="tab-item" onclick="switchTab(this)">Active <span class="tab-count">847</span></div>
+        <div class="tab-item" onclick="switchTab(this)">On Leave <span class="tab-count">47</span></div>
+        <div class="tab-item" onclick="switchTab(this)">Inactive <span class="tab-count">390</span></div>
       </div>
 
       <!-- FILTER BAR -->
       <div class="flex items-center gap-2 mb-4">
-        <div style="position:relative;width:240px;flex-shrink:0;">
+        <div style="position:relative;width:220px;flex-shrink:0;">
           <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--color-icon-neutral-dark);">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
             </svg>
           </span>
-          <input class="input input-md" style="padding-left:32px;" placeholder="Search workers…" type="text">
+          <input class="input" style="padding-left:30px;font-size:13px;" placeholder="Search workers…" type="text">
         </div>
         <div class="tag" onclick="this.classList.toggle('active')">
           Department
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="tag active">
           Status: Active
-          <span class="tag-dismiss" onclick="this.parentElement.classList.remove('active');this.parentElement.innerHTML='Status <svg width=\'12\' height=\'12\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' viewBox=\'0 0 24 24\'><polyline points=\'6 9 12 15 18 9\'/></svg>'">×</span>
+          <span class="tag-dismiss">×</span>
         </div>
         <div class="tag" onclick="this.classList.toggle('active')">
           Role
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="tag" onclick="this.classList.toggle('active')">
           Location
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
       </div>
 
-      <!-- ENTITY LIST TABLE -->
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:40px;"><input type="checkbox" class="cb" id="selectAll" onchange="toggleAll(this)"></th>
-              <th>Worker</th>
-              <th>Department</th>
-              <th>Role</th>
-              <th>Status</th>
-              <th>Since</th>
-              <th style="width:48px;"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Row 1 -->
-            <tr onclick="openSlideOut('Sarah Chen','Senior Engineer','Engineering','Active','Jan 12, 2021','sarah.chen@aimsco.io')">
-              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar dept-eng">SC</div>
-                  <div>
-                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">Sarah Chen</div>
-                    <div style="font-size:12px;color:var(--color-text-caption);">sarah.chen@aimsco.io</div>
-                  </div>
-                </div>
-              </td>
-              <td><span style="font-size:13px;color:var(--color-text-label);">Engineering</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-body);">Senior Engineer</span></td>
-              <td><span class="badge badge-active">Active</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-caption);">Jan 2021</span></td>
-              <td>
-                <div class="row-actions">
-                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
-                    </svg>
-                  </button>
-                  <div class="row-actions__menu">
-                    <div class="row-actions__item" onclick="showToast('Opening profile…')">View profile</div>
-                    <div class="row-actions__item" onclick="showToast('Edit mode enabled')">Edit worker</div>
-                    <div class="row-actions__item danger" onclick="showToast('Worker deactivated','alert')">Deactivate</div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <!-- Row 2 -->
-            <tr onclick="openSlideOut('Marcus Reid','Product Manager','Product','Active','Mar 5, 2022','m.reid@aimsco.io')">
-              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar dept-prod">MR</div>
-                  <div>
-                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">Marcus Reid</div>
-                    <div style="font-size:12px;color:var(--color-text-caption);">m.reid@aimsco.io</div>
-                  </div>
-                </div>
-              </td>
-              <td><span style="font-size:13px;color:var(--color-text-label);">Product</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-body);">Product Manager</span></td>
-              <td><span class="badge badge-active">Active</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-caption);">Mar 2022</span></td>
-              <td>
-                <div class="row-actions">
-                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
-                    </svg>
-                  </button>
-                  <div class="row-actions__menu">
-                    <div class="row-actions__item">View profile</div>
-                    <div class="row-actions__item">Edit worker</div>
-                    <div class="row-actions__item danger">Deactivate</div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <!-- Row 3 — On Leave -->
-            <tr onclick="openSlideOut('Jennifer Chang','UX Designer','Design','On Leave','Jun 18, 2020','j.chang@aimsco.io')">
-              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar dept-des">JC</div>
-                  <div>
-                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">Jennifer Chang</div>
-                    <div style="font-size:12px;color:var(--color-text-caption);">j.chang@aimsco.io</div>
-                  </div>
-                </div>
-              </td>
-              <td><span style="font-size:13px;color:var(--color-text-label);">Design</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-body);">UX Designer</span></td>
-              <td><span class="badge badge-alert">On Leave</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-caption);">Jun 2020</span></td>
-              <td>
-                <div class="row-actions">
-                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
-                    </svg>
-                  </button>
-                  <div class="row-actions__menu">
-                    <div class="row-actions__item">View profile</div>
-                    <div class="row-actions__item">Edit worker</div>
-                    <div class="row-actions__item danger">Deactivate</div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <!-- Row 4 — Selected -->
-            <tr class="selected" onclick="openSlideOut('David Walsh','Financial Analyst','Finance','Active','Sep 3, 2023','d.walsh@aimsco.io')">
-              <td><input type="checkbox" class="cb" checked onclick="e => e.stopPropagation()"></td>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar dept-fin">DW</div>
-                  <div>
-                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">David Walsh</div>
-                    <div style="font-size:12px;color:var(--color-text-caption);">d.walsh@aimsco.io</div>
-                  </div>
-                </div>
-              </td>
-              <td><span style="font-size:13px;color:var(--color-text-label);">Finance</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-body);">Financial Analyst</span></td>
-              <td><span class="badge badge-active">Active</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-caption);">Sep 2023</span></td>
-              <td>
-                <div class="row-actions">
-                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
-                    </svg>
-                  </button>
-                  <div class="row-actions__menu">
-                    <div class="row-actions__item">View profile</div>
-                    <div class="row-actions__item">Edit worker</div>
-                    <div class="row-actions__item danger">Deactivate</div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <!-- Row 5 — Inactive -->
-            <tr onclick="openSlideOut('Anna Thompson','Marketing Lead','Marketing','Inactive','Feb 14, 2019','a.thompson@aimsco.io')">
-              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar dept-mkt" style="opacity:0.6;">AT</div>
-                  <div>
-                    <div style="font-size:14px;font-weight:500;color:var(--color-text-subtitle);">Anna Thompson</div>
-                    <div style="font-size:12px;color:var(--color-text-caption);">a.thompson@aimsco.io</div>
-                  </div>
-                </div>
-              </td>
-              <td><span style="font-size:13px;color:var(--color-text-caption);">Marketing</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-caption);">Marketing Lead</span></td>
-              <td><span class="badge badge-inactive">Inactive</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-caption);">Feb 2019</span></td>
-              <td>
-                <div class="row-actions">
-                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
-                    </svg>
-                  </button>
-                  <div class="row-actions__menu">
-                    <div class="row-actions__item">View profile</div>
-                    <div class="row-actions__item">Edit worker</div>
-                    <div class="row-actions__item">Reactivate</div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <!-- Row 6 -->
-            <tr onclick="openSlideOut('Michael Torres','Backend Engineer','Engineering','Active','Nov 7, 2022','m.torres@aimsco.io')">
-              <td><input type="checkbox" class="cb" onclick="e => e.stopPropagation()"></td>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar dept-eng">MT</div>
-                  <div>
-                    <div style="font-size:14px;font-weight:500;color:var(--color-text-title);">Michael Torres</div>
-                    <div style="font-size:12px;color:var(--color-text-caption);">m.torres@aimsco.io</div>
-                  </div>
-                </div>
-              </td>
-              <td><span style="font-size:13px;color:var(--color-text-label);">Engineering</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-body);">Backend Engineer</span></td>
-              <td><span class="badge badge-active">Active</span></td>
-              <td><span style="font-size:13px;color:var(--color-text-caption);">Nov 2022</span></td>
-              <td>
-                <div class="row-actions">
-                  <button class="btn-icon-sm" onclick="event.stopPropagation();toggleMenu(this)">
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                      <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
-                    </svg>
-                  </button>
-                  <div class="row-actions__menu">
-                    <div class="row-actions__item">View profile</div>
-                    <div class="row-actions__item">Edit worker</div>
-                    <div class="row-actions__item danger">Deactivate</div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- ═══════════ ENTITY LIST ═══════════════════════════════════ -->
+      <div class="entity-list">
 
-        <!-- PAGINATION -->
-        <div class="pagination" style="border-top:1px solid var(--color-border-neutral-lighter);">
-          <span class="pagination__rpp-label">Rows per page:</span>
-          <select class="pagination__rpp-select">
-            <option>25</option><option>50</option><option>100</option>
-          </select>
-          <span class="pagination__range">1–25 of 847 workers</span>
-          <div class="pagination__nav">
-            <button class="pagination__btn" disabled title="First page">
-              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/>
-              </svg>
-            </button>
-            <button class="pagination__btn" disabled title="Previous">
-              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <polyline points="15 18 9 12 15 6"/>
-              </svg>
-            </button>
-            <button class="pagination__btn" title="Next">
-              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <polyline points="9 18 15 12 9 6"/>
-              </svg>
-            </button>
-            <button class="pagination__btn" title="Last page">
-              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/>
-              </svg>
-            </button>
+        <!-- Item 1: Sarah Chen — Selected, with AI strip -->
+        <div class="entity-item is-selected" onclick="openSlideOut('Sarah Chen','Senior Engineer','Engineering','Active','Jan 12, 2021','sarah.chen@aimsco.io','dept-eng','SC')">
+          <div class="entity-item__main">
+            <div class="entity-item__left">
+              <div class="avatar dept-eng">SC</div>
+              <div class="entity-item__meta">
+                <div class="entity-item__title">
+                  Sarah Chen
+                  <span class="entity-chip">Engineering</span>
+                  <span class="entity-chip--pinned entity-chip">📌 Pinned</span>
+                </div>
+                <div class="entity-item__sub">Senior Engineer · sarah.chen@aimsco.io</div>
+              </div>
+            </div>
+            <div class="entity-item__right">
+              <span class="badge badge-active">Active</span>
+              <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('Edit mode opened')">Edit</button>
+              <span class="entity-item__time">2h ago</span>
+              <div class="row-actions" onclick="event.stopPropagation()">
+                <button class="btn-icon-sm" onclick="toggleMenu(this)">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                  </svg>
+                </button>
+                <div class="row-actions__menu">
+                  <div class="row-actions__item" onclick="showToast('Opening profile…')">View profile</div>
+                  <div class="row-actions__item" onclick="showToast('Edit mode opened')">Edit worker</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item" onclick="openDuplicateModal('Sarah Chen')">Duplicate</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item danger" onclick="showToast('Worker deactivated','alert')">Deactivate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="entity-item__desc">
+            Leading the Q2 infrastructure migration. Completed all 2026 compliance training modules ahead of schedule.
+          </div>
+          <div class="ai-strip ai-strip--in-item">
+            <span class="ai-strip__label">✦ AI Insight ·</span>
+            Performance review is 2 months overdue — last review completed Feb 2025. Schedule before Apr 30.
+          </div>
+          <div class="entity-item__footer">
+            Since Jan 2021
+            <span class="entity-item__footer-dot"></span>
+            San Francisco, CA
+            <span class="entity-item__footer-dot"></span>
+            Reports to Alex Rivera
+            <div style="margin-left:auto;display:flex;gap:4px;">
+              <span class="entity-chip">Full-time</span>
+              <span class="entity-chip">Engineering</span>
+            </div>
           </div>
         </div>
+
+        <!-- Item 2: Marcus Reid — With description -->
+        <div class="entity-item" onclick="openSlideOut('Marcus Reid','Product Manager','Product','Active','Mar 5, 2022','m.reid@aimsco.io','dept-prod','MR')">
+          <div class="entity-item__main">
+            <div class="entity-item__left">
+              <div class="avatar dept-prod">MR</div>
+              <div class="entity-item__meta">
+                <div class="entity-item__title">
+                  Marcus Reid
+                  <span class="entity-chip">Product</span>
+                </div>
+                <div class="entity-item__sub">Product Manager · m.reid@aimsco.io</div>
+              </div>
+            </div>
+            <div class="entity-item__right">
+              <span class="badge badge-active">Active</span>
+              <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('Edit mode opened')">Edit</button>
+              <span class="entity-item__time">5h ago</span>
+              <div class="row-actions" onclick="event.stopPropagation()">
+                <button class="btn-icon-sm" onclick="toggleMenu(this)">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                  </svg>
+                </button>
+                <div class="row-actions__menu">
+                  <div class="row-actions__item" onclick="showToast('Opening profile…')">View profile</div>
+                  <div class="row-actions__item" onclick="showToast('Edit mode opened')">Edit worker</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item" onclick="openDuplicateModal('Marcus Reid')">Duplicate</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item danger">Deactivate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="entity-item__desc">
+            Managing 3 active product tracks simultaneously. Recently promoted from Associate PM in Q1 2026.
+          </div>
+          <div class="entity-item__footer">
+            Since Mar 2022
+            <span class="entity-item__footer-dot"></span>
+            Remote
+            <span class="entity-item__footer-dot"></span>
+            Reports to Jamie Liu
+            <div style="margin-left:auto;display:flex;gap:4px;">
+              <span class="entity-chip">Full-time</span>
+              <span class="entity-chip">Product</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Jennifer Chang — On Leave, AI strip -->
+        <div class="entity-item" onclick="openSlideOut('Jennifer Chang','UX Designer','Design','On Leave','Jun 18, 2020','j.chang@aimsco.io','dept-des','JC')">
+          <div class="entity-item__main">
+            <div class="entity-item__left">
+              <div class="avatar dept-des">JC</div>
+              <div class="entity-item__meta">
+                <div class="entity-item__title">
+                  Jennifer Chang
+                  <span class="entity-chip">Design</span>
+                </div>
+                <div class="entity-item__sub">UX Designer · j.chang@aimsco.io</div>
+              </div>
+            </div>
+            <div class="entity-item__right">
+              <span class="badge badge-alert">On Leave</span>
+              <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('Edit mode opened')">Edit</button>
+              <span class="entity-item__time">1d ago</span>
+              <div class="row-actions" onclick="event.stopPropagation()">
+                <button class="btn-icon-sm" onclick="toggleMenu(this)">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                  </svg>
+                </button>
+                <div class="row-actions__menu">
+                  <div class="row-actions__item">View profile</div>
+                  <div class="row-actions__item">Edit worker</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item" onclick="openDuplicateModal('Jennifer Chang')">Duplicate</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item danger">Deactivate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ai-strip ai-strip--in-item">
+            <span class="ai-strip__label">✦ AI Update ·</span>
+            Medical leave since Apr 3, 2026. Expected return: May 12, 2026. Coverage assigned to Daniel Park.
+          </div>
+          <div class="entity-item__footer">
+            Since Jun 2020
+            <span class="entity-item__footer-dot"></span>
+            New York, NY
+            <span class="entity-item__footer-dot"></span>
+            Reports to Daniel Park
+            <div style="margin-left:auto;display:flex;gap:4px;">
+              <span class="entity-chip">Full-time</span>
+              <span class="entity-chip">Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4: David Walsh — Active, Pinned, description -->
+        <div class="entity-item" onclick="openSlideOut('David Walsh','Financial Analyst','Finance','Active','Sep 3, 2023','d.walsh@aimsco.io','dept-fin','DW')">
+          <div class="entity-item__main">
+            <div class="entity-item__left">
+              <div class="avatar dept-fin">DW</div>
+              <div class="entity-item__meta">
+                <div class="entity-item__title">
+                  David Walsh
+                  <span class="entity-chip">Finance</span>
+                  <span class="entity-chip entity-chip--primary">Q1 Audit</span>
+                </div>
+                <div class="entity-item__sub">Financial Analyst · d.walsh@aimsco.io</div>
+              </div>
+            </div>
+            <div class="entity-item__right">
+              <span class="badge badge-active">Active</span>
+              <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('Edit mode opened')">Edit</button>
+              <span class="entity-item__time">3h ago</span>
+              <div class="row-actions" onclick="event.stopPropagation()">
+                <button class="btn-icon-sm" onclick="toggleMenu(this)">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                  </svg>
+                </button>
+                <div class="row-actions__menu">
+                  <div class="row-actions__item">View profile</div>
+                  <div class="row-actions__item">Edit worker</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item" onclick="openDuplicateModal('David Walsh')">Duplicate</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item danger">Deactivate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="entity-item__desc">
+            Managing Q1 financial audits for 3 subsidiaries. Final report due April 25.
+          </div>
+          <div class="entity-item__footer">
+            Since Sep 2023
+            <span class="entity-item__footer-dot"></span>
+            Chicago, IL
+            <span class="entity-item__footer-dot"></span>
+            Reports to Maria Santos
+            <div style="margin-left:auto;display:flex;gap:4px;">
+              <span class="entity-chip">Contract</span>
+              <span class="entity-chip">Finance</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5: Anna Thompson — Inactive -->
+        <div class="entity-item is-inactive" onclick="openSlideOut('Anna Thompson','Marketing Lead','Marketing','Inactive','Feb 14, 2019','a.thompson@aimsco.io','dept-mkt','AT')">
+          <div class="entity-item__main">
+            <div class="entity-item__left">
+              <div class="avatar dept-mkt">AT</div>
+              <div class="entity-item__meta">
+                <div class="entity-item__title">
+                  Anna Thompson
+                  <span class="entity-chip">Marketing</span>
+                </div>
+                <div class="entity-item__sub">Marketing Lead · a.thompson@aimsco.io</div>
+              </div>
+            </div>
+            <div class="entity-item__right">
+              <span class="badge badge-inactive">Inactive</span>
+              <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('Reactivating…')">Reactivate</button>
+              <span class="entity-item__time">12d ago</span>
+              <div class="row-actions" onclick="event.stopPropagation()">
+                <button class="btn-icon-sm" onclick="toggleMenu(this)">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                  </svg>
+                </button>
+                <div class="row-actions__menu">
+                  <div class="row-actions__item">View profile</div>
+                  <div class="row-actions__item">Edit worker</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item" onclick="openDuplicateModal('Anna Thompson')">Duplicate</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item" onclick="showToast('Worker reactivated')">Reactivate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="entity-item__footer">
+            Since Feb 2019
+            <span class="entity-item__footer-dot"></span>
+            Austin, TX
+            <span class="entity-item__footer-dot"></span>
+            Reports to Kevin Moore
+            <div style="margin-left:auto;display:flex;gap:4px;">
+              <span class="entity-chip">Full-time</span>
+              <span class="entity-chip">Marketing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6: Michael Torres — Active, with description -->
+        <div class="entity-item" onclick="openSlideOut('Michael Torres','Backend Engineer','Engineering','Active','Nov 7, 2022','m.torres@aimsco.io','dept-eng','MT')">
+          <div class="entity-item__main">
+            <div class="entity-item__left">
+              <div class="avatar dept-eng">MT</div>
+              <div class="entity-item__meta">
+                <div class="entity-item__title">
+                  Michael Torres
+                  <span class="entity-chip">Engineering</span>
+                </div>
+                <div class="entity-item__sub">Backend Engineer · m.torres@aimsco.io</div>
+              </div>
+            </div>
+            <div class="entity-item__right">
+              <span class="badge badge-active">Active</span>
+              <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('Edit mode opened')">Edit</button>
+              <span class="entity-item__time">1d ago</span>
+              <div class="row-actions" onclick="event.stopPropagation()">
+                <button class="btn-icon-sm" onclick="toggleMenu(this)">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                  </svg>
+                </button>
+                <div class="row-actions__menu">
+                  <div class="row-actions__item">View profile</div>
+                  <div class="row-actions__item">Edit worker</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item" onclick="openDuplicateModal('Michael Torres')">Duplicate</div>
+                  <div class="row-actions__divider"></div>
+                  <div class="row-actions__item danger">Deactivate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="entity-item__desc">
+            Leading the API gateway redesign for v3. AWS Certified Developer. Mentoring 2 junior engineers.
+          </div>
+          <div class="entity-item__footer">
+            Since Nov 2022
+            <span class="entity-item__footer-dot"></span>
+            San Francisco, CA
+            <span class="entity-item__footer-dot"></span>
+            Reports to Alex Rivera
+            <div style="margin-left:auto;display:flex;gap:4px;">
+              <span class="entity-chip">Full-time</span>
+              <span class="entity-chip">Engineering</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /entity-list -->
+
+      <!-- PAGINATION -->
+      <div class="pagination mt-4" style="border-top:1px solid var(--color-border-neutral-lighter);">
+        <span class="pagination__rpp-label">Rows per page:</span>
+        <select class="pagination__rpp-select"><option>25</option><option>50</option><option>100</option></select>
+        <span class="pagination__range">1–25 of 847 workers</span>
+        <div class="pagination__nav">
+          <button class="pagination__btn" disabled>
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/>
+            </svg>
+          </button>
+          <button class="pagination__btn" disabled>
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <button class="pagination__btn">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+          <button class="pagination__btn">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
-    </main><!-- /main-content -->
-  </div><!-- /app-body -->
-</div><!-- /app-shell -->
+    </main>
+  </div>
+</div>
 
 
-<!-- ═══════════════════════ SLIDE OUT ═════════════════════════════ -->
+<!-- ═══════════════════════ SLIDE-OUT BACKDROP ════════════════════ -->
+<div class="slide-out-backdrop" id="slideBackdrop" onclick="closeSlideOut()"></div>
+
+<!-- ═══════════════════════ SLIDE-OUT PANEL ══════════════════════ -->
 <div class="slide-out" id="slideOut">
   <div class="slide-out__header">
     <span class="slide-out__title" id="soName">Worker Profile</span>
-    <button class="btn-icon-sm" onclick="document.getElementById('slideOut').classList.remove('open')">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <button class="btn-icon-sm" onclick="closeSlideOut()">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
       </svg>
     </button>
   </div>
 
   <div class="slide-out__body">
-    <!-- Avatar + name block -->
+    <!-- Avatar + name -->
     <div class="flex items-center gap-3">
       <div class="avatar avatar-lg dept-eng" id="soAvatar">SC</div>
-      <div>
-        <div style="font-size:16px;font-weight:600;color:var(--color-text-title);" id="soFullName">Sarah Chen</div>
-        <div style="font-size:13px;color:var(--color-text-caption);" id="soEmail">sarah.chen@aimsco.io</div>
+      <div style="flex:1;">
+        <div style="font-size:16px;font-weight:700;color:var(--color-text-title);" id="soFullName">Sarah Chen</div>
+        <div style="font-size:12px;color:var(--color-text-caption);" id="soEmail">sarah.chen@aimsco.io</div>
       </div>
-      <span class="badge badge-active ml-auto" id="soBadge">Active</span>
+      <span class="badge badge-active" id="soBadge">Active</span>
     </div>
 
     <div class="divider"></div>
 
     <!-- Details grid -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
       <div class="detail-row">
         <span class="detail-row__label">Department</span>
         <span class="detail-row__value" id="soDept">Engineering</span>
@@ -1074,6 +1111,12 @@
     </div>
 
     <div class="divider"></div>
+
+    <!-- AI Insight strip -->
+    <div class="ai-strip" style="border-radius:var(--radius-sm);">
+      <span class="ai-strip__label">✦ AI Insight ·</span>
+      Performance review overdue by 2 months. Recommend scheduling before Apr 30, 2026.
+    </div>
 
     <!-- Activity -->
     <div>
@@ -1105,8 +1148,46 @@
   </div>
 
   <div class="slide-out__footer">
-    <button class="btn btn-tertiary btn-md" onclick="document.getElementById('slideOut').classList.remove('open')">Close</button>
+    <button class="btn btn-tertiary btn-md" onclick="closeSlideOut()">Close</button>
     <button class="btn btn-primary btn-md" onclick="showToast('Opening edit form…')">Edit worker</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ MODAL — DUPLICATE ════════════════════ -->
+<div class="modal-overlay" id="duplicateModal" onclick="handleOverlayClick(event)">
+  <div class="modal-dialog">
+    <button class="modal-dialog__close" onclick="closeDuplicateModal()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <div class="modal-dialog__body">
+      <div class="modal-dialog__icon">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+      </div>
+      <div class="modal-dialog__title" id="modalTitle">Duplicate worker?</div>
+      <div class="modal-dialog__desc">
+        A copy of this worker's profile will be created with the same details. You can edit it after duplication.
+      </div>
+      <div class="modal-dialog__info">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px;color:var(--color-icon-primary-default);">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2.5"/>
+        </svg>
+        The duplicated profile will be set to <strong style="color:var(--color-text-label);margin:0 2px;">Inactive</strong> by default until manually activated.
+      </div>
+    </div>
+
+    <div class="modal-dialog__footer">
+      <button class="btn btn-secondary btn-md" onclick="closeDuplicateModal()">Cancel</button>
+      <button class="btn btn-primary btn-md" onclick="confirmDuplicate()">Duplicate worker</button>
+    </div>
   </div>
 </div>
 
@@ -1121,7 +1202,7 @@
     document.body.classList.add('light');
     document.getElementById('modeLabel').textContent = 'Light';
     document.getElementById('modeIcon').innerHTML = `
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="5"/>
         <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
         <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
@@ -1134,54 +1215,52 @@
     document.body.classList.remove('light');
     document.getElementById('modeLabel').textContent = 'Dark';
     document.getElementById('modeIcon').innerHTML = `
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
       </svg>`;
   }
 
   function toggleMode() {
     if (document.body.classList.contains('light')) {
-      applyDark();
-      localStorage.setItem('aims-mode', 'dark');
+      applyDark(); localStorage.setItem('aims-mode', 'dark');
     } else {
-      applyLight();
-      localStorage.setItem('aims-mode', 'light');
+      applyLight(); localStorage.setItem('aims-mode', 'light');
     }
   }
 
-  // ── TAB SWITCHING ────────────────────────────────────────────────
+  // ── TABS ─────────────────────────────────────────────────────────
   function switchTab(el) {
     el.closest('.tabs').querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
   }
 
-  // ── SLIDE OUT ─────────────────────────────────────────────────────
-  function openSlideOut(name, role, dept, status, since, email) {
-    const initials = name.split(' ').map(n => n[0]).join('');
+  // ── SLIDE-OUT ─────────────────────────────────────────────────────
+  function openSlideOut(name, role, dept, status, since, email, deptClass, initials) {
     document.getElementById('soName').textContent = name;
     document.getElementById('soFullName').textContent = name;
     document.getElementById('soEmail').textContent = email;
     document.getElementById('soRole').textContent = role;
     document.getElementById('soDept').textContent = dept;
     document.getElementById('soSince').textContent = since;
-    document.getElementById('soAvatar').textContent = initials;
+
+    const av = document.getElementById('soAvatar');
+    av.textContent = initials;
+    av.className = 'avatar avatar-lg ' + (deptClass || 'dept-eng');
 
     const badge = document.getElementById('soBadge');
-    badge.className = 'badge ml-auto';
-    if (status === 'Active')   { badge.classList.add('badge-active');   badge.textContent = 'Active'; }
-    if (status === 'On Leave') { badge.classList.add('badge-alert');    badge.textContent = 'On Leave'; }
-    if (status === 'Inactive') { badge.classList.add('badge-inactive'); badge.textContent = 'Inactive'; }
+    badge.className = 'badge';
+    if (status === 'Active')    { badge.classList.add('badge-active');   badge.textContent = 'Active'; }
+    if (status === 'On Leave')  { badge.classList.add('badge-alert');    badge.textContent = 'On Leave'; }
+    if (status === 'Inactive')  { badge.classList.add('badge-inactive'); badge.textContent = 'Inactive'; }
 
     document.getElementById('slideOut').classList.add('open');
+    document.getElementById('slideBackdrop').classList.add('open');
   }
 
-  // Close slide-out on backdrop click
-  document.addEventListener('click', e => {
-    const so = document.getElementById('slideOut');
-    if (so.classList.contains('open') && !so.contains(e.target) && !e.target.closest('tr')) {
-      so.classList.remove('open');
-    }
-  });
+  function closeSlideOut() {
+    document.getElementById('slideOut').classList.remove('open');
+    document.getElementById('slideBackdrop').classList.remove('open');
+  }
 
   // ── ROW ACTIONS MENU ─────────────────────────────────────────────
   function toggleMenu(btn) {
@@ -1195,9 +1274,27 @@
     }
   });
 
-  // ── SELECT ALL ───────────────────────────────────────────────────
-  function toggleAll(master) {
-    document.querySelectorAll('tbody .cb').forEach(cb => cb.checked = master.checked);
+  // ── DUPLICATE MODAL ───────────────────────────────────────────────
+  let _pendingDuplicateName = '';
+
+  function openDuplicateModal(name) {
+    _pendingDuplicateName = name;
+    document.getElementById('modalTitle').textContent = `Duplicate ${name}?`;
+    document.getElementById('duplicateModal').classList.add('open');
+    document.querySelectorAll('.row-actions__menu.open').forEach(m => m.classList.remove('open'));
+  }
+
+  function closeDuplicateModal() {
+    document.getElementById('duplicateModal').classList.remove('open');
+  }
+
+  function confirmDuplicate() {
+    closeDuplicateModal();
+    showToast(`${_pendingDuplicateName} duplicated — set to Inactive`);
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('duplicateModal')) closeDuplicateModal();
   }
 
   // ── TOAST ─────────────────────────────────────────────────────────
@@ -1207,12 +1304,12 @@
     t.className = 'toast';
     const iconColor = type === 'alert' ? 'var(--color-icon-alert-default)' : 'var(--color-icon-success-default)';
     t.innerHTML = `
-      <svg width="16" height="16" fill="none" stroke="${iconColor}" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px;">
+      <svg width="14" height="14" fill="none" stroke="${iconColor}" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;">
         <polyline points="20 6 9 17 4 12"/>
       </svg>
-      <span class="toast__body">${message}</span>
+      <span>${message}</span>
       <button class="toast__close" onclick="this.closest('.toast').remove()">
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>`;
