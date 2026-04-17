@@ -233,10 +233,10 @@ body {
                  border: 1px solid var(--color-border-neutral-lighter); }
 .btn-secondary:hover { background: var(--color-surface-neutral-default); }
 
-/* Tertiary */
+/* Tertiary — pill shape, no border, hover = subtle fill */
 .btn-tertiary { background: transparent; color: var(--color-text-label);
-                border: 1px solid var(--color-border-neutral-lighter); }
-.btn-tertiary:hover { background: var(--color-surface-neutral-default); }
+                border: none; border-radius: var(--radius-full); }
+.btn-tertiary:hover { background: var(--color-surface-neutral-subtle); }
 
 /* Warning */
 .btn-warning { background: var(--color-surface-alert-subtle); color: var(--color-text-alert);
