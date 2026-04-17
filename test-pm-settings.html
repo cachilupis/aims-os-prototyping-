@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — AIMS OS</title>
+  <link rel="stylesheet" href="https://raw.githack.com/cachilupis/aims-os-prototyping-/main/aims-os-base.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { corePlugins: { preflight: false } }</script>
+  <style>
+    .settings-nav-item {
+      display: flex; align-items: center; gap: 10px;
+      height: 36px; padding: 0 12px; border-radius: var(--radius-md);
+      font-size: 13px; font-weight: 500; color: var(--color-text-subtitle);
+      cursor: pointer; transition: background 0.15s;
+    }
+    .settings-nav-item:hover { background: var(--color-surface-neutral-default); color: var(--color-text-title); }
+    .settings-nav-item.active { background: var(--color-surface-primary-subtle); color: var(--color-icon-primary-default); }
+    .settings-section { display: flex; flex-direction: column; gap: 0; }
+    .settings-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0; border-bottom: 1px solid var(--color-border-neutral-lighter);
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .toggle { position: relative; width: 36px; height: 20px; cursor: pointer; flex-shrink: 0; }
+    .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .toggle-track { position: absolute; inset: 0; border-radius: var(--radius-full);
+      background: var(--color-surface-neutral-emphasis); transition: background 0.2s; }
+    .toggle input:checked + .toggle-track { background: var(--color-surface-primary-default); }
+    .toggle-thumb { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+      border-radius: 50%; background: white; transition: transform 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+    .toggle input:checked ~ .toggle-thumb { transform: translateX(16px); }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
+        <div style="width:24px;height:24px;border-radius:6px;background:radial-gradient(circle at 65% 35%,#2173ff,#09e2ab);flex-shrink:0;"></div>
+        <span style="font-size:13px;font-weight:600;color:var(--color-text-title);">AIMS OS</span>
+      </div>
+      <span style="color:var(--color-text-caption);font-size:13px;">/</span>
+      <span style="font-size:13px;font-weight:500;color:var(--color-text-caption);">Settings</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="btn-icon-sm">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </button>
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--color-surface-primary-subtle);
+        display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--color-icon-primary-default);">PM</div>
+    </div>
+  </header>
+
+  <div class="app-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-icon" title="Home">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="sidebar-icon" title="Workers">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="sidebar-icon" title="Analytics">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <div class="sidebar-icon active" title="Settings" style="margin-top:auto;">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- Page header -->
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-title-sm">Settings</h1>
+          <p class="text-caption-lg mt-1">Manage your workspace and account preferences</p>
+        </div>
+        <button class="btn btn-main-action btn-md" onclick="showToast('Changes saved')">
+          Save changes
+        </button>
+      </div>
+
+      <!-- Two-column layout: nav + content -->
+      <div class="flex gap-6">
+
+        <!-- Left nav -->
+        <div style="width:200px;flex-shrink:0;display:flex;flex-direction:column;gap:2px;">
+          <div class="settings-nav-item active" onclick="switchSection(this,'general')">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            General
+          </div>
+          <div class="settings-nav-item" onclick="switchSection(this,'team')">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            Team & Access
+          </div>
+          <div class="settings-nav-item" onclick="switchSection(this,'notifications')">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            Notifications
+          </div>
+          <div class="settings-nav-item" onclick="switchSection(this,'billing')">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+            Billing
+          </div>
+          <div class="settings-nav-item" onclick="switchSection(this,'security')">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Security
+          </div>
+        </div>
+
+        <!-- Content area -->
+        <div style="flex:1;min-width:0;">
+
+          <!-- GENERAL section -->
+          <div id="section-general">
+            <div class="card mb-4">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <div style="font-size:15px;font-weight:600;color:var(--color-text-title);">Workspace</div>
+                  <div class="text-caption-lg mt-1">General workspace settings</div>
+                </div>
+              </div>
+              <div class="settings-section">
+                <div class="settings-row">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">Workspace name</div>
+                    <div class="text-caption-lg">The name shown across the platform</div>
+                  </div>
+                  <div style="width:240px;">
+                    <input class="input input-md" value="AIMS Operations">
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">Default timezone</div>
+                    <div class="text-caption-lg">Used for scheduling and reports</div>
+                  </div>
+                  <div style="width:240px;">
+                    <input class="input input-md" value="UTC-5 (Eastern Time)">
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">Default language</div>
+                    <div class="text-caption-lg">Interface language for all users</div>
+                  </div>
+                  <div style="width:240px;">
+                    <input class="input input-md" value="English (US)">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <div style="font-size:15px;font-weight:600;color:var(--color-text-title);">Preferences</div>
+                  <div class="text-caption-lg mt-1">Platform behavior settings</div>
+                </div>
+              </div>
+              <div class="settings-section">
+                <div class="settings-row">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">Enable dark mode by default</div>
+                    <div class="text-caption-lg">New users start in dark mode</div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked>
+                    <div class="toggle-track"></div>
+                    <div class="toggle-thumb"></div>
+                  </label>
+                </div>
+                <div class="settings-row">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">Allow workers to edit their own profile</div>
+                    <div class="text-caption-lg">Workers can update name, photo and contact info</div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked>
+                    <div class="toggle-track"></div>
+                    <div class="toggle-thumb"></div>
+                  </label>
+                </div>
+                <div class="settings-row">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">Require approval for new workers</div>
+                    <div class="text-caption-lg">Admins must approve before activation</div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox">
+                    <div class="toggle-track"></div>
+                    <div class="toggle-thumb"></div>
+                  </label>
+                </div>
+                <div class="settings-row">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">Send weekly digest email</div>
+                    <div class="text-caption-lg">Summary of activity sent every Monday</div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked>
+                    <div class="toggle-track"></div>
+                    <div class="toggle-thumb"></div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TEAM section (hidden) -->
+          <div id="section-team" style="display:none;">
+            <div class="alert-banner alert-banner--alert mb-4">
+              <div class="alert-banner__body">
+                <span class="alert-banner__title">3 pending invitations</span>
+                <span class="alert-banner__desc">Team members who haven't accepted their invite yet.</span>
+              </div>
+              <div class="alert-banner__actions">
+                <button class="alert-banner__cta">Resend all</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="flex items-center justify-between mb-4">
+                <div style="font-size:15px;font-weight:600;color:var(--color-text-title);">Team members</div>
+                <button class="btn btn-main-action btn-sm" onclick="showToast('Invite sent')">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                  Invite member
+                </button>
+              </div>
+              <div class="settings-section">
+                ${[
+                  { name: 'Sarah Chen', email: 'sarah.chen@aimsco.io', role: 'Admin', status: 'active' },
+                  { name: 'Marcus Reid', email: 'm.reid@aimsco.io', role: 'Editor', status: 'active' },
+                  { name: 'Jennifer Chang', email: 'j.chang@aimsco.io', role: 'Viewer', status: 'active' },
+                  { name: 'Alex Rivera', email: 'a.rivera@aimsco.io', role: 'Editor', status: 'alert' },
+                ].map(m => `
+                  <div class="settings-row">
+                    <div class="flex items-center gap-3">
+                      <div style="width:32px;height:32px;border-radius:50%;background:var(--color-surface-primary-subtle);
+                        display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+                        color:var(--color-icon-primary-default);">${m.name.split(' ').map(n=>n[0]).join('')}</div>
+                      <div>
+                        <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">${m.name}</div>
+                        <div style="font-size:12px;color:var(--color-text-caption);">${m.email}</div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <span class="badge badge-${m.status === 'active' ? 'active' : 'alert'}">${m.status === 'active' ? 'Active' : 'Pending'}</span>
+                      <span style="font-size:12px;color:var(--color-text-caption);width:48px;">${m.role}</span>
+                      <button class="btn-icon-sm"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+                    </div>
+                  </div>`).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- NOTIFICATIONS section (hidden) -->
+          <div id="section-notifications" style="display:none;">
+            <div class="card">
+              <div style="font-size:15px;font-weight:600;color:var(--color-text-title);margin-bottom:16px;">Email notifications</div>
+              <div class="settings-section">
+                ${[
+                  { label: 'New worker added', desc: 'When a new worker is created in the system' },
+                  { label: 'Worker status change', desc: 'When a worker is activated, deactivated or goes on leave' },
+                  { label: 'Approval requests', desc: 'When a new approval requires your action' },
+                  { label: 'Failed imports', desc: 'When a bulk import fails or has errors' },
+                  { label: 'Weekly summary', desc: 'Weekly digest of activity and metrics' },
+                ].map((n, i) => `
+                  <div class="settings-row">
+                    <div>
+                      <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">${n.label}</div>
+                      <div class="text-caption-lg">${n.desc}</div>
+                    </div>
+                    <label class="toggle">
+                      <input type="checkbox" ${i !== 3 ? 'checked' : ''}>
+                      <div class="toggle-track"></div>
+                      <div class="toggle-thumb"></div>
+                    </label>
+                  </div>`).join('')}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  function switchSection(el, id) {
+    document.querySelectorAll('.settings-nav-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('[id^="section-"]').forEach(s => s.style.display = 'none');
+    const sec = document.getElementById('section-' + id);
+    if (sec) sec.style.display = 'block';
+  }
+
+  function showToast(msg) {
+    document.querySelectorAll('.toast-msg').forEach(t => t.remove());
+    const t = document.createElement('div');
+    t.className = 'toast-msg';
+    t.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:200;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;background:var(--color-surface-floating);backdrop-filter:blur(12px);border:1px solid var(--color-border-neutral-lighter);box-shadow:0 8px 32px rgba(0,0,0,0.4);animation:slideUp 0.2s ease;font-size:14px;font-weight:500;color:var(--color-text-title);min-width:260px;';
+    t.innerHTML = `<svg width="16" height="16" fill="none" stroke="var(--color-icon-success-default)" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>${msg}<button onclick="this.parentElement.remove()" style="margin-left:auto;background:none;border:none;cursor:pointer;color:var(--color-icon-neutral-dark);">✕</button>`;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 3000);
+  }
+</script>
+<style>@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }</style>
+</body>
+</html>
