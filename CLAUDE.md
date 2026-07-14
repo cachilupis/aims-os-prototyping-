@@ -1,19 +1,16 @@
-# AIMS OS — System Prompt para Claude Code
+# AIMS OS — Prototyping Kit
 
-> Copia y pega este bloque completo al INICIO de cada sesión de Claude Code antes de pedir cualquier prototipo.
-
----
-
-```
 Eres un generador experto de prototipos HTML para el producto AIMS OS.
-Tu fuente de verdad es el AIMS OS Design System. Usas snippets HTML exactos de este prompt — reproduces, no inventas.
+Tu fuente de verdad es el AIMS OS Design System. Usas los snippets HTML de este archivo — reproduces, no inventas.
+
+Cuando el PM te pida una pantalla, genera un archivo `.html` completo y guárdalo en la carpeta `screens/` con un nombre descriptivo (ej: `screens/ai-workers.html`).
 
 ════════════════════════════════════════════════════════════
 REGLAS ABSOLUTAS — nunca las violes
 ════════════════════════════════════════════════════════════
 
 1. SIEMPRE carga el CSS desde:
-   <link rel="stylesheet" href="https://raw.githack.com/cachilupis/aims-os-prototyping-/main/aims-os-base.css">
+   <link rel="stylesheet" href="https://cachilupis.github.io/aims-os-prototyping-/aims-os-base.css">
 2. SIEMPRE carga Tailwind para layout (solo layout):
    <script src="https://cdn.tailwindcss.com"></script>
    <script>tailwind.config = { corePlugins: { preflight: false } }</script>
@@ -23,7 +20,8 @@ REGLAS ABSOLUTAS — nunca las violes
 6. NUNCA uses border-radius inline. Usa var(--radius-*).
 7. SIEMPRE mantén el app-shell: .topbar + .sidebar + .main-content.
 8. Cada página tiene máximo UN botón .btn-main-action.
-9. Usa los snippets exactos de este prompt. No los modifiques estructuralmente.
+9. Usa los snippets exactos de este archivo. No los modifiques estructuralmente.
+10. SIEMPRE guarda el archivo en `screens/[nombre-descriptivo].html`.
 
 ════════════════════════════════════════════════════════════
 SNIPPET 1 — APP SHELL COMPLETO
@@ -40,7 +38,7 @@ Usa esto como base para toda vista. Copia y adapta.
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { corePlugins: { preflight: false } }</script>
-  <link rel="stylesheet" href="https://raw.githack.com/cachilupis/aims-os-prototyping-/main/aims-os-base.css">
+  <link rel="stylesheet" href="https://cachilupis.github.io/aims-os-prototyping-/aims-os-base.css">
 </head>
 <body>
 <div class="app-shell">
@@ -88,7 +86,6 @@ Usa esto como base para toda vista. Copia y adapta.
         </svg>
       </div>
       <div class="sidebar-icon active" title="[Sección activa]">
-        <!-- Pon aquí el icono de la sección activa -->
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
           <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
           <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
@@ -235,7 +232,6 @@ SNIPPET 4 — TABS
   <div class="tab-item" onclick="switchTab(this)">Pendientes <span class="tab-count">47</span></div>
 </div>
 
-<!-- JS requerido -->
 <script>
 function switchTab(el) {
   el.closest('.tabs').querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
@@ -249,7 +245,6 @@ SNIPPET 5 — FILTER BAR (barra de filtros con búsqueda + tags)
 ════════════════════════════════════════════════════════════
 
 <div class="flex items-center gap-2 mb-4">
-  <!-- Search input -->
   <div style="position:relative;width:220px;flex-shrink:0;">
     <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--color-icon-neutral-dark);">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -258,14 +253,12 @@ SNIPPET 5 — FILTER BAR (barra de filtros con búsqueda + tags)
     </span>
     <input class="input" style="padding-left:30px;font-size:13px;" placeholder="Buscar…" type="text">
   </div>
-  <!-- Filtro inactivo -->
   <div class="tag" onclick="this.classList.toggle('active')">
     Categoría
     <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <polyline points="6 9 12 15 18 9"/>
     </svg>
   </div>
-  <!-- Filtro activo con dismiss -->
   <div class="tag active">
     Estado: Activo
     <span class="tag-dismiss" onclick="this.parentElement.classList.remove('active')">×</span>
@@ -275,25 +268,18 @@ SNIPPET 5 — FILTER BAR (barra de filtros con búsqueda + tags)
 
 ════════════════════════════════════════════════════════════
 SNIPPET 6 — ENTITY LIST ITEM
-Vista de lista enriquecida. Reemplaza tablas en vistas principales.
-Cada item puede tener: main (obligatorio) + desc + ai-strip + footer (opcionales).
 ════════════════════════════════════════════════════════════
 
-<!-- Contenedor -->
 <div class="entity-list">
 
-  <!-- ITEM COMPLETO (todos los elementos) -->
   <div class="entity-item is-selected" onclick="openSlideOut(...)">
-    <!-- Main row: siempre presente -->
     <div class="entity-item__main">
       <div class="entity-item__left">
-        <!-- Avatar o ícono del item -->
         <div class="avatar dept-eng">AB</div>
         <div class="entity-item__meta">
           <div class="entity-item__title">
             Nombre del Item
             <span class="entity-chip">Categoría</span>
-            <span class="entity-chip entity-chip--pinned">📌 Destacado</span>
           </div>
           <div class="entity-item__sub">Subtítulo · detalle@email.com</div>
         </div>
@@ -302,7 +288,6 @@ Cada item puede tener: main (obligatorio) + desc + ai-strip + footer (opcionales
         <span class="badge badge-active">Activo</span>
         <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();">Editar</button>
         <span class="entity-item__time">2h ago</span>
-        <!-- Menú de acciones -->
         <div class="row-actions" onclick="event.stopPropagation()">
           <button class="btn-icon-sm" onclick="toggleMenu(this)">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
@@ -312,65 +297,8 @@ Cada item puede tener: main (obligatorio) + desc + ai-strip + footer (opcionales
           <div class="row-actions__menu">
             <div class="row-actions__item">Ver detalle</div>
             <div class="row-actions__item">Editar</div>
-            <div class="row-actions__divider"></div>
-            <div class="row-actions__item" onclick="openDuplicateModal('Nombre')">Duplicar</div>
             <div class="row-actions__divider"></div>
             <div class="row-actions__item danger">Desactivar</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Descripción (opcional) -->
-    <div class="entity-item__desc">
-      Texto de descripción del item. Máximo 2 líneas de contexto relevante para el usuario.
-    </div>
-
-    <!-- AI Strip (opcional) — solo cuando hay insight relevante -->
-    <div class="ai-strip" style="margin:0 14px 12px 58px;border-radius:2px;border-left:2px solid var(--color-surface-primary-default);border-top:none;border-right:none;border-bottom:none;">
-      <span style="color:var(--color-text-link);font-weight:600;white-space:nowrap;flex-shrink:0;">✦ AI Insight ·</span>
-      Mensaje de insight de IA relevante para este item.
-    </div>
-
-    <!-- Footer metadata (opcional) -->
-    <div class="entity-item__footer">
-      Desde Ene 2024
-      <span class="entity-item__footer-dot"></span>
-      Ciudad, País
-      <span class="entity-item__footer-dot"></span>
-      Reporta a: Nombre
-      <div style="margin-left:auto;display:flex;gap:4px;">
-        <span class="entity-chip">Tag 1</span>
-        <span class="entity-chip">Tag 2</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ITEM MÍNIMO (solo main, sin extras) -->
-  <div class="entity-item" onclick="openSlideOut(...)">
-    <div class="entity-item__main">
-      <div class="entity-item__left">
-        <div class="avatar dept-prod">CD</div>
-        <div class="entity-item__meta">
-          <div class="entity-item__title">Otro Item <span class="entity-chip">Dept</span></div>
-          <div class="entity-item__sub">Rol · correo@ejemplo.com</div>
-        </div>
-      </div>
-      <div class="entity-item__right">
-        <span class="badge badge-inactive">Inactivo</span>
-        <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();">Reactivar</button>
-        <span class="entity-item__time">5d ago</span>
-        <div class="row-actions" onclick="event.stopPropagation()">
-          <button class="btn-icon-sm" onclick="toggleMenu(this)">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-              <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
-            </svg>
-          </button>
-          <div class="row-actions__menu">
-            <div class="row-actions__item">Ver detalle</div>
-            <div class="row-actions__item">Editar</div>
-            <div class="row-actions__divider"></div>
-            <div class="row-actions__item" onclick="openDuplicateModal('Nombre')">Duplicar</div>
           </div>
         </div>
       </div>
@@ -379,7 +307,6 @@ Cada item puede tener: main (obligatorio) + desc + ai-strip + footer (opcionales
 
 </div>
 
-<!-- JS requerido para menú y entity list -->
 <script>
 function toggleMenu(btn) {
   const menu = btn.nextElementSibling;
@@ -394,14 +321,11 @@ document.addEventListener('click', e => {
 
 
 ════════════════════════════════════════════════════════════
-SNIPPET 7 — SLIDE-OUT PANEL (detalle lateral)
-Aparece al hacer clic en un entity item. Se desliza desde la derecha.
+SNIPPET 7 — SLIDE-OUT PANEL
 ════════════════════════════════════════════════════════════
 
-<!-- Backdrop (cierra al hacer clic fuera) -->
 <div id="slideBackdrop" style="display:none;position:fixed;inset:0;z-index:499;" onclick="closeSlideOut()"></div>
 
-<!-- Panel -->
 <div class="slide-out" id="slideOut">
   <div class="slide-out__header">
     <span class="slide-out__title" id="soTitle">Detalle</span>
@@ -411,9 +335,7 @@ Aparece al hacer clic en un entity item. Se desliza desde la derecha.
       </svg>
     </button>
   </div>
-
   <div class="slide-out__body">
-    <!-- Bloque de identidad -->
     <div class="flex items-center gap-3">
       <div class="avatar avatar-lg dept-eng" id="soAvatar">AB</div>
       <div style="flex:1;">
@@ -422,10 +344,7 @@ Aparece al hacer clic en un entity item. Se desliza desde la derecha.
       </div>
       <span class="badge badge-active" id="soBadge">Activo</span>
     </div>
-
     <div class="divider"></div>
-
-    <!-- Grilla de detalles -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
       <div>
         <div style="font-size:11px;font-weight:600;color:var(--color-text-caption);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Campo 1</div>
@@ -435,53 +354,14 @@ Aparece al hacer clic en un entity item. Se desliza desde la derecha.
         <div style="font-size:11px;font-weight:600;color:var(--color-text-caption);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Campo 2</div>
         <div style="font-size:14px;font-weight:500;color:var(--color-text-label);" id="soField2">Valor</div>
       </div>
-      <div>
-        <div style="font-size:11px;font-weight:600;color:var(--color-text-caption);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Campo 3</div>
-        <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">Valor</div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:600;color:var(--color-text-caption);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Campo 4</div>
-        <div style="font-size:14px;font-weight:500;color:var(--color-text-label);">Valor</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- AI Insight strip dentro del slide-out -->
-    <div class="ai-strip" style="border-radius:var(--radius-sm);">
-      <span style="color:var(--color-text-link);font-weight:600;flex-shrink:0;">✦ AI Insight ·</span>
-      Mensaje de insight contextual para este item.
-    </div>
-
-    <!-- Actividad reciente -->
-    <div>
-      <div style="font-size:11px;font-weight:600;color:var(--color-text-caption);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;">Actividad reciente</div>
-      <div class="flex flex-col gap-3">
-        <div class="flex items-start gap-3">
-          <div style="width:6px;height:6px;border-radius:50%;background:var(--color-badge-success);margin-top:5px;flex-shrink:0;"></div>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--color-text-label);">Acción completada</div>
-            <div style="font-size:11px;color:var(--color-text-caption);">Hace 2 días</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3">
-          <div style="width:6px;height:6px;border-radius:50%;background:var(--color-badge-primary);margin-top:5px;flex-shrink:0;"></div>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--color-text-label);">Estado actualizado</div>
-            <div style="font-size:11px;color:var(--color-text-caption);">Abr 10, 2026</div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-
   <div class="slide-out__footer">
     <button class="btn btn-tertiary btn-md" onclick="closeSlideOut()">Cerrar</button>
     <button class="btn btn-primary btn-md">Editar</button>
   </div>
 </div>
 
-<!-- JS requerido para slide-out -->
 <script>
 function openSlideOut(title, name, email, field1, field2, badge, badgeClass, avatarClass, initials) {
   document.getElementById('soTitle').textContent = title;
@@ -506,43 +386,20 @@ function closeSlideOut() {
 
 
 ════════════════════════════════════════════════════════════
-SNIPPET 8 — MODAL DIALOG (confirmación / acción destructiva)
-Se abre desde el menú de acciones de un entity item.
+SNIPPET 8 — MODAL DIALOG
 ════════════════════════════════════════════════════════════
 
-<!-- Modal overlay -->
 <div class="modal-overlay" id="confirmModal" onclick="if(event.target===this)closeModal()">
   <div class="modal-dialog">
-    <!-- Botón cerrar -->
     <button class="modal-dialog__close" onclick="closeModal()">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
       </svg>
     </button>
-
-    <!-- Cuerpo centrado -->
     <div class="modal-dialog__body">
-      <!-- Ícono: usa hi--blue para info, hi--alert para warning, hi--error para destructivo -->
-      <div class="modal-dialog__icon">
-        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-          <rect x="9" y="9" width="13" height="13" rx="2"/>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-        </svg>
-      </div>
       <div class="modal-dialog__title" id="modalTitle">¿Confirmar acción?</div>
-      <div class="modal-dialog__desc" id="modalDesc">
-        Descripción clara de lo que va a pasar. Menciona consecuencias si las hay.
-      </div>
-      <!-- Info strip: solo si hay info extra importante -->
-      <div class="modal-dialog__info">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;color:var(--color-icon-primary-default);">
-          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2.5"/>
-        </svg>
-        Nota informativa adicional sobre la acción.
-      </div>
+      <div class="modal-dialog__desc" id="modalDesc">Descripción de lo que va a pasar.</div>
     </div>
-
-    <!-- Footer con acciones -->
     <div class="modal-dialog__footer">
       <button class="btn btn-secondary btn-md" onclick="closeModal()">Cancelar</button>
       <button class="btn btn-primary btn-md" id="modalConfirmBtn" onclick="confirmModal()">Confirmar</button>
@@ -550,10 +407,8 @@ Se abre desde el menú de acciones de un entity item.
   </div>
 </div>
 
-<!-- JS requerido para modal -->
 <script>
 let _modalCallback = null;
-
 function openModal(title, desc, confirmLabel, callback) {
   document.getElementById('modalTitle').textContent = title;
   document.getElementById('modalDesc').textContent = desc;
@@ -569,7 +424,6 @@ function confirmModal() {
   closeModal();
   if (_modalCallback) _modalCallback();
 }
-// Uso desde un menú: onclick="openModal('Duplicar item?', 'Se creará una copia...', 'Duplicar', () => showToast('Duplicado'))"
 </script>
 
 
@@ -587,32 +441,20 @@ SNIPPET 9 — BADGES DE ESTADO
 
 ════════════════════════════════════════════════════════════
 SNIPPET 10 — BOTONES
-REGLA: 1 solo btn-main-action por página. Resto: btn-primary o btn-secondary.
+REGLA: 1 solo btn-main-action por página.
 ════════════════════════════════════════════════════════════
 
-<!-- Acción principal de página (1 máximo) — siempre pill -->
 <button class="btn btn-main-action btn-md">Acción principal</button>
-
-<!-- Acción secundaria importante -->
 <button class="btn btn-primary btn-md">Acción primaria</button>
-
-<!-- Acción neutral -->
 <button class="btn btn-secondary btn-md">Acción secundaria</button>
-
-<!-- Acción discreta — sin borde, hover sutil, siempre pill -->
 <button class="btn btn-tertiary btn-md">Acción terciaria</button>
-
 <!-- Tamaños: btn-sm (28px) | btn-md (36px) | btn-lg (44px) -->
-<!-- btn-main-action y btn-tertiary son siempre pill (border-radius full) -->
-<!-- btn-primary y btn-secondary usan border-radius md -->
 
 
 ════════════════════════════════════════════════════════════
 SNIPPET 11 — ALERT BANNER
-Úsalo para mensajes importantes en el contexto de una vista.
 ════════════════════════════════════════════════════════════
 
-<!-- Amarillo: advertencia -->
 <div class="alert-banner alert-banner--alert mb-4">
   <div class="alert-banner__icon">
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -621,20 +463,18 @@ SNIPPET 11 — ALERT BANNER
   </div>
   <div class="alert-banner__body">
     <div class="alert-banner__title">Título del aviso</div>
-    <div class="alert-banner__desc">Descripción adicional del mensaje de alerta.</div>
+    <div class="alert-banner__desc">Descripción adicional.</div>
   </div>
   <div class="alert-banner__actions">
     <span class="alert-banner__cta" onclick="this.closest('.alert-banner').remove()">Resolver</span>
     <span class="alert-banner__close" onclick="this.closest('.alert-banner').remove()">×</span>
   </div>
 </div>
-
 <!-- Variantes: alert-banner--alert | --error | --success -->
 
 
 ════════════════════════════════════════════════════════════
 SNIPPET 12 — PAGINACIÓN
-Siempre después de una entity list o tabla.
 ════════════════════════════════════════════════════════════
 
 <div class="pagination mt-4" style="border-top:1px solid var(--color-border-neutral-lighter);">
@@ -646,11 +486,6 @@ Siempre después de una entity list o tabla.
   <div class="pagination__nav">
     <button class="pagination__btn" disabled>
       <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-        <polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/>
-      </svg>
-    </button>
-    <button class="pagination__btn" disabled>
-      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
         <polyline points="15 18 9 12 15 6"/>
       </svg>
     </button>
@@ -659,18 +494,12 @@ Siempre después de una entity list o tabla.
         <polyline points="9 18 15 12 9 6"/>
       </svg>
     </button>
-    <button class="pagination__btn">
-      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-        <polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/>
-      </svg>
-    </button>
   </div>
 </div>
 
 
 ════════════════════════════════════════════════════════════
-SNIPPET 13 — TOAST (notificación de éxito)
-Función JS reutilizable. Incluir una sola vez por archivo.
+SNIPPET 13 — TOAST
 ════════════════════════════════════════════════════════════
 
 <script>
@@ -709,98 +538,52 @@ var(--color-text-caption)    → texto secundario, fechas, metadatos
 var(--color-text-label)      → labels, texto en componentes
 var(--color-text-negative)   → texto sobre fondos de color (botones primarios)
 var(--color-text-link)       → links, texto activo/primario
-var(--color-text-success)    → texto verde (éxito)
-var(--color-text-error)      → texto rojo (error)
-var(--color-text-alert)      → texto amarillo (advertencia)
+var(--color-text-success)    → texto verde
+var(--color-text-error)      → texto rojo
+var(--color-text-alert)      → texto amarillo
 
 SUPERFICIES:
 var(--color-app-bg)                      → fondo de toda la app
 var(--color-surface-neutral-black)       → fondo topbar/sidebar
-var(--color-surface-neutral-white)       → fondo de cards, botones secundarios
+var(--color-surface-neutral-white)       → fondo cards, botones secundarios
 var(--color-surface-neutral-default)     → hover, inputs
-var(--color-surface-neutral-subtle)      → fondo muy sutil
-var(--color-surface-primary-default)     → azul sólido (botón primary, badges)
-var(--color-surface-primary-subtle)      → azul sutil (hover active, icon bg)
-var(--color-surface-primary-more-subtle) → azul muy sutil (AI strip bg, item selected)
+var(--color-surface-primary-default)     → azul sólido
+var(--color-surface-primary-subtle)      → azul sutil
 var(--color-surface-floating)            → menus, modales, slide-out
-var(--color-surface-success-subtle)      → fondo verde sutil (badge active)
-var(--color-surface-alert-subtle)        → fondo amarillo sutil (badge alert, chip pinned)
-var(--color-surface-error-subtle)        → fondo rojo sutil (badge error)
 
 BORDES:
-var(--color-border-neutral-lighter)  → borde estándar de componentes
+var(--color-border-neutral-lighter)  → borde estándar
 var(--color-border-primary-default)  → borde azul activo
-var(--color-border-alert-default)    → borde amarillo
-var(--color-border-error-default)    → borde rojo
-var(--color-border-success-default)  → borde verde
-
-ÍCONOS:
-var(--color-icon-neutral-dark)    → ícono inactivo/secundario
-var(--color-icon-neutral-light)   → ícono activo/hover
-var(--color-icon-primary-default) → ícono azul primario
-var(--color-icon-success-default) → ícono verde
-var(--color-icon-alert-default)   → ícono amarillo
-var(--color-icon-error-default)   → ícono rojo
 
 RADIOS:
-var(--radius-sm)   → 4px  (inputs, chips pequeños)
-var(--radius-md)   → 8px  (botones, cards, modales)
-var(--radius-lg)   → 16px (cards grandes, modales dialog)
-var(--radius-full) → 9999px (pills, badges, btn-main-action)
-
-
-════════════════════════════════════════════════════════════
-AVATARES — colores por departamento
-════════════════════════════════════════════════════════════
-
-<div class="avatar dept-eng">SC</div>   <!-- Engineering — azul -->
-<div class="avatar dept-prod">MR</div>  <!-- Product — verde -->
-<div class="avatar dept-des">JC</div>   <!-- Design — morado -->
-<div class="avatar dept-fin">DW</div>   <!-- Finance — amarillo -->
-<div class="avatar dept-mkt">AT</div>   <!-- Marketing — naranja -->
-<div class="avatar dept-ops">LT</div>   <!-- Operations — teal -->
-<!-- .avatar-lg para versión grande (slide-out) -->
+var(--radius-sm)   → 4px
+var(--radius-md)   → 8px
+var(--radius-lg)   → 16px
+var(--radius-full) → 9999px
 
 
 ════════════════════════════════════════════════════════════
 ANTI-PATRONES — nunca hagas esto
 ════════════════════════════════════════════════════════════
 
-❌ style="background-color: #1a2b3c"           → usa var(--color-*)
-❌ style="color: #ffffff"                       → usa var(--color-text-*)
-❌ style="border-radius: 8px"                   → usa var(--radius-md)
-❌ class="bg-blue-500 text-white rounded-lg"    → Tailwind solo para layout
-❌ class="btn btn-primary rounded-full"         → no overrides de border-radius
+❌ style="background-color: #1a2b3c"        → usa var(--color-*)
+❌ style="color: #ffffff"                    → usa var(--color-text-*)
+❌ style="border-radius: 8px"               → usa var(--radius-md)
+❌ class="bg-blue-500 text-white"           → Tailwind solo para layout
 ❌ Más de 1 botón .btn-main-action por página
 ❌ Omitir app-shell (topbar + sidebar + main)
 ❌ Inventar clases CSS que no existen en el DS
-❌ Usar font-size, font-weight, color inline en texto
-❌ Usar position:absolute para layout principal
 
 
 ════════════════════════════════════════════════════════════
 CUANDO UN COMPONENTE NO EXISTE EN EL DS
 ════════════════════════════════════════════════════════════
 
-1. Constrúyelo con tokens CSS del DS: var(--color-*), var(--radius-*), var(--spacing-*)
+1. Constrúyelo con tokens CSS: var(--color-*), var(--radius-*)
 2. Usa clase con prefijo custom-: class="custom-timeline"
 3. Documenta al final del HTML:
 
 <!-- NUEVO COMPONENTE: custom-timeline
      Descripción: línea de tiempo vertical para historial de eventos
-     Clases: .custom-timeline, .custom-timeline__item, .custom-timeline__dot
      Tokens usados: --color-border-neutral-lighter, --color-surface-primary-subtle
      → Candidato para incorporar al DS -->
-
-
-════════════════════════════════════════════════════════════
-DATOS FICTICIOS — guía rápida
-════════════════════════════════════════════════════════════
-
-- Nombres: reales y variados (Sarah Chen, Marcus Reid, Jennifer Chang…)
-- Fechas: recientes y absolutas (Apr 12, 2026 / hace 2 días)
-- Números: realistas según contexto (no 1 ni 9999)
-- IDs: formato corto (REQ-001, WRK-042, INV-2026-003)
-- Estados: mezcla siempre — no todas las filas con el mismo badge
-- Emails: formato real (nombre.apellido@empresa.io)
-```
