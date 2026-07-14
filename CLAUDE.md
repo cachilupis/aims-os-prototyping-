@@ -330,7 +330,67 @@ document.addEventListener('click', e => {
 
 
 ════════════════════════════════════════════════════════════
-SNIPPET 7 — SLIDE-OUT PANEL
+SNIPPET 7 — TABLA
+Usa .table-container + .table para listas con columnas definidas.
+Tamaños: .table (altura fila 48px) | .table-sm (altura fila 40px, texto 12px)
+════════════════════════════════════════════════════════════
+
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th style="text-align:right;">Última actividad</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="flex items-center gap-[8px]">
+            <div class="avatar dept-eng">AB</div>
+            <div>
+              <div style="font-weight:500;color:var(--color-text-title);font-size:13px;">Ana Beltrán</div>
+              <div style="font-size:11px;color:var(--color-text-caption);">ana.beltran@aimsos.ai</div>
+            </div>
+          </div>
+        </td>
+        <td>Administrador</td>
+        <td><span class="badge badge-active">Activo</span></td>
+        <td style="text-align:right;">Hace 2h</td>
+        <td style="text-align:right;">
+          <button class="btn btn-secondary btn-sm">Editar</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="flex items-center gap-[8px]">
+            <div class="avatar dept-product">CD</div>
+            <div>
+              <div style="font-weight:500;color:var(--color-text-title);font-size:13px;">Carlos Duarte</div>
+              <div style="font-size:11px;color:var(--color-text-caption);">carlos.duarte@aimsos.ai</div>
+            </div>
+          </div>
+        </td>
+        <td>Editor</td>
+        <td><span class="badge badge-inactive">Inactivo</span></td>
+        <td style="text-align:right;">Hace 5h</td>
+        <td style="text-align:right;">
+          <button class="btn btn-secondary btn-sm">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Clases de avatar por departamento:
+     dept-eng | dept-product | dept-design | dept-finance | dept-ops | dept-cx -->
+
+
+════════════════════════════════════════════════════════════
+SNIPPET 8 — SLIDE-OUT PANEL
 ════════════════════════════════════════════════════════════
 
 <div id="slideBackdrop" style="display:none;position:fixed;inset:0;z-index:499;" onclick="closeSlideOut()"></div>
