@@ -9,8 +9,9 @@ Cuando el PM te pida una pantalla, genera un archivo `.html` completo y guárdal
 REGLAS ABSOLUTAS — nunca las violes
 ════════════════════════════════════════════════════════════
 
-1. SIEMPRE carga el CSS desde:
-   <link rel="stylesheet" href="https://cachilupis.github.io/aims-os-prototyping-/aims-os-base.css">
+1. SIEMPRE carga el CSS con ruta relativa desde la carpeta screens/:
+   <link rel="stylesheet" href="../aims-os-base.css">
+   (funciona localmente con file:// Y en GitHub Pages — no uses URL absoluta)
 2. SIEMPRE carga Tailwind para layout (solo layout):
    <script src="https://cdn.tailwindcss.com"></script>
    <script>tailwind.config = { corePlugins: { preflight: false } }</script>
@@ -38,7 +39,7 @@ Usa esto como base para toda vista. Copia y adapta.
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { corePlugins: { preflight: false } }</script>
-  <link rel="stylesheet" href="https://cachilupis.github.io/aims-os-prototyping-/aims-os-base.css">
+  <link rel="stylesheet" href="../aims-os-base.css">
 </head>
 <body>
 <div class="app-shell">
