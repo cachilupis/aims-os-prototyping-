@@ -141,82 +141,91 @@ Siempre al inicio del main-content, antes de cualquier otra cosa.
 
 ════════════════════════════════════════════════════════════
 SNIPPET 3 — KPI CARDS (Highlight Cards)
-Máximo 4 en una fila. Variantes: hcard--blue, --green, --yellow, --neutral, --red, --purple
+Máximo 4 en una fila. REGLA: la card siempre es neutral (.highlight-card sin modificador
+de color). El color va SOLO en el ícono (.highlight-icon--*-dark). NUNCA uses --primary-bg,
+--green-bg, --yellow-bg ni ningún modificador de color en la card — eso es estilo antiguo.
+
+Íconos disponibles:
+  Azul/info:    highlight-icon--informative-dark
+  Verde/éxito:  highlight-icon--success-dark
+  Amarillo:     highlight-icon--alert-dark
+  Rojo/error:   highlight-icon--error-dark
+  Neutro:       highlight-icon--neutral-dark
 ════════════════════════════════════════════════════════════
 
 <div class="flex items-stretch gap-3 mb-6">
 
-  <div class="hcard hcard--blue">
-    <div class="hcard__row">
-      <div class="flex flex-col gap-1">
-        <span class="hcard__label">Métrica 1</span>
+  <div class="highlight-card">
+    <div class="highlight-card__row">
+      <div class="flex flex-col gap-2">
+        <span class="highlight-card__label">Métrica 1</span>
         <div class="flex items-baseline gap-2">
-          <span class="hcard__value">1,284</span>
-          <span class="hcard__unit">total</span>
+          <span class="highlight-card__value">1,284</span>
+          <span class="highlight-card__unit">total</span>
         </div>
       </div>
-      <div class="highlight-icon highlight-icon-l hi--blue">
+      <div class="highlight-icon highlight-icon-l highlight-icon--informative-dark">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
         </svg>
       </div>
     </div>
-    <span class="hcard__delta up">↑ +42 this month</span>
+    <span class="highlight-card__feedback positive">↑ +42 este mes</span>
   </div>
 
-  <div class="hcard hcard--green">
-    <div class="hcard__row">
-      <div class="flex flex-col gap-1">
-        <span class="hcard__label">Métrica 2</span>
+  <div class="highlight-card">
+    <div class="highlight-card__row">
+      <div class="flex flex-col gap-2">
+        <span class="highlight-card__label">Métrica 2</span>
         <div class="flex items-baseline gap-2">
-          <span class="hcard__value">847</span>
-          <span class="hcard__unit">activos</span>
+          <span class="highlight-card__value">847</span>
+          <span class="highlight-card__unit">activos</span>
         </div>
       </div>
-      <div class="highlight-icon highlight-icon-l hi--green">
+      <div class="highlight-icon highlight-icon-l highlight-icon--success-dark">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
     </div>
-    <span class="hcard__delta up">↑ +8.1%</span>
+    <span class="highlight-card__feedback positive">↑ +8.1%</span>
   </div>
 
-  <div class="hcard hcard--yellow">
-    <div class="hcard__row">
-      <div class="flex flex-col gap-1">
-        <span class="hcard__label">Métrica 3</span>
+  <div class="highlight-card">
+    <div class="highlight-card__row">
+      <div class="flex flex-col gap-2">
+        <span class="highlight-card__label">Métrica 3</span>
         <div class="flex items-baseline gap-2">
-          <span class="hcard__value">47</span>
-          <span class="hcard__unit">pendientes</span>
+          <span class="highlight-card__value">47</span>
+          <span class="highlight-card__unit">pendientes</span>
         </div>
       </div>
-      <div class="highlight-icon highlight-icon-l hi--alert">
+      <div class="highlight-icon highlight-icon-l highlight-icon--alert-dark">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
           <line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
       </div>
     </div>
-    <span class="hcard__delta neutral">Sin cambios</span>
+    <span class="highlight-card__feedback neutral">Sin cambios</span>
   </div>
 
-  <div class="hcard hcard--neutral">
-    <div class="hcard__row">
-      <div class="flex flex-col gap-1">
-        <span class="hcard__label">Métrica 4</span>
+  <div class="highlight-card">
+    <div class="highlight-card__row">
+      <div class="flex flex-col gap-2">
+        <span class="highlight-card__label">Métrica 4</span>
         <div class="flex items-baseline gap-2">
-          <span class="hcard__value">390</span>
-          <span class="hcard__unit">inactivos</span>
+          <span class="highlight-card__value">390</span>
+          <span class="highlight-card__unit">inactivos</span>
         </div>
       </div>
-      <div class="highlight-icon highlight-icon-l hi--neutral">
+      <div class="highlight-icon highlight-icon-l highlight-icon--neutral-dark">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/>
         </svg>
       </div>
     </div>
-    <span class="hcard__delta down">↓ -12 this month</span>
+    <span class="highlight-card__feedback negative">↓ -12 este mes</span>
   </div>
 
 </div>
